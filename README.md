@@ -17,14 +17,15 @@ for notes on how to deploy the project on a live system.
 
 You will need:
 
-    [Nodejs](https://nodejs.org/es/download/)
-    [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+  [Nodejs](https://nodejs.org/es/download/)
+  
+  [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 
 ### Installation
 
 To clone this repo
 
-    git clone git@github.com:KevinFallas03/DynamicFormBuilder-BD2-2S-2020.git
+    $ git clone git@github.com:KevinFallas03/DynamicFormBuilder-BD2-2S-2020.git
 
 then install the Node modules with
 
@@ -36,7 +37,7 @@ Finally run server
 
 ## Demo
 
-<<Insertar demo del proyecto>>
+Insert demo here
 
 ## Authors
 
