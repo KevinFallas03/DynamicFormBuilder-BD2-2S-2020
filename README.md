@@ -6,8 +6,6 @@ A Dynamic Form Builder created with MEAN Stack.
   - [Getting Started](#getting-started)
   - [Demo](#demo)
   - [Authors](#authors)
-  - [License](#license)
-  - [Acknowledgments](#acknowledgments)
 
 ## Getting Started
 
