@@ -41,10 +41,9 @@ Insert demo here
 
 ## Authors
 
-  - **Billie Thompson** - *Provided README Template* -
-    [David](https://github.com/dcastro18)
-    [Josue](https://github.com/JOSUERV99)
-    [Kevin](https://github.com/KevinFallas03)
-    [Kenneth](https://github.com/KennethS0)
-    [Esteban](https://github.com/madri308)
+   - [David](https://github.com/dcastro18)
+   - [Josue](https://github.com/JOSUERV99)
+   - [Kevin](https://github.com/KevinFallas03)
+   - [Kenneth](https://github.com/KennethS0)
+   - [Esteban](https://github.com/madri308)
 
