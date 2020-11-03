@@ -13,7 +13,14 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 /* Routes */
-app.use("/api/xyz", require("./routes/xyz"));
+// Log in and sign up will be at the home page.
+app.use("/", require("./routes/landing"));
+
+// Home page of the logged user (ROUTE TO BE DEFINED)
+app.use("/:userName", require("./routes/home"));
+
+
+
 
 // Xyz : later can be Form, User, ...
 // Tested from Postman with GET `http://localhost:3000/api/xyz, ....
