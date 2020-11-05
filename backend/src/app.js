@@ -12,6 +12,14 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
+// Print JSONS
+app.use(
+    express.urlencoded({
+      extended: true
+    })
+  );
+app.use(express.json());
+
 
 /* Routes */
 // Methods related access (Register, Log In)

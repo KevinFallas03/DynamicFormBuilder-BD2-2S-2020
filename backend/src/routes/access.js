@@ -10,7 +10,7 @@ const userController = require("../controllers/usersController");
 router.post('/register', userController.createUser);
 
 // Get method for log in
-router.get('/login', userController.login);
+router.post('/login', userController.login);
 
 
 module.exports = router;

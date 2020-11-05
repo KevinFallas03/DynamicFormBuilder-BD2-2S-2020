@@ -1,5 +1,6 @@
 const { removeAllListeners } = require("../app");
 const User = require("../models/User");
+const { use } = require("../routes/home");
 
 /*
     All functions related to user maniupulation in the database.
@@ -61,15 +62,15 @@ usersController.findUser = async (req, res) => {
 usersController.login = async (req, res) => {
 
     try {
-        const user = await User.findOne({username: req.body.username});
+        const user = await User.getFromCredentials(req.body.username, req.body.password);
+        const token = await user.generateToken();
         
         // 200: OK
-        res.status(200).json(user);
+        res.status(200).json({user, token});
     } catch (error) {
-        // 400: Bad Request
-        res.status(400).send(error);
+        // 401: Unathorized
+        res.status(401).send(error);
     }
-
 }
 
 
@@ -87,7 +88,6 @@ usersController.getUsers = async (req, res) => {
     }
 
 }
-
 
 // Updates the information of a single user
 usersController.updateUser = async (req, res) => {
