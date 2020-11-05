@@ -6,13 +6,11 @@ const router = express.Router();
 
 const userController = require("../controllers/usersController");
 
-
 // Post method to create a new account
-router.post('/', userController.createUser);
-
+router.post('/register', userController.createUser);
 
 // Get method for log in
-router.get('/', userController.getUser);
+router.get('/login', userController.login);
 
 
 module.exports = router;

@@ -12,12 +12,13 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
-/* Routes */
-// Log in and sign up will be at the home page.
-app.use("/", require("./routes/landing"));
 
-// Home page of the logged user (ROUTE TO BE DEFINED)
-app.use("/:userName", require("./routes/home"));
+/* Routes */
+// Methods related access (Register, Log In)
+app.use("/", require("./routes/access"));
+
+// Home page of the logged user
+app.use("/home", require("./routes/home"));
 
 
 
