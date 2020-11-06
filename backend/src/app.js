@@ -14,6 +14,8 @@ app.use(express.json());
 
 /* Routes */
 app.use("/api/xyz", require("./routes/xyz"));
+app.use("/api/form", require("./routes/form"));
+app.use("/api/template", require("./routes/template"));
 
 // Xyz : later can be Form, User, ...
 // Tested from Postman with GET `http://localhost:3000/api/xyz, ....
