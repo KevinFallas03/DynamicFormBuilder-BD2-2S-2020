@@ -1,0 +1,175 @@
+<div #buildingToolbar *ngIf="!disabled" class="my-4 building-toolbar" [class.sticky]="sticky">
+  <button class="btn btn-light mr-2" *ngFor="let item of buildingItemsToShow" [dndDisableIf]="disabled"
+    [dndDraggable]="item" dndEffectAllowed="copy">
+    <img *ngIf="item.icon" class="icon mr-2" [src]="item.icon" [alt]="item.name">
+    <span class="label">{{ item.name | titlecase }}</span>
+  </button>
+</div>
+
+<ng-template #recursiveList let-property>
+  <div dndPlaceholderRef class="dndPlaceholder"></div>
+  <div class="building-item" *ngFor="let item of property?.properties" [dndDisableIf]="disabled" [dndDraggable]="item"
+    dndEffectAllowed="move" [dndDisableIf]="item.disable" (dndMoved)="onDragged(item, property.properties, 'move')">
+    <ng-container [ngSwitch]="item.type">
+      <div *ngSwitchCase="'table'" class="table">
+        <div class="d-flex">
+          <div class="ml-auto">
+            <ng-container *ngTemplateOutlet="buttonsTpt; context: { list: property.properties, item: item }">
+            </ng-container>
+          </div>
+        </div>
+        <table class="table table-bordered table-striped table-responsive-sm">
+          <caption *ngIf="item.caption">{{ item.caption }}</caption>
+          <thead>
+            <tr>
+              <th *ngFor="let header of item.properties">{{ header.description }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td *ngFor="let header of item.properties" dndDropzone (dndDrop)="onDrop($event, header.properties)">
+                <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: header }">
+                </ng-container>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngSwitchCase="'tabs'" class="tabs">
+        <ul class="nav nav-tabs mb-0">
+          <li *ngFor="let tab of item.properties; index as i" class="nav-item">
+            <a class="nav-link" href="javascript:{}"
+              [ngClass]="{'active': (!item.index && i ===  0) || item.index === i}" (click)="tabClick(item, tab)">
+              <i *ngIf="tab.iconClass" [ngClass]="tab.iconClass" class="mr-2"></i>
+              {{ tab.description }}
+            </a>
+          </li>
+          <li class="nav-item ml-auto">
+            <ng-container *ngTemplateOutlet="buttonsTpt; context: { list: property.properties, item: item }">
+            </ng-container>
+          </li>
+        </ul>
+        <div class="tab-content border border-top-0 p-4 mb-4">
+          <div dndDropzone (dndDrop)="onDrop($event, item.properties[item.index || 0].properties)">
+            <ng-container
+              *ngTemplateOutlet="recursiveList; context:{ $implicit: item.properties[item.index || 0] || [] }">
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <fieldset *ngSwitchCase="'fieldset'">
+        <legend>{{ item.description }}</legend>
+        <ng-container *ngTemplateOutlet="buttonsTpt; context: { list: property.properties, item: item }">
+        </ng-container>
+        <div dndDropzone (dndDrop)="onDrop($event, item.properties)">
+          <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item }"></ng-container>
+        </div>
+      </fieldset>
+
+      <ng-container *ngSwitchCase="'input'">
+        <ng-container [ngSwitch]="item.format">
+          <div *ngSwitchCase="'checkbox'" class="form-check">
+            <ng-container *ngTemplateOutlet="buttonsTpt; context: { list: property.properties, item: item }">
+            </ng-container>
+            <input type="checkbox" class="form-check-input" [checked]="!!item.value">
+            <label class="form-check-label">
+              {{ item.description }}
+              <sup *ngIf="item.required" class="text-danger">*</sup>
+            </label>
+          </div>
+          <div *ngSwitchDefault class="form-group" [dndDisableIf]="disabled" [dndDraggable]="item"
+            dndEffectAllowed="move" (dndCopied)="onDragged(item, property.properties, 'copy')"
+            (dndMoved)="onDragged(item, property.properties, 'move')">
+            <label>{{ item.description }}
+              <sup *ngIf="item.required" class="text-danger">*</sup>
+            </label>
+            <ng-container *ngTemplateOutlet="buttonsTpt; context: { list: property.properties, item: item }">
+            </ng-container>
+            <input class="form-control" [type]="item.format || 'string'" [name]="item.key"
+              [placeholder]="item.placeholder || ''" [required]="item.required" [min]="item.minimun"
+              [max]="item.maximun" [step]="item.step" [value]="item.value || ''" />
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'select'">
+        <ng-container [ngSwitch]="item.format">
+          <div *ngSwitchCase="'dropdown'" class="form-group">
+            <label>{{ item.description }}
+              <sup *ngIf="item.required" class="text-danger">*</sup>
+            </label>
+            <ng-container *ngTemplateOutlet="buttonsTpt; context: { list: property.properties, item: item }">
+            </ng-container>
+            <select class="form-control" [value]="item.default || null" [required]="item.required" [name]="item.key"
+              [multiple]="item.multiple || false">
+              <option *ngFor="let option of item.properties" [value]="option.value">
+                {{ option.description }}
+              </option>
+            </select>
+          </div>
+          <div *ngSwitchCase="'radio'" class="form-group">
+            <label>{{ item.description }}
+              <sup *ngIf="item.required" class="text-danger">*</sup>
+            </label>
+            <ng-container *ngTemplateOutlet="buttonsTpt; context: { list: property.properties, item: item }">
+            </ng-container>
+            <div class="form-check" *ngFor="let option of item.properties">
+              <input class="form-check-input" type="radio" [value]="option.value" [name]="item.key">
+              <label class="form-check-label">
+                {{ option.description }}
+              </label>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <div *ngSwitchCase="'textarea'" class="form-group">
+        <label>{{ item.description }}
+          <sup *ngIf="item.required" class="text-danger">*</sup></label>
+        <ng-container *ngTemplateOutlet="buttonsTpt; context: { list: property.properties, item: item }">
+        </ng-container>
+        <textarea class="form-control" [id]="item.key" [rows]="item.rows || 4" [cols]="item.cols || 0"
+          [value]="item.value || ''" [placeholder]="item.placeholder" [required]="item.required || false"></textarea>
+      </div>
+
+      <div *ngSwitchCase="'file'" class="form-group">
+        <label>{{ item.description }}
+          <sup *ngIf="item.required" class="text-danger">*</sup></label>
+        <ng-container *ngTemplateOutlet="buttonsTpt; context: { list: property.properties, item: item }">
+        </ng-container>
+        <input type="file" class="form-control-file" [multiple]="item.multiple">
+      </div>
+
+      <div *ngSwitchCase="'enriched-text'" class="enriched-text" [ngClass]="item.classList">
+        <ng-container *ngTemplateOutlet="buttonsTpt; context: { list: property.properties, item: item }">
+        </ng-container>
+        <div [innerHTML]="item.value"></div>
+      </div>
+
+      <p *ngSwitchDefault>
+        <span>{{ item | json }}</span>
+      </p>
+
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #buttonsTpt let-list="list" let-item="item">
+  <span *ngIf="!disabled" class="build-item_button-bar float-right">
+    <button class="btn btn-link px-1 build-item_button-bar_edit" (click)="edit(list, item)">
+      <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+    </button>
+    <button class="btn btn-link px-1 build-item_button-bar_clone" (click)="clone(list, item)">
+      <i class="far fa-clone" aria-hidden="true"></i>
+    </button>
+    <button class="btn btn-link px-1 build-item_button-bar_remove" (click)="delete(list, item)">
+      <i class="far fa-trash-alt" aria-hidden="true"></i>
+    </button>
+  </span>
+</ng-template>
+
+<div class="dndDroppingTarget" *ngIf="schema" dndDropzone (dndDrop)="onDrop($event, schema.properties)">
+  <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: schema }"></ng-container>
+</div>

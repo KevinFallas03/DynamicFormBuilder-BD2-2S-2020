@@ -1,0 +1,82 @@
+<div class="modal-header">
+  <h5 class="modal-title"> {{ 'TABS_EDITION' | translate }}</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="form">
+    <ul ngbNav #nav="ngbNav" [(activeId)]="activeNavId" class="nav-tabs">
+      <li [ngbNavItem]="1">
+        <a ngbNavLink> {{ 'PROPERTIES' | translate }}</a>
+        <ng-template ngbNavContent>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" formArrayName="properties"
+              *ngFor="let item of properties.controls; index as i;">
+              <fieldset [formGroupName]="i">
+                <legend> {{ 'TAB' | translate }} #{{ i + 1 }}</legend>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">{{ 'KEY' | translate }} <sup
+                      class="text-danger">*</sup></label>
+                  <div class="col-sm-9">
+                    <input type="string" class="form-control" formControlName="key">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">{{ 'NAME' | translate }} <sup
+                      class="text-danger">*</sup></label>
+                  <div class="col-sm-9">
+                    <input type="string" class="form-control" formControlName="description">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">{{ 'ICON' | translate }}</label>
+                  <div class="col-sm-9">
+                    <input type="string" class="form-control" formControlName="iconClass">
+                  </div>
+                </div>
+                <div class="d-flex">
+                  <button type="button" class="btn btn-danger ml-auto" (click)="removeByIndex(i)">
+                    <i class="far fa-trash-alt mr-2"></i>
+                    {{ 'REMOVE' | translate }}
+                  </button>
+                </div>
+              </fieldset>
+              <div *ngIf="!properties.controls.length" class="alert alert-warning" role="alert">
+                {{ 'CLICK_BUTTON_ADD_TABS' | translate }}
+              </div>
+            </li>
+          </ul>
+          <div class="text-right">
+
+          </div>
+        </ng-template>
+      </li>
+      <li [ngbNavItem]="2">
+        <a ngbNavLink>{{ 'TRIGGERS' | translate }}</a>
+        <ng-template ngbNavContent>
+          <ngx-form-builder-triggers formControlName="triggers"></ngx-form-builder-triggers>
+        </ng-template>
+      </li>
+      <!-- <li [ngbNavItem]="3">
+        <a ngbNavLink>Display settings</a>
+        <ng-template ngbNavContent>
+          <ngx-form-builder-display-settings formControlName="display-settings"></ngx-form-builder-display-settings>
+        </ng-template>
+      </li> -->
+    </ul>
+    <div [ngbNavOutlet]="nav"></div>
+
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="add()">
+    <i class="fas fa-plus mr-2" aria-hidden="true"></i>
+    {{ 'ADD' | translate }}
+  </button>
+  <button type="button" class="btn ml-auto" (click)="dismiss()">{{ 'CANCEL' | translate }}</button>
+  <button type="button" class="btn btn-primary" [disabled]="form.invalid"
+    (click)="saveAndDismiss()">{{ 'ACCEPT' | translate }}</button>
+</div>
