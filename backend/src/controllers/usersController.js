@@ -1,6 +1,4 @@
-const { removeAllListeners } = require("../app");
 const User = require("../models/User");
-const { use } = require("../routes/home");
 
 /*
     All functions related to user maniupulation in the database.
@@ -99,5 +97,41 @@ usersController.updateUser = async (req, res) => {
 usersController.deleteUser = async (req, res) => {
     res.send("DELETING A USER");
 }
+
+
+// Logs off the user from a single system (removes one token)
+usersController.logoff = async (req, res) => {
+
+    try {
+        // Removes the token being used
+        req.user.tokens = req.user.tokens.filter((tk) => {
+            return tk.token != req.token;
+        });
+
+        // Updates the tokens
+        await req.user.save();
+        res.status(200).json({});
+    } catch (error) {
+        res.status(400).json({Error: "Something went wrong"});
+    }
+
+}
+
+// Logs off the user from all devices (removes all tokens)
+usersController.forceLogoff = async (req, res) => {
+
+    try {
+        // Removes all tokens from the account
+        req.user.tokens = [];
+
+        // Updates the tokens
+        await req.user.save();
+        res.status(200).json({});
+    } catch (error) {
+        res.status(400).json({Error: "Something went wrong"});
+    }
+
+}
+
 
 module.exports = usersController;

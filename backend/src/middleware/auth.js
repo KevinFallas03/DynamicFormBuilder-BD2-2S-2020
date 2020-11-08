@@ -7,14 +7,13 @@ require('dotenv/config');
 
 // Authorization function, sets the request information
 const auth = async(req, res, next) => {
-
-    // Token format "Bearer (token)"
-    const token = req.header('Authorization').replace('Bearer ', '');
-    const data = jwt.verify(token, process.env.TOKEN_KEY);
-
-    console.log(data);
-
+    
     try {
+        
+        // Token format "Bearer (token)"
+        const token = req.header('Authorization').replace('Bearer ', '');
+        const data = jwt.verify(token, process.env.TOKEN_KEY);
+
         // Finds the user
         const user = await User.findOne({_id: data._id, 'tokens.token': token});
 

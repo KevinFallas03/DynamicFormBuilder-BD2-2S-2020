@@ -22,7 +22,7 @@ app.use(express.json());
 
 
 /* Routes */
-// Methods related access (Register, Log In)
+// Methods related to access (Register, Log In)
 app.use("/", require("./routes/access"));
 
 // Home page of the logged user

@@ -16,8 +16,10 @@ router.get('/', auth, (req, res) => {
 
 
 // Logs off the user from the system they are using.
+router.post('/logoff', auth, userController.logoff);
+
 
 // Logs off the user from every device.
-
+router.post('/forceLogoff', auth, userController.forceLogoff);
 
 module.exports = router;

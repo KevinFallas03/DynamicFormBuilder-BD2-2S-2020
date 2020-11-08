@@ -9,7 +9,7 @@ const userController = require("../controllers/usersController");
 // Post method to create a new account
 router.post('/register', userController.createUser);
 
-// Get method for log in
+// Post method for log in
 router.post('/login', userController.login);
 
 
