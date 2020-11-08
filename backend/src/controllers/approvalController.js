@@ -2,12 +2,44 @@ const Approval = require("../models/Approval");
 
 const approvalController = {};
 
+/**
+ * Get the approvals binded to a specific templat
+ * @param {*} req.params.templateName template name to filter
+ * @param {*} res 
+ */
 approvalController.get = async (req, res) => {
-    res.json({ message: "Hello from get!" });
+    const { templateName } = req.params;
+    try {
+        const approvalByTemplateName = await Approval.find({template:{name:templateName}});
+        res.status(202).send(approvalByTemplateName);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'Approval get request failed', 
+              error: err
+            }
+        );
+    }   
 };
 
+/**
+ * Modify an approval object with the given object using the id
+ * @param {*} req.body approval json object to edit
+ * @param {*} res 
+ */
 approvalController.edit = async (req, res) => {
-    res.json({ message: "Hello from edit!" });
+    const editedApproval = req.body;
+    try {
+        const updatedApproval = await Approval.findByIdAndUpdate( editedApproval._id, editedApproval );
+        res.status(202).send(updatedApproval);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'Approval edition failed', 
+              error: err
+            }
+        );
+    }   
 };
 
 /**
@@ -16,7 +48,7 @@ approvalController.edit = async (req, res) => {
  * @param {*} res 
  */
 approvalController.create = async (req, res) => {
-    const newApproval = { authors, approvers, template, minimumApprovalAmount } = req.body;
+    const newApproval = req.body;
     try {
         const createdApproval = await Approval.insert(newApproval);
         res.status(202).send(createdApproval);
