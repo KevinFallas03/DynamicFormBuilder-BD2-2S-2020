@@ -12,8 +12,24 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
+// Print JSONS
+app.use(
+    express.urlencoded({
+      extended: true
+    })
+  );
+app.use(express.json());
+
+
 /* Routes */
-app.use("/api/xyz", require("./routes/xyz"));
+// Methods related to access (Register, Log In)
+app.use("/", require("./routes/access"));
+
+// Home page of the logged user
+app.use("/home", require("./routes/home"));
+
+
+
 
 // Xyz : later can be Form, User, ...
 // Tested from Postman with GET `http://localhost:3000/api/xyz, ....
