@@ -13,13 +13,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 // Print JSONS
-app.use(
-    express.urlencoded({
-      extended: true
-    })
-  );
-app.use(express.json());
-
+app.use( express.urlencoded({ extended: true }) );
 
 /* Routes */
 // Methods related to access (Register, Log In)
@@ -28,15 +22,9 @@ app.use("/", require("./routes/access"));
 // Home page of the logged user
 app.use("/home", require("./routes/home"));
 
+// Approval service
+app.use("/approval", require("./routes/approval"));
 
 
-
-// Xyz : later can be Form, User, ...
-// Tested from Postman with GET `http://localhost:3000/api/xyz, ....
-// Running 
-//  - development : npm run dev // with nodemon!
-//  - default :     npm start   // default script to start node server!
-//
-// Note: If doesn't connect to database, remember add your current IP address in Network access tab in Mongo Atlas - Cluster 0
 
 module.exports = app;
