@@ -1,0 +1,258 @@
+[
+  {
+    "type": "object",
+    "properties": [
+    ]
+  },
+  {
+    "$id": "https://example.com/person.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": null,
+    "type": "object",
+    "properties": [{
+        "type": "fieldset",
+        "key": "aaa",
+        "description": "aaa",
+        "properties": [],
+        "triggers": [{
+          "if": [{
+              "type": null,
+              "value": "asdf",
+              "operator": "equal",
+              "boolean": "and",
+              "type2": null,
+              "value2": "asdf"
+            },
+            {
+              "type": null,
+              "value": "fasd",
+              "operator": "equal",
+              "boolean": "and",
+              "type2": null,
+              "value2": "dsd"
+            }
+          ],
+          "then": [{
+            "action": "asdf"
+          }],
+          "else": [{
+            "action": "asdfasdf"
+          }]
+        }]
+      },
+      {
+        "key": "firstName",
+        "type": "input",
+        "description": "First name"
+      },
+      {
+        "key": "lastName",
+        "type": "input",
+        "description": "Last name"
+      },
+      {
+        "key": "email",
+        "type": "input",
+        "description": "Email"
+      },
+      {
+        "key": "age",
+        "type": "input",
+        "description": "Age",
+        "format": "number",
+        "placeholder": "31"
+      },
+      {
+        "type": "select",
+        "key": "gender",
+        "description": "Gender",
+        "required": false,
+        "placeholder": "Select your gender",
+        "multiple": false,
+        "format": "dropdown",
+        "properties": [{
+            "type": "option",
+            "value": "men",
+            "description": "Men"
+          },
+          {
+            "type": "option",
+            "value": "women",
+            "description": "Women"
+          }
+        ],
+        "default": "men"
+      },
+      {
+        "type": "select",
+        "key": "gender2",
+        "description": "Gender 2",
+        "required": true,
+        "placeholder": "Select your gender",
+        "multiple": true,
+        "format": "dropdown",
+        "properties": [{
+            "type": "option",
+            "value": "men",
+            "description": "Men"
+          },
+          {
+            "type": "option",
+            "value": "women",
+            "description": "Women"
+          }
+        ],
+        "default": null
+      },
+      {
+        "type": "select",
+        "key": "gender3",
+        "description": "Gender 3",
+        "required": true,
+        "placeholder": "Select your gender",
+        "multiple": false,
+        "format": "radio",
+        "properties": [{
+            "type": "option",
+            "value": "men",
+            "description": "Men"
+          },
+          {
+            "type": "option",
+            "value": "women",
+            "description": "Women"
+          }
+        ],
+        "default": null
+      },
+      {
+        "type": "select",
+        "key": "gender4",
+        "description": "Gender 4",
+        "required": false,
+        "placeholder": "Select your gender",
+        "multiple": true,
+        "format": "radio",
+        "properties": [{
+            "type": "option",
+            "value": "men",
+            "description": "Men"
+          },
+          {
+            "type": "option",
+            "value": "women",
+            "description": "Women"
+          }
+        ],
+        "default": null
+      },
+      {
+        "type": "textarea",
+        "key": "description",
+        "description": "Description",
+        "required": true,
+        "placeholder": "Describe yourself",
+        "cols": 20,
+        "rows": 6
+      },
+      {
+        "key": "tabs1",
+        "type": "tabs",
+        "description": "Phases",
+        "properties": [{
+            "type": "tab",
+            "description": "Invoice address",
+            "properties": [{
+                "key": "address",
+                "type": "input",
+                "description": "Address"
+              },
+              {
+                "key": "city",
+                "type": "input",
+                "description": "City"
+              },
+              {
+                "key": "country",
+                "type": "input",
+                "description": "Country"
+              }
+            ]
+          },
+          {
+            "type": "tab",
+            "description": "Delivery address",
+            "properties": [{
+                "key": "address",
+                "type": "input",
+                "description": "Address 2"
+              },
+              {
+                "key": "city",
+                "type": "input",
+                "description": "City 2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "$id": "https://example.com/person.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Person",
+    "type": "object",
+    "properties": {
+      "firstName": {
+        "type": "input",
+        "description": "First name"
+      },
+      "lastName": {
+        "type": "input",
+        "description": "Last name"
+      },
+      "email": {
+        "type": "input",
+        "description": "Email"
+      },
+      "tabs1": {
+        "type": "tabs",
+        "description": "Phases",
+        "children": [{
+            "type": "tab",
+            "description": "Phase 1",
+            "properties": {
+              "firstName": {
+                "type": "input",
+                "description": "First name"
+              },
+              "lastName": {
+                "type": "input",
+                "description": "Last name"
+              },
+              "email": {
+                "type": "input",
+                "description": "Email"
+              }
+            }
+          },
+          {
+            "type": "tab",
+            "description": "Phase 2",
+            "properties": {
+              "firstName": {
+                "type": "input",
+                "description": "Email"
+              },
+              "lastName": {
+                "type": "input",
+                "description": "Password"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+]
