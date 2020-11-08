@@ -19,6 +19,13 @@
     "@angular/platform-browser": "~10.2.0",
     "@angular/platform-browser-dynamic": "~10.2.0",
     "@angular/router": "~10.2.0",
+    "@ckeditor/ckeditor5-angular": "^2.0.1",
+    "@ckeditor/ckeditor5-build-classic": "^23.1.0",
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "@ng-bootstrap/ng-bootstrap": "^8.0.0",
+    "@ngx-translate/core": "^13.0.0",
+    "bootstrap": "^4.5.3",
+    "ngx-drag-drop": "^2.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
