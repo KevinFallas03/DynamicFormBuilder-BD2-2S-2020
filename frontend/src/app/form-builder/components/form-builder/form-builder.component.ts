@@ -56,8 +56,8 @@ export class FormBuilderComponent implements ControlValueAccessor, Validator, On
 	tabIndex = 0;
 
 	defaultSchema: any = {
-		$id: null,
-		$schema: 'http://json-schema.org/draft-07/schema#',
+		// $id: null,
+		// $schema: 'http://json-schema.org/draft-07/schema#',
 		title: null,
 		type: 'object',
 		properties: []
@@ -97,7 +97,7 @@ export class FormBuilderComponent implements ControlValueAccessor, Validator, On
 	public writeValue(obj: any) {
 		if (obj) {
 			this.schema = obj;
-			// this.onChange(this.schema);
+			//this.onChange(this.schema);
 		}
 	}
 

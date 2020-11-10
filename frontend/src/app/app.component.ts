@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
 
 	async ngOnInit() {
 		const schemas = await this._http.get('./assets/examples.json').toPromise();
-		console.log(schemas)
+		//console.log(schemas)
 		this.schema = schemas[0];
 		this.reactiveForm.get('schema').patchValue(schemas[0]);
 	}
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
 	}
 
 	viewJson(){
-		console.log(this.schema)
+		console.log(this.schema);	
 	}
 
 	onChange(event) {

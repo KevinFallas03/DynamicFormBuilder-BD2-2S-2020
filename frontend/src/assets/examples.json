@@ -1,8 +1,40 @@
 [
   {
+    "title": "Titulo predefinido",
+    "description": "Descripcion predefinida",
     "type": "object",
     "properties": [
+      {
+        "type": "select",
+        "key": "habilitado",
+        "description": "Habilitado para",
+        "required": false,
+        "placeholder": null,
+        "multiple": false,
+        "format": "dropdown",
+        "properties": [
+          {
+            "type": "option",
+            "value": "nombre",
+            "description": "Kevin"
+          }
+        ],
+        "feeding_type": "static",
+        "external_feeding_config": {
+          "endpoint": null,
+          "value_property": null,
+          "text_property": null
+        },
+        "default": null,
+        "triggers": null
+      }
     ]
+  },
+  {
+    "title":"Titulo predefinido",
+    "description":"Descripcion predefinida",
+    "type": "object",
+    "properties": []
   },
   {
     "$id": "https://example.com/person.schema.json",
