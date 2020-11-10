@@ -6,7 +6,7 @@
   <div>
     <h4>Fomulario</h4>
     <form [formGroup]="reactiveForm">
-      <form-builder formControlName="schema" (onchange)="onChange($event)"></form-builder>
+      <template formControlName="schema" (onchange)="onChange($event)"></template>
     </form>
     <div class="my-4 text-right">
       <button class="btn btn-primary" (click)="viewJson()">

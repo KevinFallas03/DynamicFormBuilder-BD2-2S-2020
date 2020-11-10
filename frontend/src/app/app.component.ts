@@ -10,13 +10,13 @@ import { FormBuilder } from '@angular/forms';
 export class AppComponent implements OnInit {
 
 	schema: any;
-	reactiveForm = this._formBuilder.group({
+	reactiveForm = this._template.group({
 		schema: [null]
 	});
 
 	constructor(
 		private _http: HttpClient,
-		private _formBuilder: FormBuilder
+		private _template: FormBuilder
 	) { }
 
 	async ngOnInit() {

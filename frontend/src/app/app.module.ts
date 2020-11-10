@@ -4,9 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
-import { TemplateComponent } from './template/template.component';
 import { UserComponent } from './user/user.component';
-import { FormBuilderModule } from './form-builder/form-builder.module';
+import { TemplateModule } from './template/template.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -15,7 +14,6 @@ import { TranslateModule } from '@ngx-translate/core';
   declarations: [
     AppComponent,
     FormComponent,
-    TemplateComponent,
     UserComponent
   ],
   imports: [
@@ -24,7 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
 		ReactiveFormsModule,
 		BrowserModule,
 		TranslateModule.forRoot(),
-		FormBuilderModule.forRoot({
+		TemplateModule.forRoot({
 			// components: ['tabs', 'fieldset', 'string', 'select', 'textarea', 'file']
 		}),
 		HttpClientModule
