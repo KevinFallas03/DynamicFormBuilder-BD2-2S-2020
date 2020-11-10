@@ -1,0 +1,167 @@
+:host {
+  display: block;
+  box-sizing: border-box;
+}
+
+.building-toolbar {
+  background-color: white;
+
+  .btn {
+
+    .icon,
+    .label {
+      vertical-align: middle;
+    }
+  }
+
+  &.sticky {
+    padding: 1rem;
+    position: fixed;
+    top: 128px;
+    overflow: hidden;
+    z-index: 10;
+    background: #00000099;
+    -webkit-box-shadow: 0 0 4px 4px #707070;
+    box-shadow: 0 0 4px 0px #707070;
+    border-radius: 4px;
+    -webkit-transition: background 256ms ease-out;
+    -moz-transition: background 256ms ease-out;
+    -ms-transition: background 256ms ease-out;
+    -o-transition: background 256ms ease-out;
+    transition: background 256ms ease-out;
+  }
+}
+
+.dndDraggingSource {
+  opacity: 0.5;
+  transform: scale(0.98);
+}
+
+.dndDroppingTarget {
+  border: 1px dashed #ddd;
+  padding: 2rem;
+}
+
+.dndPlaceholder {
+  border: 1px dashed #777;
+  height: 4rem;
+  margin: 2rem 1rem;
+}
+
+.tabs {
+  margin-bottom: 1rem;
+
+  .tab-container {
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    margin-top: -1px;
+  }
+}
+
+.build-item_button-bar {
+  .btn {
+    opacity: 0;
+
+    svg {
+      width: 1rem;
+    }
+  }
+
+  .build-item_button-bar_edit,
+  .build-item_button-bar_clone {
+    color: gray;
+  }
+
+  .build-item_button-bar_remove {
+    color: #a00;
+  }
+}
+
+
+.enriched-text {
+  &:hover {
+    .build-item_button-bar {
+      .btn {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.building-item {
+  &:hover {
+
+    >.form-group,
+    .form-check>.build-item_button-bar {
+      .btn {
+        opacity: 1;
+      }
+    }
+
+    >.table:hover {
+      .build-item_button-bar {
+        .btn {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &>.tabs>.nav-tabs:hover>.nav-item>.build-item_button-bar {
+    .btn {
+      opacity: 1;
+    }
+  }
+
+  .form-group,
+  .form-check {
+    margin-bottom: 1rem;
+  }
+}
+
+[dnddropzone] {
+  min-height: 4rem;
+}
+
+fieldset {
+  min-height: 4rem;
+  border: 1px solid #CCC;
+  position: relative;
+  margin: 2rem 0 1rem;
+  padding: 1rem;
+
+  legend {
+    top: -1.5rem;
+    position: absolute;
+    background: white;
+    width: auto;
+    left: 0.5rem;
+    padding: 0 0.5rem;
+
+    +.build-item_button-bar {
+      position: absolute;
+      top: -1.5rem;
+      right: 1rem;
+    }
+  }
+
+  &:hover>legend+.build-item_button-bar {
+    background: white;
+
+    .btn {
+      opacity: 1;
+    }
+  }
+}
+
+table {
+  tr {
+    td {
+      .building-item {
+        label {
+          display: none;
+        }
+      }
+    }
+  }
+}

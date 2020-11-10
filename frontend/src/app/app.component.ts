@@ -1,10 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+	selector: 'app-root',
+	templateUrl: './app.component.html',
+	styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'frontend';
+export class AppComponent implements OnInit {
+
+	schema: any;
+	reactiveForm = this._formBuilder.group({
+		schema: [null]
+	});
+
+	constructor(
+		private _http: HttpClient,
+		private _formBuilder: FormBuilder
+	) { }
+
+	async ngOnInit() {
+		const schemas = await this._http.get('./assets/examples.json').toPromise();
+		//console.log(schemas)
+		this.schema = schemas[0];
+		this.reactiveForm.get('schema').patchValue(schemas[0]);
+	}
+
+	toggleDisable() {
+		if (this.reactiveForm.enabled) {
+			this.reactiveForm.disable();
+		} else {
+			this.reactiveForm.enable();
+		}
+	}
+
+	viewJson(){
+		console.log(this.schema);	
+	}
+
+	onChange(event) {
+		console.log(event);
+	}
 }
