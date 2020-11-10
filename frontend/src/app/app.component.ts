@@ -14,14 +14,10 @@ export class AppComponent implements OnInit {
 		schema: [null]
 	});
 
-	constructor(
-		private _http: HttpClient,
-		private _template: FormBuilder
-	) { }
+	constructor(private _http: HttpClient, private _template: FormBuilder) { }
 
 	async ngOnInit() {
 		const schemas = await this._http.get('./assets/examples.json').toPromise();
-		//console.log(schemas)
 		this.schema = schemas[0];
 		this.reactiveForm.get('schema').patchValue(schemas[0]);
 	}

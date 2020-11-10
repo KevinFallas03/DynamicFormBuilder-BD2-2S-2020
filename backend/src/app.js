@@ -22,7 +22,6 @@ app.use(express.json());
 
 
 /* Routes */
-app.use("/api/xyz", require("./routes/xyz"));
 app.use("/api/form", require("./routes/form"));
 app.use("/api/template", require("./routes/template"));
 // Methods related to access (Register, Log In)

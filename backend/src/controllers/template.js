@@ -1,5 +1,5 @@
 const Template = require('../models/template');
-const User = require('../models/user');
+const User = require('../models/User');
 
 const templateController = {};
 
@@ -14,6 +14,8 @@ templateController.get = async (req, res) => {
 };
 
 templateController.create = async (req, res) => {
+    console.log("Hola");
+    /*
     const template = new Template(
         {
             "name": req.body.schema.title
@@ -23,7 +25,8 @@ templateController.create = async (req, res) => {
         res.json(savedTemplate);
     } catch(error){
         res.json({message: error});
-    }
+    }*/
+    res.json(req.body);
 };
 
 templateController.edit = async (req, res) => {
