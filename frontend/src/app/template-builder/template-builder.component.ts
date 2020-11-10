@@ -5,9 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-edit-app',
-  templateUrl: './edit-app.component.html',
-  styleUrls: ['./edit-app.component.css']
+  selector: 'app-template-builder',
+  templateUrl: './template-builder.component.html',
+  styleUrls: ['./template-builder.component.css']
 })
 export class EditAppComponent implements OnInit {
 

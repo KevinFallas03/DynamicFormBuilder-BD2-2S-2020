@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes, ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EditAppComponent } from './edit-app/edit-app.component';
+import { EditAppComponent } from './template-builder/template-builder.component';
 import { DndModule } from 'ngx-drag-drop';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
