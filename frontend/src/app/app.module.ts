@@ -1,31 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes, ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormComponent } from './form/form.component';
-import { UserComponent } from './user/user.component';
-import { TemplateModule } from './template/template.module';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { EditAppComponent } from './edit-app/edit-app.component';
+import { DndModule } from 'ngx-drag-drop';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
+const appRoutes: Routes = [
+  { path: '', component: EditAppComponent },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponent,
-    UserComponent
+    EditAppComponent
   ],
   imports: [
-    AppRoutingModule,
+    RouterModule.forRoot(appRoutes),
+    SweetAlert2Module.forRoot(),
+    BrowserModule,
     FormsModule,
-		ReactiveFormsModule,
-		BrowserModule,
-		TranslateModule.forRoot(),
-		TemplateModule.forRoot({
-			// components: ['tabs', 'fieldset', 'string', 'select', 'textarea', 'file']
-		}),
-		HttpClientModule
+    AppRoutingModule,
+    DndModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

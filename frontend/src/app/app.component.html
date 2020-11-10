@@ -1,22 +1,11 @@
-<nav class="navbar fixed-top navbar-light bg-light">
-  <a class="navbar-brand" href="#">Inicio</a>
-  <a class="navbar-brand" href="#">Crear formulario</a>
-</nav>
-<main class="container">
-  <div>
-    <h4>Fomulario</h4>
-    <form [formGroup]="reactiveForm">
-      <template formControlName="schema" (onchange)="onChange($event)"></template>
-    </form>
-    <div class="my-4 text-right">
-      <button class="btn btn-primary" (click)="viewJson()">
-        Send Json
-      </button>
-    </div>
+<header>
+  <div class="container">
+      <h1>Formbuilder</h1>
   </div>
-  <code>
-    <!-- <pre>Touched: {{ reactiveForm.touched }}</pre>
-    <pre>Dirty: {{ reactiveForm.dirty }}</pre> -->
-    <pre>{{ reactiveForm.value | json }}</pre>
-  </code>
-</main>
+</header>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+<footer>
+
+</footer>

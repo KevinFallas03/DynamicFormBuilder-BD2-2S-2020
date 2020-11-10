@@ -24,9 +24,11 @@
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
     "@ngx-translate/core": "^13.0.0",
+    "@sweetalert2/ngx-sweetalert2": "^8.1.1",
     "bootstrap": "^4.5.3",
     "ngx-drag-drop": "^2.0.0",
     "rxjs": "~6.6.0",
+    "sweetalert2": "^10.9.1",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
