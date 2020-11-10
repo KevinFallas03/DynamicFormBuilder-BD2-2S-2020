@@ -11,19 +11,36 @@ const templateSchema = new Schema(
         type: String,
         required: false
     },
+    type: String,
     items: [{
-        name: String,
         type: String,
-        optional: Boolean,
-        options: [{
+        key: String,
+        description: String,
+        required: Boolean,
+        placeholder: String,
+        multiple: Boolean,
+        format: String,
+        properties: [{
             name: String,
             type: String
-        }]
+        }],
+        feeding_type: String,
+        external_feeding_config: {
+            endpoint: String,
+            value_property: String,
+            text_property: String
+        },
+        default: String,
+        triggers: String
     }],
     createdBy: { 
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User' 
-    }
+    },
+    availableFor: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
   },{timestamps: true}
 );
 

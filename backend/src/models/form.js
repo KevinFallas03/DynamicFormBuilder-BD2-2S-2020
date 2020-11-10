@@ -18,7 +18,7 @@ const formSchema = new Schema({
     }],
     status:{
         type: String,
-        required: true
+        default: "Pendiente"
     }
   },{timestamps: true}
 );
