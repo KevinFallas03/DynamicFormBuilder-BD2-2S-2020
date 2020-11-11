@@ -6,7 +6,7 @@ import { AuthserviceService } from '../../services/auth/authservice.service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['../styles/forms.css']
 })
 export class LoginComponent implements OnInit {
 
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Saves the user data
   userModel = new User('', '');
 
   // Logs a user through the login route.

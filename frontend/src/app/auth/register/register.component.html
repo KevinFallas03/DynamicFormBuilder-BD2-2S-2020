@@ -1,1 +1,13 @@
-<p>register works!</p>
+<div class="login">
+    <div class="login-triangle"></div>
+    
+    <h2 class="login-header">Register</h2>
+    <!-- (ngSubmit)="logIn(loginForm) -->
+    <form #loginForm="ngForm" class="login-container" (ngSubmit)="register()">
+      <p><input type="text" placeholder="Username" name="username" [(ngModel)]="userModel.username" required ></p>
+      <p><input type="password" placeholder="Password" name="password" [(ngModel)]="userModel.password" required></p>
+      <p><input type="password" placeholder="Confirm Password" name="confirmPassword" required></p>
+      <p><input type="submit" value="Regiser"></p>
+    </form>
+    <a href="/">Already have an account?</a>
+</div>

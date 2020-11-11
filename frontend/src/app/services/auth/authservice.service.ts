@@ -17,12 +17,15 @@ export class AuthserviceService {
 
   constructor(private httpclient: HttpClient) { }
 
+
+  // Method to log in a user through injections
   loginUser(user: User): Observable<any> {
     return this.httpclient.post(`${this.AUTH_SERVER}/login`, user);
   }
 
-  // registerUser(user: IUser): Observable<any> {
-  //   return this.httpclient.post(`${this.AUTH_SERVER}/register`, user);
-  // }
+  // Method to register a user through injections
+  registerUser(user: User): Observable<any> {
+    return this.httpclient.post(`${this.AUTH_SERVER}/register`, user);
+  }
 
 }
