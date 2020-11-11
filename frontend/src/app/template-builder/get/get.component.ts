@@ -12,7 +12,8 @@ export class GetComponent implements OnInit {
   templates:any=[{}];
 
   constructor(
-    private _templateBuilderService: TemplateBuilderService) { }
+    private _templateBuilderService: TemplateBuilderService
+    ) { }
 
   ngOnInit(): void {
     this.get();

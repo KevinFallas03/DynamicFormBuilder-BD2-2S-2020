@@ -7,7 +7,7 @@ import swal from 'sweetalert2';
 import { TemplateBuilderService } from '../template-builder.service';
 
 @Component({
-  selector: 'app-template-builder',
+  selector: 'app-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.css']
 })
