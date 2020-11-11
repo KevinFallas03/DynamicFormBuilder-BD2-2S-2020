@@ -1,29 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes, ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TemplateComponent } from './template-builder/template-builder.component';
 import { DndModule } from 'ngx-drag-drop';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { HttpClientModule } from '@angular/common/http';
+import { TemplateComponent } from './template-builder/template-builder.component';
+import { FormComponent } from "./form/form.component";
+import { HomeComponent } from './home/home.component';
 
-const appRoutes: Routes = [
-  { path: '', component: TemplateComponent },
-];
 
 @NgModule({
   declarations: [
     AppComponent,
-    TemplateComponent
+    TemplateComponent,
+    FormComponent,
+    HomeComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule,
     SweetAlert2Module.forRoot(),
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     DndModule,
     HttpClientModule
   ],
