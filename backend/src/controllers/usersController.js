@@ -62,7 +62,7 @@ usersController.login = async (req, res) => {
     try {
         const user = await User.getFromCredentials(req.body.username, req.body.password);
         const token = await user.generateToken();
-        
+
         // 200: OK
         res.status(200).json({user, token});
     } catch (error) {

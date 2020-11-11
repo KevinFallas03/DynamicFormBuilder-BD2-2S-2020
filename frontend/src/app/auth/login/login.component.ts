@@ -1,4 +1,6 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user';
 
 import { AuthserviceService } from '../../services/auth/authservice.service'
@@ -10,7 +12,10 @@ import { AuthserviceService } from '../../services/auth/authservice.service'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthserviceService) { }
+  constructor(
+    private authService: AuthserviceService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
   }
@@ -22,8 +27,17 @@ export class LoginComponent implements OnInit {
   logIn() {
     this.authService.loginUser(this.userModel)
     .subscribe(
-      data => console.log(data),
-      error => console.error("ERROR!", error)
+      data => {
+        if (data.token) {
+          this.authService.token = data.token
+          this.router.navigate(['/home']); // Redirects to home with a get request
+        } else {
+          alert ("ERROR");
+        }
+      },
+      error => {
+        alert (error.message);
+      }
     );
   }
 
