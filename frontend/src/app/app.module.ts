@@ -12,6 +12,7 @@ import { FormComponent } from "./form/form.component";
 import { HomeComponent } from './home/home.component';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import { ApprovalsComponent } from './approvals/approvals.component';
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ApprovalsComponent } from './approvals/approvals.component';
     BrowserModule,
     FormsModule,
     DndModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

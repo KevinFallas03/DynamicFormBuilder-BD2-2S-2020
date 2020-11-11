@@ -1,22 +1,22 @@
 <div class="card text-center">
-    <form>
+    <form class="container"  [formGroup]="approvalForm" (submit)="createApprovalRoute(approvalForm.value)">
         <div class="form-group">
           <h5 for="templateChooser"class="card-title ">Seleccione el tipo de formulario: </h5>
-          <select class="form-control" id="templateChooser">
+          <select class="form-control" id="templateChooser" formControlName="template">
             <option *ngFor="let template of templates" [value]="template.name">{{ template.name }}</option>
           </select>
 
         </div>
         <div class="form-group">
             <h5 for="authorsChooser"class="card-title authors-chooser">Seleccione los autores: </h5>
-            <select class="form-control" id="authorsChooser">
+            <select class="form-control" id="authorsChooser" formControlName="authors">
             <option *ngFor="let user of users" [value]="user._id">{{ user.username }}</option>
           </select>
         </div>
 
         <div class="form-group">
           <h5 for="approversChooser"class="card-title authors-chooser">Seleccione los autores: </h5>
-          <select class="form-control" id="approversChooser">
+          <select class="form-control" id="approversChooser" formControlName="approvers">
           <option *ngFor="let user of users" [value]="user._id" type="checkbox">{{ user.username }}</option>
         </select>
       </div>

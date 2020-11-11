@@ -1,8 +1,9 @@
 import { TemplateBuilderService } from './../template-builder/template-builder.service';
-import { User } from 'src/app/models/user/user';
 import { UserService } from './../user/user.service';
 import { ApprovalsService } from './approvals.service';
 import { Component, OnInit } from '@angular/core';
+
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-approvals',
@@ -14,17 +15,25 @@ export class ApprovalsComponent implements OnInit {
   users:any = [];
   templates:any = [];
 
+  approvalForm = new FormGroup({
+    template: new FormControl('', [Validators.required]),
+    authors: new FormControl([], [Validators.required]),
+    approvers: new FormControl([], [Validators.required]),
+  });
+
   constructor( 
     private approvalService : ApprovalsService, 
     private userService : UserService,
-    private templateService : TemplateBuilderService) {}
-
-  ngOnInit(): void {
-    this.getUsers();
-    this.getTemplates();
+    private templateService : TemplateBuilderService,
+  ) {
   }
 
-  getTemplates() {
+  ngOnInit(): void {
+    this.loadUsers();
+    this.loadTemplates();
+  }
+
+  loadTemplates() {
     this.templateService.get().subscribe(
       data => {
         this.templates = data
@@ -34,7 +43,7 @@ export class ApprovalsComponent implements OnInit {
   }
 
   // to create an approval route
-  getUsers() {
+  loadUsers() {
      this.userService.get().subscribe(
       data => {
         this.users = data
@@ -43,8 +52,11 @@ export class ApprovalsComponent implements OnInit {
      );
   }
 
-  // create a new approval route
-  createApprovalRoute() {
+  onSubmit(newApproval) { this.createApprovalRoute(newApproval) }
 
+  // create a new approval route
+  createApprovalRoute(newApproval) {
+    console.log(newApproval);
+    console.log(this.approvalForm.value);
   }
-}
+} 
