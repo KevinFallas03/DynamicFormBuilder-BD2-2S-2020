@@ -1,3 +1,4 @@
+import { LoginComponent } from './auth/login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -9,16 +10,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { TemplateComponent } from './template-builder/template-builder.component';
 import { FormComponent } from "./form/form.component";
 import { HomeComponent } from './home/home.component';
-
+import { AuthRoutingModule } from './auth/auth-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     TemplateComponent,
     FormComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
+    AuthRoutingModule,
     AppRoutingModule,
     SweetAlert2Module.forRoot(),
     BrowserModule,

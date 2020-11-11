@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'crear', component: TemplateComponent },
   { path: 'form', component: FormComponent },
+  { path: '', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) }
 ];
 
 @NgModule({
@@ -16,4 +17,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
