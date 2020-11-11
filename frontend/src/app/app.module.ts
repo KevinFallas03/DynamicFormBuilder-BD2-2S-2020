@@ -16,7 +16,6 @@ import { TemplateBuilderRoutingModule } from './template-builder/template-builde
     AppComponent,
     FormComponent,
     HomeComponent,
-    TemplateComponent,
   ],
   imports: [
     AuthRoutingModule,
