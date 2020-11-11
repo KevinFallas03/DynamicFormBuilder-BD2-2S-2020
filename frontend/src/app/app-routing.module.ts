@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'crear', component: TemplateComponent },
   { path: 'form', component: FormComponent },
-  { path: '', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) }
+  { path: '', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'approvals', loadChildren: () => import('./approvals/approvals-routing.module').then(m => m.ApprovalsRoutingModule) },
 ];
 
 @NgModule({
