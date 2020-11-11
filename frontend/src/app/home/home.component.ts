@@ -16,18 +16,26 @@ export class HomeComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.loadHome();
+    if (!localStorage.getItem("authToken")) {
+      this.router.navigate(['/']); // Redirects to home with a get request
+    } else {
+      this.loadHome();
+    }
   }
 
   // Logs a user through the login route.
   loadHome() {
-    this.authService.loadHome({headers: this.authService.headers})
+    const opts = {headers: new HttpHeaders({
+      "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+    })}
+
+    this.authService.loadHome(opts)
     .subscribe(
       data => {
         console.log(data);
       }, 
       error => {
-        this.router.navigate(['/']);  
+        console.log("error equis de");
       }
     );
   }

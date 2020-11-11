@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user/user';
 
 import { AuthserviceService } from '../../services/auth/authservice.service';
-import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,6 +17,9 @@ export class RegisterComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("authToken")) {
+      this.router.navigate(['/home']); // Redirects to home with a get request
+    } 
   }
 
   // Saves the user data
@@ -29,10 +31,10 @@ export class RegisterComponent implements OnInit {
     .subscribe(
       data => {
         if (data.token) {
-          this.authService.token = data.token
-          this.authService.headers = new HttpHeaders ({
-            'Authorization': `Bearer ${data.token}`
-          })
+          
+          // Saves token in localStorage
+          localStorage.setItem("authToken", data.token);
+
           this.router.navigate(['/home']); // Redirects to home with a get request
         } else {
           alert ("ERROR");

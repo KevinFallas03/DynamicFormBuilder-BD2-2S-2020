@@ -18,6 +18,9 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("authToken")) {
+      this.router.navigate(['/home']); // Redirects to home with a get request
+    } 
   }
 
   // Saves the user data
@@ -29,10 +32,10 @@ export class LoginComponent implements OnInit {
     .subscribe(
       data => {
         if (data.token) {
-          this.authService.token = data.token
-          this.authService.headers = new HttpHeaders ({
-            'Authorization': `Bearer ${data.token}`
-          })
+
+          // Saves token in localStorage
+          localStorage.setItem("authToken", data.token);
+          
           this.router.navigate(['/home']); // Redirects to home with a get request
         } else {
           alert ("ERROR LOG IN");

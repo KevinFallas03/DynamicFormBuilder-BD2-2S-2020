@@ -14,7 +14,6 @@ export class AuthserviceService {
 
   private AUTH_SERVER: string = 'http://localhost:3000';
   public token: string;
-  public headers: HttpHeaders;
 
   constructor(private httpclient: HttpClient) { }
 
