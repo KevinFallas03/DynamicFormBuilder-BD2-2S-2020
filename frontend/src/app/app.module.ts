@@ -9,7 +9,6 @@ import { DndModule } from 'ngx-drag-drop';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { HttpClientModule } from '@angular/common/http';
 
-
 const appRoutes: Routes = [
   { path: '', component: TemplateComponent },
 ];
