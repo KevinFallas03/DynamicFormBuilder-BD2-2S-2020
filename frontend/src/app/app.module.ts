@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { DndModule } from 'ngx-drag-drop';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { HttpClientModule } from '@angular/common/http';
-import { TemplateComponent } from './template-builder/template-builder.component';
+import { CreateComponent } from './template-builder/create/create.component';
 import { FormComponent } from "./form/form.component";
 import { HomeComponent } from './home/home.component';
 import { AuthRoutingModule } from './auth/auth-routing.module';
@@ -16,7 +16,7 @@ import { MenuComponent } from './template-builder/menu/menu.component';
 @NgModule({
   declarations: [
     AppComponent,
-    TemplateComponent,
+    CreateComponent,
     FormComponent,
     HomeComponent,
     MenuComponent,
