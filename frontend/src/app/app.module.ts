@@ -7,17 +7,18 @@ import { AppComponent } from './app.component';
 import { DndModule } from 'ngx-drag-drop';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { HttpClientModule } from '@angular/common/http';
-import { TemplateComponent } from './template-builder/template-builder.component';
 import { FormComponent } from "./form/form.component";
 import { HomeComponent } from './home/home.component';
 import { AuthRoutingModule } from './auth/auth-routing.module';
+import { TemplateComponent } from './template-builder/template/template.component';
+import { TemplateRoutingModule } from './template-builder/template-builder-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TemplateComponent,
     FormComponent,
     HomeComponent,
+    TemplateComponent,
   ],
   imports: [
     AuthRoutingModule,
@@ -26,7 +27,8 @@ import { AuthRoutingModule } from './auth/auth-routing.module';
     BrowserModule,
     FormsModule,
     DndModule,
-    HttpClientModule
+    HttpClientModule,
+    TemplateRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

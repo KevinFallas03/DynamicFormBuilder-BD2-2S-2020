@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { DndDropEvent,DropEffect} from 'ngx-drag-drop';
-import { field, value } from '../global.model';
+import { field, value } from '../../global.model';
 import { ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 
-import { TemplateBuilderService } from './template-builder.service';
-
+import { TemplateBuilderService } from '../template-builder.service';
 
 @Component({
   selector: 'app-template-builder',
-  templateUrl: './template-builder.component.html',
-  styleUrls: ['./template-builder.component.css']
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.css']
 })
-export class TemplateComponent implements OnInit {
+export class CreateComponent implements OnInit {
 
   value:value={
     label:"",

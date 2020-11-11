@@ -11,7 +11,8 @@
               <button (click)="initReport()" class="btn btn-primary pull-left">Response</button>
               <button (click)="submitTemplate()" class="btn btn-primary pull-left">Guardar</button>
               <button (click)="updateForm()" class="btn btn-primary pull-right">Update</button>
-              <button routerLink="/application/{{model._id}}" class="btn btn-primary pull-right" style="margin-right:3px;">View <i class="fa fa-external-link"></i></button>
+              <button (click)="updateForm()" class="btn btn-primary pull-right">Update</button>
+              <button routerLink="/plantillas" class="btn btn-primary pull-right">View</button>
           </div>
       </div>
     </div>
