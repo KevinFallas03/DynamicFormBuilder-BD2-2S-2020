@@ -14,19 +14,16 @@ templateController.get = async (req, res) => {
 };
 
 templateController.create = async (req, res) => {
-    console.log("Hola");
-    /*
     const template = new Template(
         {
-            "name": req.body.schema.title
+            "name": req.body.name
         });
     try{
         const savedTemplate = await template.save();
         res.json(savedTemplate);
     } catch(error){
         res.json({message: error});
-    }*/
-    res.json(req.body);
+    }
 };
 
 templateController.edit = async (req, res) => {

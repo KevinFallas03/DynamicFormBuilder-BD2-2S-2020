@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-// const URI = process.env.DB_CONNECTION || "mongodb://localhost/dynamic_forms"; // cluster or local database for testing
-const URI = "mongodb://localhost/dynamic_forms";
+const URI = process.env.DB_CONNECTION || "mongodb://localhost/dynamic_forms"; // cluster or local database for testing
+//const URI = "mongodb://localhost/dynamic_forms";
 
 mongoose.connect(
     URI, 

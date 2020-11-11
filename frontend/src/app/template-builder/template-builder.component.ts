@@ -4,12 +4,15 @@ import { field, value } from '../global.model';
 import { ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 
+import { TemplateBuilderService } from './template-builder.service';
+
+
 @Component({
   selector: 'app-template-builder',
   templateUrl: './template-builder.component.html',
   styleUrls: ['./template-builder.component.css']
 })
-export class EditAppComponent implements OnInit {
+export class TemplateComponent implements OnInit {
 
   value:value={
     label:"",
@@ -177,7 +180,8 @@ export class EditAppComponent implements OnInit {
   reports:any = [];
 
   constructor(
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private _templateBuilderService: TemplateBuilderService
   ) { }
 
   ngOnInit() {
@@ -333,10 +337,17 @@ export class EditAppComponent implements OnInit {
     if(!valid){
       return false;
     }
-    console.log('Save',this.model);
-    let input = new FormData;
+    /*let input = new FormData;
     input.append('formId',this.model._id);
-    input.append('attributes',JSON.stringify(this.model.attributes))
+    input.append('attributes',JSON.stringify(this.model.attributes))*/
+
+    this._templateBuilderService.post(this.model).subscribe( 
+      data => {
+        swal.fire('Success',data.name+' have contact sucessfully','success');
+      }
+    )
+
+
     // this.us.postDataApi('/user/formFill',input).subscribe(r=>{
     //   console.log(r);
     //   swal('Success','You have contact sucessfully','success');

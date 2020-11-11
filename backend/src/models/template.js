@@ -11,11 +11,16 @@ const templateSchema = new Schema(
         type: String,
         required: false
     },
-    type: String,
-    items: [{
+    theme: {
+        bgColor: String,
+        textColor: String,
+        bannerImage: String
+    }
+    ,
+    attributes: [{
         type: String,
-        key: String,
-        description: String,
+        icon: String,
+        subtype: String,
         required: Boolean,
         placeholder: String,
         multiple: Boolean,
