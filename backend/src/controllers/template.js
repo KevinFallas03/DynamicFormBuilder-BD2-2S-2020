@@ -14,10 +14,7 @@ templateController.get = async (req, res) => {
 };
 
 templateController.create = async (req, res) => {
-    const template = new Template(
-        {
-            "name": req.body.name
-        });
+    const template = new Template(req.body);
     try{
         const savedTemplate = await template.save();
         res.json(savedTemplate);
@@ -30,6 +27,13 @@ templateController.edit = async (req, res) => {
 };
 
 templateController.delete = async (req, res) => {
+    try{
+        const templates = await Template.deleteMany({},callback);
+        res.json(templates);
+    }
+    catch(error){
+        res.json({message: error});
+    }
 };
 
 module.exports = templateController;

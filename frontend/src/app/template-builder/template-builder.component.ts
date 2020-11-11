@@ -343,7 +343,7 @@ export class TemplateComponent implements OnInit {
 
     this._templateBuilderService.post(this.model).subscribe( 
       data => {
-        swal.fire('Success',data.name+' have contact sucessfully','success');
+        swal.fire('Enhorabuena',data.name+' se ha creado exitosamente');
       }
     )
 

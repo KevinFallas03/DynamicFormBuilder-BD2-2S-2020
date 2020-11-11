@@ -15,28 +15,25 @@ const templateSchema = new Schema(
         bgColor: String,
         textColor: String,
         bannerImage: String
-    }
-    ,
+    },
     attributes: [{
-        type: String,
+        type: {type: String},
         icon: String,
-        subtype: String,
         required: Boolean,
+        label: String,
+        description: String,
+        inLine: Boolean,
         placeholder: String,
-        multiple: Boolean,
-        format: String,
-        properties: [{
-            name: String,
-            type: String
+        className: String,
+        subtype: String,
+        regex: String,
+        errorText: String,
+        handle: Boolean,
+        name: String,
+        values: [{
+            label: String,
+            value: String
         }],
-        feeding_type: String,
-        external_feeding_config: {
-            endpoint: String,
-            value_property: String,
-            text_property: String
-        },
-        default: String,
-        triggers: String
     }],
     createdBy: { 
         type: mongoose.Schema.Types.ObjectId,
@@ -46,7 +43,8 @@ const templateSchema = new Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }]
-  },{timestamps: true}
+  },
+  {timestamps: true}
 );
 
 module.exports = mongoose.model("Templates", templateSchema);
