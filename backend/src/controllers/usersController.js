@@ -91,7 +91,7 @@ usersController.getUsers = async (req, res) => {
 usersController.getUsersWithMinimalDetails = async (req, res) => {
 
     try {
-        const users = await User.find({}, {name:true, username:true});
+        const users = await User.find({}, { username:true});
 
         // 200: OK
         res.status(200).json(users);
