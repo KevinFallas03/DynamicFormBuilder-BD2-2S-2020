@@ -11,6 +11,7 @@ import { TemplateComponent } from './template-builder/template-builder.component
 import { FormComponent } from "./form/form.component";
 import { HomeComponent } from './home/home.component';
 import { AuthRoutingModule } from './auth/auth-routing.module';
+import { MenuComponent } from './template-builder/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AuthRoutingModule } from './auth/auth-routing.module';
     TemplateComponent,
     FormComponent,
     HomeComponent,
+    MenuComponent,
   ],
   imports: [
     AuthRoutingModule,
