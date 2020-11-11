@@ -1,23 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TemplateRoutingModule } from './template-builder-routing.module';
+import { TemplateBuilderRoutingModule } from './template-builder-routing.module';
+import { MenuComponent } from './menu/menu.component';
 import { CreateComponent } from './create/create.component';
-import { GetComponent } from './get/get.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import {AuthserviceService} from '../services/auth/authservice.service'
+import { TemplateBuilderService } from './template-builder.service'
+import { DndModule } from 'ngx-drag-drop';
 
 import { FormsModule }   from '@angular/forms';
 
 @NgModule({
-  declarations: [CreateComponent, GetComponent],
+  declarations: [MenuComponent,CreateComponent],
   imports: [
     CommonModule,
-    TemplateRoutingModule,
+    TemplateBuilderRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    DndModule,
   ],
-  providers: [AuthserviceService]
+  providers: [TemplateBuilderService],
+  bootstrap: [CreateComponent]
 })
-export class TemplateModule { }
+export class TemplateBuilderModule { }

@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { MenuComponent } from './menu/menu.component';
 import { CreateComponent } from './create/create.component';
-import { GetComponent } from './get/get.component';
-import { TemplateComponent } from './template/template.component';
 
 const routes: Routes = [
-  { path: 'create', component: CreateComponent},
-  { path: 'get', component: GetComponent},
-  { path: '', component: TemplateComponent},
+  { path: '', component: MenuComponent },
+  { path: 'create', component: CreateComponent },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes),
+    RouterModule.forChild(routes)
   ],
   exports: [RouterModule]
 })
-export class TemplateRoutingModule { }
+export class TemplateBuilderRoutingModule { }
