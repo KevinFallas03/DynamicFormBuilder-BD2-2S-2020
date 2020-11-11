@@ -30,9 +30,12 @@ export class LoginComponent implements OnInit {
       data => {
         if (data.token) {
           this.authService.token = data.token
+          this.authService.headers = new HttpHeaders ({
+            'Authorization': `Bearer ${data.token}`
+          })
           this.router.navigate(['/home']); // Redirects to home with a get request
         } else {
-          alert ("ERROR");
+          alert ("ERROR LOG IN");
         }
       },
       error => {

@@ -1,6 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouteReuseStrategy } from '@angular/router';
 import { AuthserviceService } from '../services/auth/authservice.service';
 
 @Component({
@@ -15,31 +15,19 @@ export class HomeComponent implements OnInit {
     private router: Router
     ) { }
 
-  private userVerified = false;
-
   ngOnInit(): void {
     this.loadHome();
-    if (!this.userVerified) {
-      this.router.navigate(['/']); 
-    }
   }
 
   // Logs a user through the login route.
   loadHome() {
-
-    const opts = {
-      headers: new HttpHeaders ({
-        'Authorization': `Bearer ${this.authService.token}`
-      })
-    }
-
-    this.authService.loadHome(opts)
+    this.authService.loadHome({headers: this.authService.headers})
     .subscribe(
       data => {
-        this.userVerified = true;
+        console.log(data);
       }, 
       error => {
-        alert ("ERROR");
+        this.router.navigate(['/']);  
       }
     );
   }
