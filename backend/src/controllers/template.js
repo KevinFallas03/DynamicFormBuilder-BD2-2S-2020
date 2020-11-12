@@ -1,11 +1,21 @@
 const Template = require('../models/template');
 const User = require('../models/User');
+const { param } = require('../routes/template');
 
 const templateController = {};
 
 templateController.get = async (req, res) => {
     try{
         const templates = await Template.find();
+        res.json(templates);
+    }
+    catch(error){
+        res.json({message: error});
+    }
+};
+templateController.getById = async (req, res) => {
+    try{
+        const templates = await Template.findById(req.params.id);
         res.json(templates);
     }
     catch(error){

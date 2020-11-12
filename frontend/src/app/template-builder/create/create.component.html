@@ -261,35 +261,6 @@
     </div>
   </div>
   
-   
-  
-  <div *ngIf="report" class="padding20 white-bg">
-      <div class="row">
-          <div class="col-12 btn-cont">
-              <button (click)="report=false" class="btn btn-primary"><< Back</button>
-          </div>
-          <div class="col-12 spacer30"></div>
-          <!-- if records found -->
-          <div  *ngIf="reports?.length > 0" class="col-12">
-              <div *ngFor="let records of reports" class="report-block">
-                  <div *ngFor="let record of records.attributes">
-                      <div *ngIf="record.type !='button' && record.type !='paragraph'" class="row">
-                       <div class="col-4">{{record.label}}</div>
-                          <div class="col-8">{{record.value}}</div>
-                      </div>
-                  </div>
-              </div>
-              <!-- <pre>{{reports|json}}</pre> -->
-          </div> 
-          <!-- if no records found -->
-          <div *ngIf="reports?.length == 0" class="col-12 btn-cont">
-              No response found
-          </div>
-  
-      </div>
-  
-  </div>
-  
   <!-- <pre *ngIf="model">{{model|json}}</pre> -->
   
   
