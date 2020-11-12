@@ -6,10 +6,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApprovalsService {
  
-  _apiUrl = "http://localhost:3000/userDump"
-
+  _apiUrl = "http://localhost:3000/api/approval";
+  
   constructor(private _http: HttpClient) { }
-
+  
   get() {
     return this._http.get<any>(
       this._apiUrl
@@ -17,11 +17,10 @@ export class ApprovalsService {
   }
 
   post(approval) {
-    return this._http.get<any>(
+    return this._http.post<any>(
       this._apiUrl,
-      {
-        headers:{"Content-Type":"application/json"}
-      }
+      approval,
+      { headers:{'Content-Type': 'application/json'} }
     );
   }
 }

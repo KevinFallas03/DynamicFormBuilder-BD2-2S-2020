@@ -13,6 +13,6 @@ router.post('/register', userController.createUser);
 router.post('/login', userController.login);
 
 // Get users for approval routes
-router.get('/userDump', userController.getUsersWithMinimalDetails);
+router.get('/users', userController.getUsersWithMinimalDetails);
 
 module.exports = router;

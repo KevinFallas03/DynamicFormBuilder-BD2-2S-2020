@@ -25,6 +25,7 @@
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
     "@ngx-translate/core": "^13.0.0",
     "@sweetalert2/ngx-sweetalert2": "^8.1.1",
+    "@types/jquery": "^3.5.4",
     "bootstrap": "^4.5.3",
     "ngx-drag-drop": "^2.0.0",
     "rxjs": "~6.6.0",

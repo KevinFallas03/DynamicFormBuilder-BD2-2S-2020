@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  _apiUrl = "http://localhost:3000/userDump";
+  _apiUrl = "http://localhost:3000/users";
 
   constructor( private _http : HttpClient ) { }
 
