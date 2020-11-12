@@ -154,12 +154,6 @@ export class CreateComponent implements OnInit {
       "label": "File Upload",
       "className": "form-control",
       "subtype": "file"
-    },
-    {
-      "type": "button",
-      "icon":"fa-paper-plane",
-      "subtype": "submit",
-      "label": "Submit"
     }
   ];
 

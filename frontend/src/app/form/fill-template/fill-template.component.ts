@@ -80,12 +80,16 @@ export class FillTemplateComponent implements OnInit {
     /*let input = new FormData;
     input.append('formId',this.model._id);
     input.append('attributes',JSON.stringify(this.model.attributes))*/
-
+    
+    
+    /*
     this._formService.post(this.model).subscribe( 
       data => {
         swal.fire('Enhorabuena',data.name+' se ha creado exitosamente','success');
       }
-    )
+    )*/
+
+
     // this.us.postDataApi('/user/formFill',input).subscribe(r=>{
     //   console.log(r);
     //   swal('Success','You have contact sucessfully','success');

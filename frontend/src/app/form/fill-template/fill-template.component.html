@@ -103,13 +103,17 @@ style="max-width:500px;"
         <input type="{{item.subtype}}" (click)="submit()" value="{{item.label}}" class="btn btn-primary" id="{{item.name}}" >
       </div>
     </div>
-
-    <p (click)="show=1" class="marginT60 pointer">Show developer data</p>
+    
+    <div class="col-12 btn-cont">
+      <button (click)="submitForm()" class="btn btn-primary">Enviar</button>
+    </div>
+    <!-- <p (click)="show=1" class="marginT60 pointer">Show developer data</p> -->
 
   </div>
   </form>
 </div>
 </div>
-<pre *ngIf=" model">
+
+<!-- <pre *ngIf=" model">
   {{model|json}}
-</pre>
+</pre> -->
