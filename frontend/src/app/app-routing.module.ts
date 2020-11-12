@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TemplateComponent } from './template-builder/template-builder.component';
 import { FormComponent } from "./form/form.component";
 import { HomeComponent } from "./home/home.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'crear', component: TemplateComponent },
   { path: 'form', component: FormComponent },
+
+  { path: 'templates', loadChildren: () => import('./template-builder/template-builder.module').then(m => m.TemplateBuilderModule) },
   { path: '', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) }
 ];
 
