@@ -10,12 +10,16 @@ import { FormComponent } from "./form/form.component";
 import { HomeComponent } from './home/home.component';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import { TemplateBuilderRoutingModule } from './template-builder/template-builder-routing.module';
+import { ApprovalsComponent } from './approvals/approvals.component';
+import { ReactiveFormsModule } from '@angular/forms'
+import { DndModule } from 'ngx-drag-drop';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormComponent,
     HomeComponent,
+    ApprovalsComponent,
   ],
   imports: [
     AuthRoutingModule,
@@ -24,7 +28,10 @@ import { TemplateBuilderRoutingModule } from './template-builder/template-builde
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    TemplateBuilderRoutingModule
+    TemplateBuilderRoutingModule,
+    DndModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
