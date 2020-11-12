@@ -308,22 +308,17 @@ export class CreateComponent implements OnInit {
   }
 
   submitTemplate(){
+    /*
     let valid = true;
     let validationArray = JSON.parse(JSON.stringify(this.model.attributes));
     validationArray.reverse().forEach(field => {
       console.log(field.label+'=>'+field.required+"=>"+field.value);
       
-      if(field.required && field.type == 'checkbox'){
-        if(field.values.filter(r=>r.selected).length == 0){
-          swal.fire('Error','Please enterrr '+field.label,'error');
-          valid = false;
-          return false;
-        }
-      }
+      
     });
     if(!valid){
       return false;
-    }
+    }*/
     /*let input = new FormData;
     input.append('formId',this.model._id);
     input.append('attributes',JSON.stringify(this.model.attributes))*/

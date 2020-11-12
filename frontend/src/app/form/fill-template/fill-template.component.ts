@@ -38,6 +38,9 @@ export class FillTemplateComponent implements OnInit {
     })
     
   }
+  toggleValue(item){
+    item.selected = !item.selected;
+  }
   getTemplateById(templateId){
     this._templateBuilderService.getById(templateId).subscribe(
       data => {
