@@ -9,7 +9,7 @@ router.get("/:id", templatesController.getById);
 
 router.post("/", templatesController.create);
 
-router.put("/", templatesController.edit);
+router.put("/:id", templatesController.edit);
 
 router.delete("/", templatesController.delete);
 
