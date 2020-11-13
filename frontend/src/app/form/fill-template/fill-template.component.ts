@@ -33,7 +33,6 @@ export class FillTemplateComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
 
       this.templateId = params.get('_id');
-      console.log(this.templateId);
       this.getTemplateById(this.templateId);
     })
     

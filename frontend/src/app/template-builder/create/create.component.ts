@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DndDropEvent,DropEffect} from 'ngx-drag-drop';
 import { field, value } from '../../global.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import swal from 'sweetalert2';
 
 import { TemplateBuilderService } from '../template-builder.service';
@@ -168,6 +168,7 @@ export class CreateComponent implements OnInit {
 
   constructor(
     private route:ActivatedRoute,
+    private router:Router,
     private _templateBuilderService: TemplateBuilderService
   ) { }
 
@@ -287,9 +288,6 @@ export class CreateComponent implements OnInit {
     //   });
     // });
   }
-
-
-
   toggleValue(item){
     item.selected = !item.selected;
   }
@@ -300,6 +298,8 @@ export class CreateComponent implements OnInit {
       data => {
         this.model.id = data._id;
         swal.fire('Enhorabuena',"Plantilla "+data.name+' creada exitosamente','success');
+
+        this.router.navigate([`/approvals/create/${this.model.id}`]);
       }
     )
   }

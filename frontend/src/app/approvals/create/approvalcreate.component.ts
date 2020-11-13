@@ -34,32 +34,21 @@ export class ApprovalCreateComponent implements OnInit {
   { }
 
   ngOnInit(): void {
-    this.loadUsers();
-    this.initByTemplateId();
-  }
-
-  initByTemplateId() {
-    // get template id from template builder section
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.templateService.getById(params.get('_id')).subscribe(
-        (data) => this.selectedTemplate = data
-      );
+      let id = params.get('_id');
+      this.getById(id);
     })
-
-    // // test
-    // let testTemplateId = '5fae0ed93566933d68e8b1e9';
-    // let templateSelected = null;
-    // this.templateService.getById(testTemplateId).subscribe(
-    //   data => {
-    //     templateSelected = data
-    //     console.log(templateSelected);
-    //     this.selectedTemplate = templateSelected;
-    //   }
-    // );
-    // this.selectedTemplate = templateSelected;
-    // console.log(this.selectedTemplate);
+    this.loadUsers();
   }
 
+  getById(id){
+    this.templateService.getById(id).subscribe(
+      (data) => {
+        this.selectedTemplate = data;
+        console.log(data);
+      }
+    );
+  }
   loadTemplates() {
     this.templateService.getAll().subscribe(
       (data:[]) => {

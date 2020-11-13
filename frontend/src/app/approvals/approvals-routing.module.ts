@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ApprovalCreateComponent } from './create/approvalcreate.component';
 
 const routes: Routes = [
-  { path: 'create', component: ApprovalCreateComponent },
+  { path: 'create/:_id', component: ApprovalCreateComponent },
 ];
 
 @NgModule({
