@@ -1,5 +1,4 @@
 import { TemplateBuilderService } from './../template-builder/template-builder.service';
-import { UserService } from './../user/user.service';
 import { ApprovalsService } from './approvals.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -22,14 +21,13 @@ export class ApprovalsComponent implements OnInit {
   });
 
   constructor( 
-    private approvalService : ApprovalsService, 
-    private userService : UserService,
-    private templateService : TemplateBuilderService,
+    private approvalService : ApprovalsService,
+    private templateService : TemplateBuilderService
   ) {
   }
 
   ngOnInit(): void {
-    this.loadUsers();
+    // this.loadUsers();
     this.loadTemplates();
   }
 
@@ -43,14 +41,14 @@ export class ApprovalsComponent implements OnInit {
   }
 
   // to create an approval route
-  loadUsers() {
-     this.userService.get().subscribe(
-      data => {
-        this.users = data
-        console.log(this.users);
-      }
-     );
-  }
+  // loadUsers() {
+  //    this.userService.get().subscribe(
+  //     data => {
+  //       this.users = data
+  //       console.log(this.users);
+  //     }
+  //    );
+  // }
 
   onSubmit(newApproval) { this.createApprovalRoute(newApproval) }
 
