@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import { TemplateBuilderRoutingModule } from './template-builder/template-builder-routing.module';
 import { FormRoutingModule } from './form/form-routing.module';
+import { BrowserAnimationsModule }from "@angular/platform-browser/animations" 
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormRoutingModule } from './form/form-routing.module';
     HttpClientModule,
     TemplateBuilderRoutingModule,
     FormRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

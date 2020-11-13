@@ -1,48 +1,32 @@
 
-<div *ngIf="selectedTemplate">
+<div class="container-fluid side-left">
 <div class="card text-center" id="b">
   <div class="jumbotron">
     <h1 class="display-4">Ya casi terminas...</h1>
     <p class="lead">Agrega las rutas de aprobacion para la plantilla {{ selectedTemplate.name }}</p>
   </div>
-    <form class="container" [formGroup]="approvalForm" (submit)="createApprovalRoute(approvalForm.value)">
-        <!-- <div class="form-group">
-          <h5 for="templateChooser"class="card-title ">Seleccione el tipo de formulario: </h5>
-          <select class="form-control" id="templateChooser" formControlName="template">
-            <option *ngFor="let template of templates" [value]="template._id" >{{ template.name }}</option>
-          </select>
-        </div> -->
-        <div class="form-group">
-            <h5 for="authorsChooser"class="card-title authors-chooser">Seleccione los autores: </h5>
-            <select class="form-control mdb-select md-form colorful-select dropdown-primary" id="authorsChooser" formControlName="authors" multiple>
-            <option *ngFor="let user of users" [value]="user">{{ user.username }}</option>
-          </select>
-        </div>
 
-        <div class="form-group">
-          <h5 for="approversChooser"class="card-title authors-chooser ">Seleccione los aprobadores: </h5>
-          <select class="form-control mdb-select md-form colorful-select dropdown-primary" id="approversChooser" formControlName="approvers" multiple >
-          <option *ngFor="let user of users" [value]="user">{{ user.username }}</option>
-          </select>
-        </div>
-        
-        <div class="form-group minimal-amount">
-          <h5 for="minInput"class="card-title authors-chooser ">Minima cantidad de aprobadores: </h5>
-          <input id="minInput" formControlName="minimumApprovalAmount">
-        </div>
-        
-        <div id="approvalsSection">
+  <mat-form-field [formGroup]="approvalForm" appearance="fill">
 
-        </div>
+    <mat-label>Authors</mat-label>
+    <mat-select formControlName="authors" placeHolder="" multiple>
+      <mat-select-trigger>
+        {{users.value ? users.value[0] : ''}}
+      </mat-select-trigger>
+      <mat-option *ngFor="let user of users" [value]="user">{{user.username}}</mat-option>
+    </mat-select>
 
-        <!--  -->
-        <input type="submit" class="btn btn-info form-group" value="Confirmar ruta de aprobacion">
-      
-      </form>
+    <div style="margin: 4%;"></div>
 
-    <!-- <div class="card-footer text-muted">
-      Mensaje de prueba
-    </div> -->
+    <mat-label>Approvers</mat-label>
+    <mat-select formControlName="approvers" placeHolder="" multiple>
+      <mat-select-trigger>
+        {{users.value ? users.value[0] : ''}}
+      </mat-select-trigger>
+      <mat-option *ngFor="let user of users" [value]="user">{{user.username}}</mat-option>
+    </mat-select>
+
+  </mat-form-field>
 
   </div>
 </div>
