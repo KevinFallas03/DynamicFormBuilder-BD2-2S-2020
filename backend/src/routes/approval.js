@@ -3,7 +3,7 @@ const router = express.Router();
 
 const approvalController = require("../controllers/approvalController");
 
-router.get("/:templateName", approvalController.get);
+router.get("/templates/:id", approvalController.get);
 
 router.post("/", approvalController.create);
 

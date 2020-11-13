@@ -5,7 +5,7 @@
     <h1 class="display-4">Ya casi terminas...</h1>
     <p class="lead">Agrega las rutas de aprobacion para la plantilla {{ selectedTemplate.name }}</p>
   </div>
-    <form class="container" [formGroup]="approvalForm" (submit)="addApproval(approvalForm.value)">
+    <form class="container" [formGroup]="approvalForm" (submit)="createApprovalRoute(approvalForm.value)">
         <!-- <div class="form-group">
           <h5 for="templateChooser"class="card-title ">Seleccione el tipo de formulario: </h5>
           <select class="form-control" id="templateChooser" formControlName="template">
@@ -30,16 +30,13 @@
           <h5 for="minInput"class="card-title authors-chooser ">Minima cantidad de aprobadores: </h5>
           <input id="minInput" formControlName="minimumApprovalAmount">
         </div>
-
-        <!--  -->
-        <input type="submit" class="btn btn-info form-group" value="Agregar ruta">
         
         <div id="approvalsSection">
 
         </div>
 
         <!--  -->
-        <input (click)="createApprovalRoutes()" class="btn btn-success form-group" value="Confirmar ruta de aprobacion">
+        <input type="submit" class="btn btn-info form-group" value="Confirmar ruta de aprobacion">
       
       </form>
 

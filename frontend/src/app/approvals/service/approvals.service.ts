@@ -10,6 +10,12 @@ export class ApprovalsService {
   
   constructor(private _http: HttpClient) { }
 
+  getByTemplate(id) {
+    return this._http.get<any>(
+      `${this._apiUrl}/templates/${id}`
+    );
+  }
+
   get() {
     return this._http.get<any>(
       this._apiUrl

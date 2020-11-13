@@ -19,7 +19,6 @@ export class ApprovalCreateComponent implements OnInit {
   approvals:Object[] = [];
 
   approvalForm = new FormGroup({
-    // template: new FormControl({}, [Validators.required]),
     authors: new FormControl([], [Validators.required]),
     approvers: new FormControl([], [Validators.required]),
     minimumApprovalAmount: new FormControl(0, [Validators.required])
@@ -61,30 +60,29 @@ export class ApprovalCreateComponent implements OnInit {
   // to create an approval route
   loadUsers() {
      this.userService.get().subscribe(
-      data => {
-        this.users = data
-        console.log(this.users);
-      }
+        data => {
+          this.users = data
+          console.log(this.users);
+        }
      );
   }
 
-  addApproval(newApproval) {
-
-    console.log(this.selectedTemplate);
-
-    this.approvals.push(
-      {
-        ...newApproval, 
-        template: this.selectedTemplate
-      }
-    );
-    console.log(this.approvals);
+  onSubmit(approval) {
+    this.createApprovalRoute(approval);
+    this.updateApprovalByTemplate();
   }
 
-  // create a new approval route
-  createApprovalRoutes() {
-    this.approvalService.post(this.approvals).subscribe(
-      d => console.log(d)
+  updateApprovalByTemplate() {
+    this.approvalService.getByTemplate(this.selectedTemplate.id).subscribe(
+      approvalsByTemplate => this.approvals = approvalsByTemplate
+    );
+  }
+
+  createApprovalRoute(approval) {
+    this.approvalService.post(
+      {...approval, minimumApprovalAmount:parseInt(approval.minimumApprovalAmount)}
+    ).subscribe(
+      createdApproval => console.log(createdApproval)
     );
   }
 } 

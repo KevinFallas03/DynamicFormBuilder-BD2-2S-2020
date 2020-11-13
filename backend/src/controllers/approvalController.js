@@ -8,9 +8,9 @@ const approvalController = {};
  * @param {*} res 
  */
 approvalController.get = async (req, res) => {
-    const { templateName } = req.params;
+    const { id } = req.params;
     try {
-        const approvalByTemplateName = await Approval.find({template:{name:templateName}});
+        const approvalByTemplateName = await Approval.find({template:{_id:id}});
         res.status(202).send(approvalByTemplateName);
     } catch (err) {
         res.status(500).json(
@@ -48,9 +48,9 @@ approvalController.edit = async (req, res) => {
  * @param {*} res 
  */
 approvalController.create = async (req, res) => {
-    const newApprovals = req.body;
+    const newApproval = req.body;
     try {
-        const createdApproval = await Approval.insertMany(newApprovals);
+        const createdApproval = await Approval.insertMany([newApproval]);
         res.status(202).send(createdApproval);
     } catch (err) {
         console.log(err);
