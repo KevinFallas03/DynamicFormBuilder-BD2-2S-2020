@@ -2,49 +2,45 @@
 
 <header>
   <div class="container">
-      <h1>Formbuilder</h1>
   </div>
 </header>
 
 <div *ngIf="model && !report" class="padding20 white-bg">
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-12">
           <div class="btn-cont">
-              <!-- <button (click)="initReport()" class="btn btn-primary pull-left">Response</button> -->
               <button (click)="submitTemplate()" class="btn btn-primary pull-left">Guardar</button>
-              <!-- <button (click)="updateForm()" class="btn btn-primary pull-right">Update</button> -->
-              <button routerLink="/templates" class="btn btn-primary pull-right">Atras</button>
           </div>
       </div>
-    </div>
+    </div> -->
+
+    <a  (click)="submitTemplate()" class="float">
+      <i class=
+      "fa fa-plus my-float"></i>
+    </a>
     <div class="spacer30"></div>
     <div class="row">
       <div class="col-4">
-  
-          <!-- <div class="row">
-          <label class="col-8">Background Color</label>
-          <input class="colorpick col-4" type="color" name="bgColor" [(ngModel)]="model.theme.bgColor" >    
-          </div>
-          <div class="row">
-          <label class="col-8">Text Color</label>
-          <input class="colorpick col-4" type="color" name="textColor" [(ngModel)]="model.theme.textColor">    
-          </div> -->
-  
-        <h4 (click)="test()">Select Fields</h4>
-        <p>Customize your form by drag and drop below fields to the form area.</p>
+        
         <!--a draggable element-->
-        <div class="fields" *ngFor="let item of fieldModels">
-          <div class="field pointer shadow-bg" [dndDraggable]="item"
-          [dndEffectAllowed]="'copy'" 
-          (dndEnd)="onDragEnd($event)">
-            <i [ngClass]="item.icon" class="fa pull-left"></i>
-            <h5>{{item.label}}</h5>
-          </div>
+        <div class="sticky-container">
+          <ul class="sticky">
+            <h4 style="margin-top: 30px; font-size: 22px;">Seleccione los campos</h4>
+            <p>Diseñe su plantilla arrastrando y soltando los campos al area de la plantilla.</p>
+            <div class="fields" *ngFor="let item of fieldModels">
+              <div class="field pointer shadow-bg" style="height: 30px; width: 170px;" [dndDraggable]="item" [dndEffectAllowed]="'copy'" (dndEnd)="onDragEnd($event)">
+                <div class="row">
+                  <i [ngClass]="item.icon" class="fa pull-left"></i>
+                  <h5 style="margin-left: 15px;">{{item.label}}</h5>
+                </div>
+              </div>
+            </div>
+          </ul>
         </div>
   
       </div>
       <div class="col-8">
-  
+        <h1>Diseño plantilla</h1>
         <div class="form-group"
         style="margin-bottom: 0px !important; padding: 30px 60px 5px 60px;"
         [style.backgroundColor]="model.theme.bgColor"
@@ -244,10 +240,6 @@
                 </div>
               </div>
             </div>
-            
-  
-  
-          
           </div>
         </div>
         <!--optional placeholder element for dropzone-->
@@ -273,6 +265,7 @@
   [style.backgroundColor]="model.theme.bgColor"
   [style.color]="model.theme.textColor">
     <div class="col-12">
+      <h1 style="margin-bottom: 20px;">Vista previa</h1>
       <h2>{{model.name}}</h2>  
     </div>
     <div class="col-12">
@@ -351,15 +344,12 @@
         <div *ngIf="item.type=='button'" class="btn-cont">
           <input type="{{item.subtype}}" (click)="submit()" value="{{item.label}}" class="btn btn-primary" id="{{item.name}}" >
         </div>
-      </div>
-  
-      <p (click)="show=1" class="marginT60 pointer">Show developer data</p>
-  
+      </div>  
     </div>
     </form>
   </div>
   </div>
   
-  <pre *ngIf=" model">
+  <!-- <pre *ngIf=" model">
       {{model|json}}
-  </pre>
+  </pre> -->
