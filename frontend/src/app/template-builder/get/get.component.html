@@ -1,0 +1,14 @@
+<!--The code to display images -->
+<div class="card-columns">
+    <div *ngFor="let template of templates" style="width: 18rem;">
+        <div class="container">
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title">{{ template.name }}</h5>
+            <p class="card-text">{{ template.description }}</p>
+            <a href="#" class="btn btn-primary">Ver</a>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

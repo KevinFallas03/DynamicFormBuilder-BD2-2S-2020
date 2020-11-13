@@ -32,7 +32,8 @@ const templateSchema = new Schema(
         name: String,
         values: [{
             label: String,
-            value: String
+            value: String,
+            selected: Boolean
         }],
     }],
     createdBy: { 

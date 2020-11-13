@@ -14,7 +14,11 @@ export class TemplateBuilderService {
     const headers = {"Content-Type":"application/json"};
     return this._http.post<any>(this._apiUrl , template, {headers});
   }
-  get(){
-    return this._http.get(this._apiUrl);
+  getAll(){
+    return this._http.get<any>(this._apiUrl);
+  }
+  getById(id){
+    console.log(id);
+    return this._http.get<any>(this._apiUrl+'/'+id);
   }
 }

@@ -5,6 +5,8 @@ const templatesController = require("../controllers/template");
 
 router.get("/", templatesController.get);
 
+router.get("/:id", templatesController.getById);
+
 router.post("/", templatesController.create);
 
 router.put("/", templatesController.edit);
