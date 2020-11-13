@@ -48,11 +48,12 @@ approvalController.edit = async (req, res) => {
  * @param {*} res 
  */
 approvalController.create = async (req, res) => {
-    const newApproval = req.body;
+    const newApprovals = req.body;
     try {
-        const createdApproval = await Approval.insert(newApproval);
+        const createdApproval = await Approval.insertMany(newApprovals);
         res.status(202).send(createdApproval);
     } catch (err) {
+        console.log(err);
         res.status(500).json(
             { 
               message : 'Approval creation failed', 

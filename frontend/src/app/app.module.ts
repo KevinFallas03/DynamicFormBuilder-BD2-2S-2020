@@ -1,7 +1,7 @@
 import { LoginComponent } from './auth/login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
@@ -11,7 +11,6 @@ import { HomeComponent } from './home/home.component';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import { TemplateBuilderRoutingModule } from './template-builder/template-builder-routing.module';
 import { FormRoutingModule } from './form/form-routing.module';
-
 
 @NgModule({
   declarations: [
@@ -26,7 +25,8 @@ import { FormRoutingModule } from './form/form-routing.module';
     FormsModule,
     HttpClientModule,
     TemplateBuilderRoutingModule,
-    FormRoutingModule
+    FormRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

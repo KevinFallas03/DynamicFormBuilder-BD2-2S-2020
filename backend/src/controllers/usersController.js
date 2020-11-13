@@ -87,6 +87,21 @@ usersController.getUsers = async (req, res) => {
 
 }
 
+// Obtains all the users with minimal details
+usersController.getUsersWithMinimalDetails = async (req, res) => {
+
+    try {
+        const users = await User.find({}, { username:true});
+
+        // 200: OK
+        res.status(200).json(users);
+    } catch (error) {
+        // 400: Bad Request
+        res.status(400).send(error);
+    }
+
+}
+
 // Updates the information of a single user
 usersController.updateUser = async (req, res) => {
     res.send("UPDATING A USER");

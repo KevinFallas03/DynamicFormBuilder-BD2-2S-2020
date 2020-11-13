@@ -12,5 +12,7 @@ router.post('/register', userController.createUser);
 // Post method for log in
 router.post('/login', userController.login);
 
+// Get users for approval routes
+router.get('/users', userController.getUsersWithMinimalDetails);
 
 module.exports = router;
