@@ -17,4 +17,8 @@ export class TemplateBuilderService {
   getAll(){
     return this._http.get<any>(this._apiUrl);
   }
+  getById(id){
+    console.log(id);
+    return this._http.get<any>(this._apiUrl+'/'+id);
+  }
 }

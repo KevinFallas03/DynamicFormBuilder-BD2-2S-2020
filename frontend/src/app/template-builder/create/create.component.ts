@@ -154,17 +154,12 @@ export class CreateComponent implements OnInit {
       "label": "File Upload",
       "className": "form-control",
       "subtype": "file"
-    },
-    {
-      "type": "button",
-      "icon":"fa-paper-plane",
-      "subtype": "submit",
-      "label": "Submit"
     }
   ];
 
   modelFields:Array<field>=[];
   model:any = {
+    id: '',
     name:'App name...',
     description:'App Description...',
     theme:{
@@ -306,76 +301,25 @@ export class CreateComponent implements OnInit {
     item.selected = !item.selected;
   }
 
-  submit(){
-    let valid = true;
-    let validationArray = JSON.parse(JSON.stringify(this.model.attributes));
-    validationArray.reverse().forEach(field => {
-      console.log(field.label+'=>'+field.required+"=>"+field.value);
-      if(field.required && !field.value && field.type != 'checkbox'){
-        swal.fire('Error','Please enter '+field.label,'error');
-        valid = false;
-        return false;
-      }
-      if(field.required && field.regex){
-        let regex = new RegExp(field.regex);
-        if(regex.test(field.value) == false){
-          swal.fire('Error',field.errorText,'error');
-          valid = false;
-          return false;
-        }
-      }
-      if(field.required && field.type == 'checkbox'){
-        if(field.values.filter(r=>r.selected).length == 0){
-          swal.fire('Error','Please enterrr '+field.label,'error');
-          valid = false;
-          return false;
-        }
-      }
-    });
-    if(!valid){
-      return false;
-    }
-    /*let input = new FormData;
-    input.append('formId',this.model._id);
-    input.append('attributes',JSON.stringify(this.model.attributes))*/
-
-    this._templateBuilderService.post(this.model).subscribe( 
-      data => {
-        swal.fire('Enhorabuena',data.name+' se ha creado exitosamente','success');
-      }
-    )
-    // this.us.postDataApi('/user/formFill',input).subscribe(r=>{
-    //   console.log(r);
-    //   swal('Success','You have contact sucessfully','success');
-    //   this.success = true;
-    // },error=>{
-    //   swal('Error',error.message,'error');
-    // });
-  }
-
   submitTemplate(){
+    /*
     let valid = true;
     let validationArray = JSON.parse(JSON.stringify(this.model.attributes));
     validationArray.reverse().forEach(field => {
       console.log(field.label+'=>'+field.required+"=>"+field.value);
       
-      if(field.required && field.type == 'checkbox'){
-        if(field.values.filter(r=>r.selected).length == 0){
-          swal.fire('Error','Please enterrr '+field.label,'error');
-          valid = false;
-          return false;
-        }
-      }
+      
     });
     if(!valid){
       return false;
-    }
+    }*/
     /*let input = new FormData;
     input.append('formId',this.model._id);
     input.append('attributes',JSON.stringify(this.model.attributes))*/
 
     this._templateBuilderService.post(this.model).subscribe( 
       data => {
+        this.model.id = data._id;
         swal.fire('Enhorabuena',"Plantilla "+data.name+' creada exitosamente','success');
       }
     )

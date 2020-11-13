@@ -10,11 +10,10 @@
     <div class="row">
       <div class="col-12">
           <div class="btn-cont">
-              <button (click)="initReport()" class="btn btn-primary pull-left">Response</button>
+              <!-- <button (click)="initReport()" class="btn btn-primary pull-left">Response</button> -->
               <button (click)="submitTemplate()" class="btn btn-primary pull-left">Guardar</button>
-              <button (click)="updateForm()" class="btn btn-primary pull-right">Update</button>
-              <button (click)="updateForm()" class="btn btn-primary pull-right">Update</button>
-              <button routerLink="/plantillas" class="btn btn-primary pull-right">View</button>
+              <!-- <button (click)="updateForm()" class="btn btn-primary pull-right">Update</button> -->
+              <button routerLink="/templates" class="btn btn-primary pull-right">Atras</button>
           </div>
       </div>
     </div>
@@ -22,14 +21,14 @@
     <div class="row">
       <div class="col-4">
   
-          <div class="row">
+          <!-- <div class="row">
           <label class="col-8">Background Color</label>
           <input class="colorpick col-4" type="color" name="bgColor" [(ngModel)]="model.theme.bgColor" >    
           </div>
           <div class="row">
           <label class="col-8">Text Color</label>
           <input class="colorpick col-4" type="color" name="textColor" [(ngModel)]="model.theme.textColor">    
-          </div>
+          </div> -->
   
         <h4 (click)="test()">Select Fields</h4>
         <p>Customize your form by drag and drop below fields to the form area.</p>
@@ -259,35 +258,6 @@
   
       </div>
     </div>
-  </div>
-  
-   
-  
-  <div *ngIf="report" class="padding20 white-bg">
-      <div class="row">
-          <div class="col-12 btn-cont">
-              <button (click)="report=false" class="btn btn-primary"><< Back</button>
-          </div>
-          <div class="col-12 spacer30"></div>
-          <!-- if records found -->
-          <div  *ngIf="reports?.length > 0" class="col-12">
-              <div *ngFor="let records of reports" class="report-block">
-                  <div *ngFor="let record of records.attributes">
-                      <div *ngIf="record.type !='button' && record.type !='paragraph'" class="row">
-                       <div class="col-4">{{record.label}}</div>
-                          <div class="col-8">{{record.value}}</div>
-                      </div>
-                  </div>
-              </div>
-              <!-- <pre>{{reports|json}}</pre> -->
-          </div> 
-          <!-- if no records found -->
-          <div *ngIf="reports?.length == 0" class="col-12 btn-cont">
-              No response found
-          </div>
-  
-      </div>
-  
   </div>
   
   <!-- <pre *ngIf="model">{{model|json}}</pre> -->
