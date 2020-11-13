@@ -295,20 +295,6 @@ export class CreateComponent implements OnInit {
   }
 
   submitTemplate(){
-    /*
-    let valid = true;
-    let validationArray = JSON.parse(JSON.stringify(this.model.attributes));
-    validationArray.reverse().forEach(field => {
-      console.log(field.label+'=>'+field.required+"=>"+field.value);
-      
-      
-    });
-    if(!valid){
-      return false;
-    }*/
-    /*let input = new FormData;
-    input.append('formId',this.model._id);
-    input.append('attributes',JSON.stringify(this.model.attributes))*/
     this.success = true;
     this._templateBuilderService.post(this.model).subscribe( 
       data => {
@@ -316,13 +302,6 @@ export class CreateComponent implements OnInit {
         swal.fire('Enhorabuena',"Plantilla "+data.name+' creada exitosamente','success');
       }
     )
-    // this.us.postDataApi('/user/formFill',input).subscribe(r=>{
-    //   console.log(r);
-    //   swal('Success','You have contact sucessfully','success');
-    //   this.success = true;
-    // },error=>{
-    //   swal('Error',error.message,'error');
-    // });
   }
 
 }
