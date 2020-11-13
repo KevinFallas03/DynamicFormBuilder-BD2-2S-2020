@@ -104,13 +104,26 @@ usersController.getUsersWithMinimalDetails = async (req, res) => {
 
 // Updates the information of a single user
 usersController.updateUser = async (req, res) => {
-    res.send("UPDATING A USER");
+    try {
+        const updatedUser= await User.updateOne({_id: req.body._id}, {$set: {username: req.body.username, password: req.body.password}});
+
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        res.status(400).json({Error: "Something went wrong"});
+    }
 }
 
 
 // Deletes a single user
 usersController.deleteUser = async (req, res) => {
-    res.send("DELETING A USER");
+    try {
+        
+        const removedUser= await User.deleteOne({_id: req.body._id});
+
+        res.status(200).json(removedUser);
+    } catch (error) {
+        res.status(400).json({Error: "Something went wrong"});
+    }
 }
 
 

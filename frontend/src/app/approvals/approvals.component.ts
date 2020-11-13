@@ -34,7 +34,7 @@ export class ApprovalsComponent implements OnInit {
   }
 
   loadTemplates() {
-    this.templateService.get().subscribe(
+    this.templateService.getAll().subscribe(
       data => {
         this.templates = data
         console.log(this.templates);
