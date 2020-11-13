@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     this.authService.loadHome(opts)
     .subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
       }, 
       error => {
         console.log("error equis de");

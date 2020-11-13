@@ -9,8 +9,6 @@ const auth = require('../middleware/auth');
 
 // Needs authentication from the log in
 router.get('/', auth, (req, res) => {
-    // Gets the logged in user 
-    // req.user comes from auth middleware
     res.send(req.user);
 });
 

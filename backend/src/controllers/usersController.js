@@ -161,5 +161,12 @@ usersController.forceLogoff = async (req, res) => {
 
 }
 
-
+// Checks if the user is an administrator.
+usersController.isAdmin = async (req, res) => {
+    try {
+        res.status(200).json({isAdmin: req.user.isAdmin});
+    } catch (error) {
+        res.status(400).json({Error: "Something went wrong"});
+    }
+}
 module.exports = usersController;

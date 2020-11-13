@@ -33,4 +33,9 @@ export class AuthserviceService {
     return this.httpclient.get(`${this.AUTH_SERVER}/home`, headers);
   }
 
+  // Checks if a user is administrator
+  isAdmin(headers): Observable<any> {
+    return this.httpclient.get(`${this.AUTH_SERVER}/authorize`, headers);
+  }
+
 }
