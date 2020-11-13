@@ -16,7 +16,7 @@
     "@angular/compiler": "~10.2.0",
     "@angular/core": "~10.2.0",
     "@angular/forms": "~10.2.0",
-    "@angular/platform-browser": "~10.2.0",
+    "@angular/platform-browser": "^10.2.3",
     "@angular/platform-browser-dynamic": "~10.2.0",
     "@angular/router": "~10.2.0",
     "@ckeditor/ckeditor5-angular": "^2.0.1",

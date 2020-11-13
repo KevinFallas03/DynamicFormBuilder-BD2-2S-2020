@@ -9,7 +9,7 @@ export class ApprovalsService {
   _apiUrl = "http://localhost:3000/api/approval";
   
   constructor(private _http: HttpClient) { }
-  
+
   get() {
     return this._http.get<any>(
       this._apiUrl

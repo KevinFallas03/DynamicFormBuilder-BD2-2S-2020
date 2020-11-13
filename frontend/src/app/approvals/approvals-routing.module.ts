@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ApprovalsComponent } from './approvals.component';
+import { ApprovalCreateComponent } from './create/approvalcreate.component';
 
 const routes: Routes = [
-  { path: 'create', component: ApprovalsComponent },
+  { path: 'create', component: ApprovalCreateComponent },
 ];
 
 @NgModule({
