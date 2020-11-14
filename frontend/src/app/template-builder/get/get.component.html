@@ -1,17 +1,27 @@
 <!--The code to display images -->
-<div class="card-columns">
-    <div *ngFor="let template of templates" style="width: 18rem;">
+<body>
+<div class="card-columns" style="margin-top:1%">
+    <div *ngFor="let template of templates" style="width: 25rem;">
         <div class="container">
         <div class="card">
-            <div class="card-body">
-            <h5 class="card-title">{{ template.name }}</h5>
-            <p class="card-text">{{ template.description }}</p>
-            <a routerLink="/get/{{template._id}}" class="btn btn-primary">Ver</a>
-            <a routerLink="/update/{{template._id}}" class="btn btn-primary">Editar</a>
-            <a href="#" class="btn btn-primary">Rutas</a>
-            <a href="#" class="btn btn-primary">Eliminar</a>
+            <div class="face face1">
+                <div class="content">
+                    <h3>{{ template.name }}</h3>
+                    <p >{{ template.description }}</p>
+                </div>
             </div>
+           <div class="face face2">
+               <div class="content">
+                    <div class="btn-group" style="width:100%">
+                        <a routerLink="/get/{{template._id}}" class="btn btn-outline-success">Ver</a>
+                        <a routerLink="/update/{{template._id}}" class="btn btn-outline-primary">Editar</a>
+                        <a href="#" class="btn btn-outline-dark">Rutas</a>
+                        <a href="#" class="btn btn-outline-danger">Eliminar</a>
+                    </div>
+               </div>
+           </div>
         </div>
         </div>
     </div>
 </div>
+</body>
