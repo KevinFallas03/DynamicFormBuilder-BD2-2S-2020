@@ -20,4 +20,10 @@ export class FormService {
   getById(id){
     return this._http.get<any>(this._apiUrl,id);
   }
+
+  getFormsById(idList){
+    return this._http.get<any>(
+      `${this._apiUrl}/pending/${idList}`
+    );
+  }
 }

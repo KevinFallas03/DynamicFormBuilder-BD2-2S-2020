@@ -5,6 +5,8 @@ const approvalController = require("../controllers/approvalController");
 
 router.get("/templates/:id", approvalController.get);
 
+router.get("/pending/:id", approvalController.getPending);
+
 router.post("/", approvalController.create);
 
 router.put("/", approvalController.edit);

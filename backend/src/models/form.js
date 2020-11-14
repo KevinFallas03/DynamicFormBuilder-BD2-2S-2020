@@ -12,8 +12,7 @@ const formSchema = new Schema({
         ref: 'User'
     },
     approvers: [{ 
-        User: mongoose.Schema.Types.ObjectId,
-        state : Boolean,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
     responses: [{

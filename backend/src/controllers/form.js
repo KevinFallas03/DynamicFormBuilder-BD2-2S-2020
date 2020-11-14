@@ -35,21 +35,21 @@ formController.getRequested = async (req, res) => {
 }
 
 formController.getPending = async (req, res) => {
-    const { id } = req.params;
+    const { idList } = req.params;
 
-    // ocupo saber quien es autor y ver si es igual 
-    // try {
-    //     const aprovalsOfUser = await Approval.find({approvers : id});
+    try {
 
-    //     res.status(202).send(aprovalsOfUser);
-    // } catch (err) {
-    //     res.status(500).json(
-    //         { 
-    //           message : 'the request failed', 
-    //           error: err
-    //         }
-    //     );
-    // }   
+        const aprovalsOfUser = await Forms.find( { template: { $in: idList } } );
+
+        res.status(202).send(aprovalsOfUser);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'the request failed', 
+              error: err
+            }
+        );
+    }   
 };
 
 formController.getAproved = async (req, res) => {
