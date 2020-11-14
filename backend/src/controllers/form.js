@@ -34,6 +34,19 @@ formController.getRequested = async (req, res) => {
         );
     }   
 }
+formController.getAll = async (req, res) => {
+    try {
+        const forms = await Form.find();
+        res.status(202).send(forms);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'the request failed', 
+              error: err
+            }
+        );
+    }   
+}
 
 formController.getPending = async (req, res) => {
     const { idList } = req.params;

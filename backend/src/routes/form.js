@@ -9,6 +9,8 @@ router.get("/aproved/:id", formController.getAproved); // aproved
 
 router.get("/pending/:idList", formController.getPending); // pending
 
+router.get("/", formController.getAll); // getAll
+
 router.post("/", formController.create);
 
 router.put("/", formController.edit);
