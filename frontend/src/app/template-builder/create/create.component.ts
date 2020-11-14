@@ -155,11 +155,6 @@ export class CreateComponent implements OnInit {
     id: '',
     name:'Nombre..',
     description:'Descripcion..',
-    theme:{
-      bgColor:"ffffff",
-      textColor:"555555",
-      bannerImage:""
-    },
     attributes:this.modelFields
   };
 
@@ -254,39 +249,11 @@ export class CreateComponent implements OnInit {
 
   }
 
-  updateForm(){
-    let input = new FormData;
-    input.append('id',this.model._id);
-    input.append('name',this.model.name);
-    input.append('description',this.model.description);
-    input.append('bannerImage',this.model.theme.bannerImage);
-    input.append('bgColor',this.model.theme.bgColor);
-    input.append('textColor',this.model.theme.textColor);
-    input.append('attributes',JSON.stringify(this.model.attributes));
-
-    // this.us.putDataApi('/admin/updateForm',input).subscribe(r=>{
-    //   console.log(r);
-    //   swal('Success','App updated successfully','success');
-    // });
-  }
-
-
   initReport(){
     this.report = true; 
     let input = {
       id:this.model._id
     }
-    // this.us.getDataApi('/admin/allFilledForms',input).subscribe(r=>{
-    //   this.reports = r.data;
-    //   console.log('reports',this.reports);
-    //   this.reports.map(records=>{
-    //     return records.attributes.map(record=>{
-    //       if(record.type=='checkbox'){
-    //         record.value = record.values.filter(r=>r.selected).map(i=>i.value).join(',');
-    //       }
-    //     })
-    //   });
-    // });
   }
   toggleValue(item){
     item.selected = !item.selected;
