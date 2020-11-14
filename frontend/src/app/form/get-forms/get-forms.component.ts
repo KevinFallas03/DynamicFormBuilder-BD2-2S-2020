@@ -15,9 +15,9 @@ export class GetFormsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getPending(idUser); // Sacar usuario logueado
+    //this.getPending(idUser); // Sacar usuario logueado
   }
-  getPending(idUser){
+ /* getPending(idUser){
     this._ApprovalsService.getTemplatesByUser(idUser).subscribe(
       data => {
         this.idTemplatesList = data
@@ -29,7 +29,7 @@ export class GetFormsComponent implements OnInit {
         this.pendingForms = data
       }
     );
-
+*/
 
   }
 }

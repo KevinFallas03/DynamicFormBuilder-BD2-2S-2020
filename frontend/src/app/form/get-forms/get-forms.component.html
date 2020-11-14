@@ -1,13 +1,20 @@
 <h1 class="display-4">Formularios</h1>
 <ul class="nav nav-tabs" style="padding-top: 10px">
     <li class="tabs nav-item" style="margin-left: 5px">
-      <a class="nav-link list-group-item-dark " style="font-size: 20px" href="#">Solicitados</a>
+      <a class="nav-link list-group-item-dark " style="font-size: 20px" href="#1">Solicitados</a>
     </li>
     <li class="tabs nav-item" style="margin-left: 5px">
-      <a class="nav-link list-group-item-dark " style="font-size: 20px" href="#">Pendientes</a>
+      <a class="nav-link list-group-item-dark " style="font-size: 20px" href="#2">Pendientes</a>
     </li>   
     <li class="tabs nav-item"  style="margin-left: 5px">
-      <a class="nav-link list-group-item-dark" style="font-size: 20px" href="#">Aprobados</a>
+      <a class="nav-link list-group-item-dark" style="font-size: 20px" href="#3">Aprobados</a>
     </li>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="1"></div>
+      <div role="tabpanel" class="tab-pane " id="2"></div>
+      <div role="tabpanel" class="tab-pane " id="3"></div>
+
+    </div>
     <!--      {{pendingForms.Name}}  Asi se llama a la lista, se hace unos for para iterar                -->
   </ul>

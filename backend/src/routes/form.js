@@ -3,7 +3,7 @@ const router = express.Router();
 
 const formController = require("../controllers/form");
 
-router.get("/requested", formController.getRequested); //requested
+router.get("/requested/:id", formController.getRequested); // tengo que sacar el user actual
 
 router.get("/aproved/:id", formController.getAproved); // aproved
 
