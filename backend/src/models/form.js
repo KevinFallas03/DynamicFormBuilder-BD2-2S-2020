@@ -18,9 +18,9 @@ const formSchema = new Schema({
         ref: 'User'
     }],
     responses: [{
-        itemName: String,
-        type: String,
-        response: String
+        label: String,
+        value: String,
+        values: []
     }],
     status:{
         type: String,

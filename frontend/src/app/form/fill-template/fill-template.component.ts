@@ -17,12 +17,14 @@ export class FillTemplateComponent implements OnInit {
   modelFields:Array<field>=[];
   model:any = {};
   templateId : string;
+
+  formFields:Array<any>=[];
   filledForm = {
     template: '',
     applicant: '',
     name:'Nombre..',
     description:'Descripcion..',
-    responses: []
+    responses: this.formFields
   };
   
   constructor(
@@ -87,7 +89,7 @@ export class FillTemplateComponent implements OnInit {
 
     this.model.attributes.forEach((element:{label,value,values}) => {
       const { label, value, values } = element;
-      this.filledForm.responses.push(JSON.stringify({ label , value , values }));
+      this.formFields.push({ label , value , values });
     });
     console.log(this.filledForm);
     
