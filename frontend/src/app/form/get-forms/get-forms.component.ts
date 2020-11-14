@@ -11,5 +11,4 @@ export class GetFormsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

@@ -7,6 +7,8 @@ const formSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Templates'
     },
+    name: String,
+    description: String,
     applicant: { 
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

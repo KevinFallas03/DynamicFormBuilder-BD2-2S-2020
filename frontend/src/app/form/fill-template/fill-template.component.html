@@ -12,22 +12,22 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     <div *ngIf="reports?.length == 0" class="col-12 btn-cont">
         No response found
     </div> -->
 
-<div *ngIf="model" 
-class="container marginT60  marginB30" 
+<div *ngIf="model"
+class="container marginT60  marginB30"
 style="max-width:500px;"
 >
 
 <div class="row" style="padding:30px;">
   <div class="col-12">
-    <h2>{{model.name}}</h2>  
+    <h2>{{model.name}}</h2>
   </div>
   <div class="col-12">
-    <p>{{model.description}}</p>  
+    <p>{{model.description}}</p>
   </div>
   <div *ngIf="success" class="col-12">
     <div class="form-group">
@@ -66,18 +66,13 @@ style="max-width:500px;"
           <textarea class="form-control" id="{{item.name}}" placeholder="{{item.placeholder}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" autocomplete="off">
           </textarea>
         </div>
-      <div *ngIf="item.type=='file'">
-        <label>{{item.label}} (File can't be uploaded right now)</label> <label *ngIf="item.required" class="text-danger">*</label>
-        <input type="file" class="form-control" id="{{item.name}}" placeholder="{{item.placeholder}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" autocomplete="off">
-        <small class="form-text text-danger">(File can't be uploaded right now)</small>
-      </div>
       <div *ngIf="item.type=='paragraph'">
         <p class="form-text">{{item.placeholder}}</p>
       </div>
       <div *ngIf="item.type=='autocomplete'">
         <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
         <select class="form-control" id="{{item.name}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}">
-          <option *ngFor="let v of item.values" [value]="v.value">{{v.label}}</option>  
+          <option *ngFor="let v of item.values" [value]="v.value">{{v.label}}</option>
         </select>
         <!-- <small class="form-text text-muted">{{item.description}}</small> -->
       </div>
@@ -103,7 +98,7 @@ style="max-width:500px;"
         <input type="{{item.subtype}}" (click)="submit()" value="{{item.label}}" class="btn btn-primary" id="{{item.name}}" >
       </div>
     </div>
-    
+
     <div class="col-12 btn-cont">
       <button (click)="submitForm()" class="btn btn-primary">Enviar</button>
     </div>
@@ -114,6 +109,6 @@ style="max-width:500px;"
 </div>
 </div>
 
-<!-- <pre *ngIf=" model">
-  {{model|json}}
-</pre> -->
+<pre *ngIf=" filledForm">
+  {{filledForm|json}}
+</pre>

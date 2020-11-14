@@ -1,4 +1,4 @@
-const Forms = require("../models/form");
+const Form = require("../models/form");
 
 const formController = {};
 
@@ -9,9 +9,13 @@ formController.get = async (req, res) => {
 };
 
 formController.create = async (req, res) => {
-    res.json({
-        message: "Hello from create!"
-    });
+    const form = new Form(req.body);
+    try{
+        const savedForm = await form.save();
+        res.json(savedForm);
+    } catch(error){
+        res.json({message: error});
+    }
 };
 
 formController.edit = async (req, res) => {
