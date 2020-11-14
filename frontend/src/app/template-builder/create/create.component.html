@@ -24,7 +24,7 @@
         <!--a draggable element-->
         <div class="sticky-container">
           <ul class="sticky">
-            <h4 style="margin-top: 30px; font-size: 22px;">Seleccione los campos</h4>
+            <h4 style="margin-top: 15px; font-size: 22px;">Seleccione los campos</h4>
             <p>Diseñe su plantilla arrastrando y soltando los campos al area de la plantilla.</p>
             <div class="fields" *ngFor="let item of fieldModels">
               <div class="field pointer shadow-bg" style="height: 30px; width: 170px;" [dndDraggable]="item" [dndEffectAllowed]="'copy'" (dndEnd)="onDragEnd($event)">
@@ -41,9 +41,7 @@
       <div class="col-8">
         <h1>Diseño plantilla</h1>
         <div class="form-group"
-        style="margin-bottom: 0px !important; padding: 30px 60px 5px 60px;"
-        [style.backgroundColor]="model.theme.bgColor"
-        [style.color]="model.theme.textColor">
+        style="margin-bottom: 0px !important; padding: 30px 60px 5px 60px;">
         <h2><input class="form-control" type="text" [(ngModel)]="model.name" /></h2>
         <input class="form-control" type="text" [(ngModel)]="model.description" />
         </div>
@@ -53,9 +51,7 @@
         <section dndDropzone
         (dndDragover)="onDragover($event)"
         (dndDrop)="onDrop($event,model.attributes)" class="dndDropArea"
-        [ngClass]="{'empty':model.attributes.length == 0}"
-        [style.backgroundColor]="model.theme.bgColor"
-        [style.color]="model.theme.textColor"> 
+        [ngClass]="{'empty':model.attributes.length == 0}"> 
   
         <div class="field" *ngFor="let item of model.attributes;let i= index;" 
           (dndStart)="onDragStart($event)"
@@ -260,9 +256,7 @@
   >
   
   <div class="row"
-  style="padding:30px;"
-  [style.backgroundColor]="model.theme.bgColor"
-  [style.color]="model.theme.textColor">
+  style="padding:30px;">
     <div class="col-12">
       <h1 style="margin-bottom: 20px;">Vista previa</h1>
       <h2>{{model.name}}</h2>  
