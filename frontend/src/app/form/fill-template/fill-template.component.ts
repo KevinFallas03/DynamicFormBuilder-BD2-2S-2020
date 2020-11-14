@@ -83,17 +83,18 @@ export class FillTemplateComponent implements OnInit {
     this.filledForm.template = this.model._id;
     this.filledForm.name = this.model.name;
     this.filledForm.description = this.model.description;
-    //this.filledForm.applicant = actualUser;
+    this.filledForm.applicant = "5fab7bd9e5288a1424748f02";
 
     this.model.attributes.forEach((element:{label,value,values}) => {
       const { label, value, values } = element;
-      this.filledForm.responses.push({ label , value , values });
+      this.filledForm.responses.push(JSON.stringify({ label , value , values }));
     });
     console.log(this.filledForm);
     
     this._formService.post(this.filledForm).subscribe( 
       data => {
         swal.fire('Enhorabuena','El formulario se ha subido exitosamente','success');
+        console.log(data);
       }
     )
   }
