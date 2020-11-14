@@ -22,6 +22,28 @@ approvalController.get = async (req, res) => {
     }   
 };
 
+
+/**
+ * Get the approvals binded to a specific user
+ * @param {*} req.params.templateName template name to filter
+ * @param {*} res 
+ */
+approvalController.getPending = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const aprovalsOfUser = await Approval.find({approvers : id},{template : 1});
+        res.status(202).send(aprovalsOfUser);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'the request failed', 
+              error: err
+            }
+        );
+    }   
+};
+
 /**
  * Modify an approval object with the given object using the id
  * @param {*} req.body approval json object to edit
