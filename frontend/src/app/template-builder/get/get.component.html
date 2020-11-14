@@ -6,8 +6,8 @@
             <div class="card-body">
             <h5 class="card-title">{{ template.name }}</h5>
             <p class="card-text">{{ template.description }}</p>
-            <a href="#" class="btn btn-primary">Ver</a>
-            <a href="#" class="btn btn-primary">Editar</a>
+            <a routerLink="/get/{{template._id}}" class="btn btn-primary">Ver</a>
+            <a routerLink="/update/{{template._id}}" class="btn btn-primary">Editar</a>
             <a href="#" class="btn btn-primary">Rutas</a>
             <a href="#" class="btn btn-primary">Eliminar</a>
             </div>

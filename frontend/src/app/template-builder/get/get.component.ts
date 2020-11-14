@@ -9,7 +9,7 @@ import { TemplateBuilderService } from '../template-builder.service';
 })
 export class GetComponent implements OnInit {
 
-  templates:any=[{}];
+  templates:any = [{}];
 
   constructor(
     private _templateBuilderService: TemplateBuilderService

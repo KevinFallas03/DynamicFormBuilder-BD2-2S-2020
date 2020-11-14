@@ -36,7 +36,7 @@ templateController.create = async (req, res) => {
 templateController.edit = async (req, res) => {
     //const template = new Template(req, res);
     try{
-        const updatedTemplate = await Template.findByIdAndUpdate(req.params.id, req.body);
+        const updatedTemplate = await Template.findByIdAndUpdate(req.params.id, req.body, {new: true});
         res.json(updatedTemplate);
     } catch(error){
         res.json({message: error});

@@ -12,9 +12,10 @@ import { TemplateBuilderService } from './template-builder.service'
 import { DndModule } from 'ngx-drag-drop';
 
 import { FormsModule }   from '@angular/forms';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
-  declarations: [MenuComponent,CreateComponent,GetComponent],
+  declarations: [MenuComponent,CreateComponent,GetComponent, EditComponent],
   imports: [
     CommonModule,
     TemplateBuilderRoutingModule,

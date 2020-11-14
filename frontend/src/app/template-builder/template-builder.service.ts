@@ -21,4 +21,9 @@ export class TemplateBuilderService {
     console.log(id);
     return this._http.get<any>(this._apiUrl+'/'+id);
   }
+
+  findByIdAndUpdate(id, updatedTemplate){
+    return this._http.put(this._apiUrl+'/'+id, updatedTemplate);
+  }
+
 }
