@@ -11,6 +11,11 @@ const formSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    approvers: [{ 
+        User: mongoose.Schema.Types.ObjectId,
+        state : Boolean,
+        ref: 'User'
+    }],
     responses: [{
         itemName: String,
         type: String,
