@@ -1,6 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user/user';
 import { AuthserviceService } from 'src/app/services/auth/authservice.service';
 
 @Component({
@@ -31,5 +32,23 @@ export class CreateComponent implements OnInit {
    }, error => {console.log("USER NOT ADMIN")});
  
  }
+
+
+  userModel = new User("", "", false);
+
+  createUser() {
+    this.authService.createUser(this.userModel)
+    .subscribe(
+      
+      data => {
+        console.log("User created succesfully");
+      },
+
+      error => {
+        console.log("Something went wrong creating the user");
+      }
+    
+    );
+  }
 
 }

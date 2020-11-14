@@ -13,10 +13,10 @@ const usersController = {};
 usersController.createUser = async (req, res) => {
 
     // Creates the new user
-    const newUser = new User({
+    var newUser = new User({
         username: req.body.username, // Unique username handled in model
         password: req.body.password,
-        isAdmin: false
+        isAdmin: req.body.isAdmin
     });
 
     const token = await newUser.generateToken();
@@ -169,4 +169,8 @@ usersController.isAdmin = async (req, res) => {
         res.status(400).json({Error: "Something went wrong"});
     }
 }
+
+
+
+
 module.exports = usersController;

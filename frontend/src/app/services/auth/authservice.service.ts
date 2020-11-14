@@ -38,4 +38,9 @@ export class AuthserviceService {
     return this.httpclient.get(`${this.AUTH_SERVER}/authorize`, headers);
   }
 
+  // Creates a new user with or without admin permissions
+  createUser(user: User): Observable<any> {
+    return this.httpclient.post(`${this.AUTH_SERVER}/createNew`, user);
+  }
+
 }

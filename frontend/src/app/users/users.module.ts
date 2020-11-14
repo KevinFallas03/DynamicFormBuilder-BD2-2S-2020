@@ -6,12 +6,17 @@ import { UsersComponent } from './users.component';
 import { EditComponent } from './edit/edit.component';
 import { CreateComponent } from './create/create.component';
 
+import { FormsModule }   from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [UsersComponent, EditComponent, CreateComponent],
   imports: [
     CommonModule,
-    UsersRoutingModule
-  ]
+    UsersRoutingModule,
+    FormsModule,
+    HttpClientModule
+  ],
+  
 })
 export class UsersModule { }

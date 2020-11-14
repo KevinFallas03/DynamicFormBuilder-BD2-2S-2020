@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   }
 
   // Saves the user data
-  userModel = new User('', '');
+  userModel = new User('', '', false);
 
   // Register a user through the register route.
   register() {

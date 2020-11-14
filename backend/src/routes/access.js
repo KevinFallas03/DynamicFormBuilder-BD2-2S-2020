@@ -19,4 +19,9 @@ router.get('/userDump', userController.getUsersWithMinimalDetails);
 // Authorization route
 router.get('/authorize', auth, userController.isAdmin);
 
+// Post method to post to create a new user with or without admin permissions
+router.post('/createNew', userController.createUser);
+
+router.patch('/edit/:id', userController.updateUser);
+
 module.exports = router;
