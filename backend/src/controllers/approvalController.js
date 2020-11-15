@@ -29,10 +29,9 @@ approvalController.get = async (req, res) => {
  * @param {*} res 
  */
 approvalController.getPending = async (req, res) => {
-    const { id } = req.params;
-
+    var userId  = req.params.id;
     try {
-        const aprovalsOfUser = await Approval.find({approvers : id},{template : 1});
+        const aprovalsOfUser = await Approval.find({approvers : userId},{_id : 0, template : 1});
         res.status(202).send(aprovalsOfUser);
     } catch (err) {
         res.status(500).json(

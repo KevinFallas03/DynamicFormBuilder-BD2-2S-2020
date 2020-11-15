@@ -1,8 +1,8 @@
 <!-- Tab links -->
 <div class="tab">
-  <button id = "1" class="tablinks" (click)="openCity('S',1)">Solicitados</button>
-  <button id = "2" class="tablinks" (click)="openCity('P',2)">Pendientes</button>
-  <button id = "3" class="tablinks" (click)="openCity('A',3)">Aprobados</button>
+  <button id = "1" class="tablinks" (click)="changeTab('S',1)">Solicitados</button>
+  <button id = "2" class="tablinks" (click)="changeTab('P',2)">Pendientes</button>
+  <button id = "3" class="tablinks" (click)="changeTab('A',3)">Aprobados</button>
 </div>
 
 <div id="S" class="tabcontent">
@@ -28,8 +28,25 @@
 </div>
 
 <div id="P" class="tabcontent">
-  <h3>Pendientes</h3>
-  <p>Paris is the capital of France.</p>
+  <div class="col-12">
+    <div *ngFor="let pendingForm of pendingForms">
+        <div class="container">
+        <div class="card">
+          <div class="row">
+            <div class="face face1">
+                <div class="content">
+                    <h3>{{ pendingForm.name }}</h3>
+                   <p >Aplicante: {{ pendingForm.applicant.username }}</p>
+                </div>
+            </div>
+           <div class="face face2">
+              <div style="width: 100%; height: 100%; text-align: center;" routerLink="" class="btn btn-outline-success">Ver</div>
+           </div>
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
 </div>
 
 <div id="A" class="tabcontent">
