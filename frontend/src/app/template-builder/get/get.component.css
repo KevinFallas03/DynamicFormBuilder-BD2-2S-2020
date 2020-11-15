@@ -16,6 +16,7 @@ body{
 
 .container .card{
   position: relative;
+  border:none;
   cursor: pointer;
 }
 

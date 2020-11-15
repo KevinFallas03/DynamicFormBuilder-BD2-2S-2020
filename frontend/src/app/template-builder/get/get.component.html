@@ -1,6 +1,5 @@
 <!--The code to display images -->
-<body>
-<div class="card-columns" style="margin-top:1%">
+<div class="card-columns" style="margin: 2%">
     <div *ngFor="let template of templates" style="width: 25rem;">
         <div class="container">
         <div class="card">
@@ -15,7 +14,7 @@
                     <div class="btn-group" style="width:100%">
                         <a routerLink="/view/{{template._id}}" class="btn btn-outline-success">Ver</a>
                         <a routerLink="/update/{{template._id}}" class="btn btn-outline-primary">Editar</a>
-                        <a href="#" class="btn btn-outline-dark">Rutas</a>
+                        <a routerLink="/approvals/create/{{template._id}}" class="btn btn-outline-dark">Rutas</a>
                         <a (click)="deleteTemplate(template._id)" class="btn btn-outline-danger">Eliminar</a>
                     </div>
                </div>
@@ -24,4 +23,3 @@
         </div>
     </div>
 </div>
-</body>

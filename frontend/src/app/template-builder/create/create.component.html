@@ -15,7 +15,7 @@
         <!--a draggable element-->
         <h4 style="margin-top: 1%; font-size: 22px;">Seleccione los campos</h4>
         <p>Diseñe su plantilla arrastrando y soltando los campos al area de la plantilla.</p>
-        <div class="sticky-container">
+        <div class="sticky-container" style="margin-top:-1%">
           <ul class="sticky">
             <div class="fields" *ngFor="let item of fieldModels">
               <div class="field pointer shadow-bg" style="height: 30px; width: 170px;" [dndDraggable]="item" [dndEffectAllowed]="'copy'" (dndEnd)="onDragEnd($event)">

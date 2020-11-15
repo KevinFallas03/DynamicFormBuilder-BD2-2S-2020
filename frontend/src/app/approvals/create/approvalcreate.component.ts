@@ -1,6 +1,6 @@
 import { element } from 'protractor';
 import { TemplateBuilderService } from '../../template-builder/template-builder.service';
-import { UserService } from './../../user/user.service';
+import { AuthserviceService } from '../../services/auth/authservice.service';
 import { ApprovalsService } from '../service/approvals.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -26,7 +26,7 @@ export class ApprovalCreateComponent implements OnInit {
 
   constructor( 
     private approvalService : ApprovalsService, 
-    private userService : UserService,
+    private authService : AuthserviceService,
     private templateService : TemplateBuilderService,
     public route: ActivatedRoute,
   ) 
@@ -64,7 +64,7 @@ export class ApprovalCreateComponent implements OnInit {
   }
 
   loadUsers() : void {
-     this.userService.get().subscribe(
+     this.authService.getUsers().subscribe(
         data => {
           this.users = data
           console.log(this.users);
@@ -76,9 +76,9 @@ export class ApprovalCreateComponent implements OnInit {
     this.approvalService.deleteById(id).subscribe(
       (data:any) => {
         console.log(data);
+        this.updateApprovalByTemplate();
       }
     );
-    this.updateApprovalByTemplate();
     console.log(this.approvals);
   }
 
@@ -99,7 +99,10 @@ export class ApprovalCreateComponent implements OnInit {
     this.approvalService.post(
       {...approval, template:this.selectedTemplate, minimumApprovalAmount:parseInt(approval.minimumApprovalAmount)}
     ).subscribe(
-      createdApproval => console.log(createdApproval)
+      createdApproval =>{ 
+        console.log(createdApproval);
+        this.updateApprovalByTemplate();
+      }
     );
   }
 } 

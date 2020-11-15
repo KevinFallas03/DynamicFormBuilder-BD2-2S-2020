@@ -12,14 +12,13 @@ import { TemplateBuilderRoutingModule } from './template-builder/template-builde
 import { FormRoutingModule } from './form/form-routing.module';
 import { BrowserAnimationsModule }from "@angular/platform-browser/animations";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap' 
-import { ApprovalsComponent } from './approvals/approvals.component';
+import { ApprovalsModule } from './approvals/approvals.module';
 import { DndModule } from 'ngx-drag-drop';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ApprovalsComponent,
   ],
   imports: [
     AuthRoutingModule,
@@ -29,14 +28,14 @@ import { DndModule } from 'ngx-drag-drop';
     FormsModule,
     HttpClientModule,
     TemplateBuilderRoutingModule,
-    FormRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgbModule,
     DndModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormRoutingModule
+    FormRoutingModule,
+    ApprovalsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
