@@ -13,6 +13,7 @@ export class ShowFormComponent implements OnInit {
 
   model:any = {}
   formId : string;
+  pending : boolean;
 
   constructor(
       private _formService: FormService,
@@ -22,6 +23,7 @@ export class ShowFormComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
 
         this.formId = params.get('_id');
+        this.pending = JSON.parse(params.get('pending'));
         console.log(this.formId);
         this.getFormById(this.formId);
       })
@@ -34,5 +36,4 @@ export class ShowFormComponent implements OnInit {
       }
     );
   }
-
 }
