@@ -26,9 +26,9 @@ export class CreateComponent implements OnInit {
     {
       "type": "text",
       "icon": "fa-font",
-      "label": "Text",
-      "description": "Enter your name",
-      "placeholder": "Enter your name",
+      "label": "Texto",
+      "description": "Ingrese su nombre",
+      "placeholder": "Ingrese su nombre",
       "className": "form-control",
       "subtype": "text",
       "regex" : "",
@@ -38,9 +38,9 @@ export class CreateComponent implements OnInit {
       "type": "email",
       "icon": "fa-envelope",
       "required": true,
-      "label": "Email",
-      "description": "Enter your email",
-      "placeholder": "Enter your email",
+      "label": "Correo",
+      "description": "Ingrese su correo",
+      "placeholder": "Ingrese su correo",
       "className": "form-control",
       "subtype": "text",
       "regex" : "^([a-zA-Z0-9_.-]+)@([a-zA-Z0-9_.-]+)\.([a-zA-Z]{2,5})$",
@@ -50,9 +50,9 @@ export class CreateComponent implements OnInit {
     {
       "type": "phone",
       "icon": "fa-phone",
-      "label": "Phone",
-      "description": "Enter your phone",
-      "placeholder": "Enter your phone",
+      "label": "Telefono",
+      "description": "Ingrese su telefono",
+      "placeholder": "Ingrese su telefono",
       "className": "form-control",
       "subtype": "text",
       "regex" : "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$",
@@ -61,10 +61,10 @@ export class CreateComponent implements OnInit {
     },
     {
       "type": "number",
-      "label": "Number",
-      "icon": "fa-html5",
-      "description": "Age",
-      "placeholder": "Enter your age",
+      "label": "Numero",
+      "icon": "fa-hashtag",
+      "description": "Edad",
+      "placeholder": "Ingrese su edad",
       "className": "form-control",
       "value": "20",
       "min": 12,
@@ -73,27 +73,27 @@ export class CreateComponent implements OnInit {
     {
       "type": "date",
       "icon":"fa-calendar",
-      "label": "Date",
-      "placeholder": "Date",
+      "label": "Fecha",
+      "placeholder": "Fecha",
       "className": "form-control"
     },
     {
       "type": "datetime-local",
       "icon":"fa-calendar",
-      "label": "DateTime",
-      "placeholder": "Date Time",
+      "label": "Fecha y Hora",
+      "placeholder": "Fecha Hora",
       "className": "form-control"
     },
     {
       "type": "textarea",
       "icon":"fa-text-width",
-      "label": "Textarea" 
+      "label": "Area de texto" 
     },
     {
       "type": "paragraph",
       "icon": "fa-paragraph",
-      "label": "Paragraph",
-      "placeholder": "Type your text to display here only" 
+      "label": "Parrafo", 
+      "placeholder": "Escriba su texto para mostrarlo aqui" 
     },
     {
       "type": "checkbox",
@@ -104,12 +104,12 @@ export class CreateComponent implements OnInit {
       "inline": true,
       "values": [
         {
-          "label": "Option 1",
-          "value": "option-1"
+          "label": "Opcion 1",
+          "value": "opcion-1"
         },
         {
-          "label": "Option 2",
-          "value": "option-2"
+          "label": "Opcion 2",
+          "value": "opcion-2"
         }
       ]
     },
@@ -120,51 +120,44 @@ export class CreateComponent implements OnInit {
       "description": "Radio boxes",
       "values": [
         {
-          "label": "Option 1",
-          "value": "option-1"
+          "label": "Opcion 1",
+          "value": "opcion-1"
         },
         {
-          "label": "Option 2",
-          "value": "option-2"
+          "label": "Opcion 2",
+          "value": "opcion-2"
         }
       ]
     },
     {
       "type": "autocomplete",
       "icon":"fa-bars",
-      "label": "Select",
-      "description": "Select",
-      "placeholder": "Select",
+      "label": "Seleccionar",
+      "description": "Seleccionar",
+      "placeholder": "Seleccionar",
       "className": "form-control",
       "values": [
         {
-          "label": "Option 1",
-          "value": "option-1"
+          "label": "Opcion 1",
+          "value": "opcion-1"
         },
         {
-          "label": "Option 2",
-          "value": "option-2"
+          "label": "Opcion 2",
+          "value": "opcion-2"
         },
         {
-          "label": "Option 3",
-          "value": "option-3"
+          "label": "Opcion 3",
+          "value": "opcion-3"
         }
       ]
-    },
-    {
-      "type": "file",
-      "icon":"fa-file",
-      "label": "File Upload",
-      "className": "form-control",
-      "subtype": "file"
     }
   ];
 
   modelFields:Array<field>=[];
   model:any = {
     id: '',
-    name:'App name...',
-    description:'App Description...',
+    name:'Nombre..',
+    description:'Descripcion..',
     theme:{
       bgColor:"ffffff",
       textColor:"555555",
@@ -335,7 +328,7 @@ export class CreateComponent implements OnInit {
     /*let input = new FormData;
     input.append('formId',this.model._id);
     input.append('attributes',JSON.stringify(this.model.attributes))*/
-
+    this.success = true;
     this._templateBuilderService.post(this.model).subscribe( 
       data => {
         this.model.id = data._id;
