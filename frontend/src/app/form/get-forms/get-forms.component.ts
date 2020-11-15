@@ -9,7 +9,7 @@ import { ApprovalsService } from '../../approvals/service/approvals.service';
 })
 export class GetFormsComponent implements OnInit {
 
-  formsRequested:any = []
+  formsRequested:any = [{}]
 
   constructor(
     private _formService: FormService,
@@ -18,7 +18,6 @@ export class GetFormsComponent implements OnInit {
 
   ngOnInit(): void {
     let idUser = "5fab7bd9e5288a1424748f02";
-    //this.getPending(idUser); // Sacar usuario logueado
     this.getRequested(idUser);
   }
 
@@ -44,6 +43,7 @@ export class GetFormsComponent implements OnInit {
   getRequested(idUser){
     this._formService.getFormsByRequester(idUser).subscribe(
       data => {
+        console.log(this.formsRequested)
         this.formsRequested = data
       }
     );
