@@ -16,6 +16,12 @@ export class ApprovalsService {
     );
   }
 
+  deleteById(id) {
+    return this._http.delete(
+      `${this._apiUrl}/${id}`
+    );
+  }
+
   get() {
     return this._http.get<any>(
       this._apiUrl

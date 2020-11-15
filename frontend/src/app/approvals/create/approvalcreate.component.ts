@@ -2,9 +2,9 @@ import { element } from 'protractor';
 import { TemplateBuilderService } from '../../template-builder/template-builder.service';
 import { UserService } from './../../user/user.service';
 import { ApprovalsService } from '../service/approvals.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-approval-create',
@@ -32,33 +32,38 @@ export class ApprovalCreateComponent implements OnInit {
   ) 
   { }
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe((params: ParamMap) => {
+  ngOnInit() {
+    this.route.paramMap.subscribe( (params: ParamMap) => {
       let id = params.get('_id');
       this.getById(id);
-    })
-    this.loadUsers();
+      this.loadUsers();
+    });
   }
 
-  getById(id){
+  g(v) {
+    console.log(v);
+  }
+
+  getById(id) {
     this.templateService.getById(id).subscribe(
-      (data) => {
+      (data:Object[]) => {
         this.selectedTemplate = data;
-        console.log(data);
+        console.log(data); 
+        this.updateApprovalByTemplate();
       }
     );
   }
-  loadTemplates() {
+
+  loadTemplates() : void {
     this.templateService.getAll().subscribe(
-      (data:[]) => {
+      (data:Object[]) => {
         this.templates = data;
         console.log(this.templates);
       }
-     );
+    );
   }
 
-  // to create an approval route
-  loadUsers() {
+  loadUsers() : void {
      this.userService.get().subscribe(
         data => {
           this.users = data
@@ -67,20 +72,32 @@ export class ApprovalCreateComponent implements OnInit {
      );
   }
 
+  deleteById(id) : void {
+    this.approvalService.deleteById(id).subscribe(
+      (data:any) => {
+        console.log(data);
+      }
+    );
+    this.updateApprovalByTemplate();
+    console.log(this.approvals);
+  }
+
   onSubmit(approval) {
     this.createApprovalRoute(approval);
     this.updateApprovalByTemplate();
   }
 
-  updateApprovalByTemplate() {
-    this.approvalService.getByTemplate(this.selectedTemplate.id).subscribe(
+  updateApprovalByTemplate() : void {
+    if (this.selectedTemplate) {
+    this.approvalService.getByTemplate(this.selectedTemplate._id).subscribe(
       approvalsByTemplate => this.approvals = approvalsByTemplate
     );
+    }
   }
 
-  createApprovalRoute(approval) {
+  createApprovalRoute(approval) : void {
     this.approvalService.post(
-      {...approval, minimumApprovalAmount:parseInt(approval.minimumApprovalAmount)}
+      {...approval, template:this.selectedTemplate, minimumApprovalAmount:parseInt(approval.minimumApprovalAmount)}
     ).subscribe(
       createdApproval => console.log(createdApproval)
     );

@@ -1,32 +1,65 @@
 
-<div class="container-fluid side-left">
-<div class="card text-center" id="b">
-  <div class="jumbotron">
-    <h1 class="display-4">Ya casi terminas...</h1>
-    <p class="lead">Agrega las rutas de aprobacion para la plantilla {{ selectedTemplate.name }}</p>
-  </div>
+<div *ngIf="selectedTemplate" class="jumbotron">
+  <body>
+  <h2 class="display-4" >Rutas de aprobacion</h2>
+  <p class="lead" >Aca poder crear y eliminar las rutas de aprobacion para la plantilla '{{ selectedTemplate.name }}'</p>
+  <input type="button" class="btn btn-info" routerLink="/get" value="Volver a inicio">
 
-  <mat-form-field [formGroup]="approvalForm" appearance="fill">
+  <div style="height: 40px;"></div>
 
-    <mat-label>Authors</mat-label>
-    <mat-select formControlName="authors" placeHolder="" multiple>
-      <mat-select-trigger>
-        {{users.value ? users.value[0] : ''}}
-      </mat-select-trigger>
-      <mat-option *ngFor="let user of users" [value]="user">{{user.username}}</mat-option>
-    </mat-select>
+      <div class="mat-container" [formGroup]="approvalForm">
+        <mat-form-field appearance="fill" style="margin-left: 2%;">
+          <mat-label>Autores</mat-label>
+          <mat-select  formControlName="authors" multiple>
+            <mat-option *ngFor="let user of users" [value]="user" value="user">{{user.username}}</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-    <div style="margin: 4%;"></div>
+        <mat-form-field appearance="fill" style="margin-left: 2%;">
+          <mat-label>Aprobadores</mat-label>
+          <mat-select  formControlName="approvers" multiple>
+            <mat-option *ngFor="let user of users" [value]="user" value="user">{{user.username}}</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-    <mat-label>Approvers</mat-label>
-    <mat-select formControlName="approvers" placeHolder="" multiple>
-      <mat-select-trigger>
-        {{users.value ? users.value[0] : ''}}
-      </mat-select-trigger>
-      <mat-option *ngFor="let user of users" [value]="user">{{user.username}}</mat-option>
-    </mat-select>
+        <mat-form-field hintLabel="" appearance="fill" style="margin-left: 2%;">
+          <mat-label>Minima cantidad para aprobacion</mat-label>
+          <input matInput #input maxlength="10" type="number" min="0" max="approvalForm.value.approvers.length || 0" formControlName="minimumApprovalAmount" (click)="g(approvalForm.value.approvers.length)">
+          <mat-hint align="end">{{input.value || 0}}/{{ approvalForm.value.approvers.length }} aprobadores</mat-hint>
+        </mat-form-field>
 
-  </mat-form-field>
+         <input style="margin-left:2%" type="submit" (click)="onSubmit(approvalForm.value)"class="btn btn-success form-group" value="Agregar ruta">
+      </div>
+    </body>
+</div> <!-- jumbotron --> 
 
-  </div>
-</div>
+<!-- Seleccionar autores y aprovadores  -->
+
+<h1 class="display-4 text-center" >Rutas existentes</h1>
+<body> 
+  <div class="row ">
+
+    <div *ngFor="let ap of approvals" class="card btn column">
+
+      <div class="btn dropdown">
+        <button class="dropbtn">Autores</button>
+        <div class="dropdown-content">
+          <a *ngFor="let u of ap.authors">{{u.username}}</a>
+        </div>
+      </div>
+
+      <div class="btn dropdown">
+        <button class="dropbtn">Aprobadores</button>
+        <div class="dropdown-content">
+          <a *ngFor="let u of ap.approvers">{{u.username}}</a>
+        </div>
+      </div>
+
+      <input type="button" class="btn btn-danger" style="padding: 16px;font-size: 16px;" value="Eliminar" (click)="deleteById(ap._id)">
+
+    </div>
+
+
+
+</div> <!-- cards -->
+</body>   

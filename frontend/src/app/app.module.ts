@@ -11,7 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import { TemplateBuilderRoutingModule } from './template-builder/template-builder-routing.module';
 import { FormRoutingModule } from './form/form-routing.module';
-import { BrowserAnimationsModule }from "@angular/platform-browser/animations" 
+import { BrowserAnimationsModule }from "@angular/platform-browser/animations";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap' 
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { BrowserAnimationsModule }from "@angular/platform-browser/animations"
     FormRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
