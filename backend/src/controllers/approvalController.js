@@ -12,7 +12,7 @@ approvalController.get = async (req, res) => {
     try {
         const approvalByTemplateName = await Approval.find(
             {"template":{_id:id}}, 
-            {'approvers.username':1, 'authors.username':1}
+            {'approvers.username':1, 'authors.username':1, 'minimumApprovalAmount':1}
         ).populate("approvers").populate("authors");
      
         res.status(202).send(approvalByTemplateName);
