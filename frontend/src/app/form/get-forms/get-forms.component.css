@@ -58,7 +58,7 @@
   
   .container .card .face.face1{
     width: 90%;
-    height: 110px;
+    height: 70px;
     position: relative;
     background: rgb(255, 255, 255);
     display: flex;
@@ -69,7 +69,7 @@
   }
   
   .container .card:hover .face.face1{
-    background: #07725be0;
+    background: #294b29e0;
     transform: translateX(0px);
   }
   
@@ -96,6 +96,7 @@
   
   .container .card .face.face2{
     width: 10%;
+    height: 70px;
     background: #fff;
     transform: translateX(-30px);
   }
