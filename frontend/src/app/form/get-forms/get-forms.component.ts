@@ -18,24 +18,25 @@ export class GetFormsComponent implements OnInit {
     //this.getPending(idUser); // Sacar usuario logueado
   }
 
-  openCity(cityName) {
+  openCity(cityName,id) {
     // Declare all variables
     var i, tabcontent, tablinks, tab;
   
     // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-  
+    
     // Get all elements with class="tablinks" and remove the class "active"
+    tabcontent = document.getElementsByClassName("tabcontent");
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
+      tabcontent[i].style.display = "none";
       tablinks[i].className = tablinks[i].className.replace(" active", "");
+      tablinks[i].style.backgroundColor = "white";
+      tablinks[i].style.color = "black";
     }
   
     // Show the current tab, and add an "active" class to the button that opened the tab
-    //tab = document.getElementsByName(cityName).item;
+    document.getElementById(id).style.backgroundColor = "#0074d9";
+    document.getElementById(id).style.color = "white";
     document.getElementById(cityName).style.display = "block";
   }
 
