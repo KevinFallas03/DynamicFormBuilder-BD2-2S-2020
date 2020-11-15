@@ -24,7 +24,7 @@
 
         <mat-form-field hintLabel="" appearance="fill" style="margin-left: 2%;">
           <mat-label>Minima cantidad para aprobacion</mat-label>
-          <input matInput #input maxlength="10" type="number" min="0" max="approvalForm.value.approvers.length || 0" formControlName="minimumApprovalAmount" (click)="g(approvalForm.value.approvers.length)">
+          <input matInput #input maxlength="approvalForm.approvers" type="number" min="0" formControlName="minimumApprovalAmount" (click)="validateInput($event)">
           <mat-hint align="end">{{input.value || 0}}/{{ approvalForm.value.approvers.length }} aprobadores</mat-hint>
         </mat-form-field>
 
@@ -37,29 +37,40 @@
 
 <h1 class="display-4 text-center" >Rutas existentes</h1>
 <body> 
-  <div class="row ">
+  <div >
 
-    <div *ngFor="let ap of approvals" class="card btn column">
-
-      <div class="btn dropdown">
+    <div *ngFor="let ap of approvals" class="row " style="
+    margin-bottom: 2%; 
+    border-radius: 25px;
+    background: rgb(60, 124, 219);
+    width: 45%;
+    height: 60px;
+    size:100%;
+    align-items: center;
+    padding-left: 3%;
+    margin-left: 18%;"
+    >
+      <div class="dropdown mat-container" style="margin-right: 2%;">
         <button class="dropbtn">Autores</button>
-        <div class="dropdown-content">
+        <div class="dropdown-content btn btn-primary">
           <a *ngFor="let u of ap.authors">{{u.username}}</a>
         </div>
       </div>
 
-      <div class="btn dropdown">
+      <div class="dropdown mat-container" style="margin-right: 2%;">
         <button class="dropbtn">Aprobadores</button>
-        <div class="dropdown-content">
+        <div class="dropdown-content btn btn-primary">
           <a *ngFor="let u of ap.approvers">{{u.username}}</a>
         </div>
       </div>
 
-      <input type="button" class="btn btn-danger" style="padding: 16px;font-size: 16px;" value="Eliminar" (click)="deleteById(ap._id)">
+      <input type="button" class="btn btn-dark mat-container" value="Aprobacion con: {{ap.minimumApprovalAmount}} permisos" style="margin-right: 2%;">
+
+      <div class=" mat-container " style="margin-right: 2%;">
+        <a class="btn btn-info list-group-item " (click)="deleteById(ap._id)" style="background-color: red;"><i class="fa fa-trash" aria-hidden="true"style="color: white;" ></i></a>   
+      </div>
 
     </div>
-
-
 
 </div> <!-- cards -->
 </body>   

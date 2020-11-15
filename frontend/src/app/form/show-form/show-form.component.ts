@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { field, value } from '../../global.model';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 import { FormService } from '../form.service';
 
@@ -13,15 +14,19 @@ export class ShowFormComponent implements OnInit {
 
   model:any = {}
   formId : string;
+  pending : boolean;
 
   constructor(
       private _formService: FormService,
-      public route: ActivatedRoute) { }
+      public route: ActivatedRoute,
+      private _location: Location
+      ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
 
         this.formId = params.get('_id');
+        this.pending = JSON.parse(params.get('pending'));
         console.log(this.formId);
         this.getFormById(this.formId);
       })
@@ -34,5 +39,4 @@ export class ShowFormComponent implements OnInit {
       }
     );
   }
-
 }

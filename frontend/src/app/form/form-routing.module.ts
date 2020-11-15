@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: '', component: MenuComponent},
   { path: 'createtemplates', component: GetTemplatesComponent},
   { path: 'filltemplate/:_id', component: FillTemplateComponent},
-  { path: 'showform/:_id', component: ShowFormComponent}
+  { path: 'showform/:_id/:pending', component: ShowFormComponent}
 ];
 
 @NgModule({

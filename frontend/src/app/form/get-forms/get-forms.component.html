@@ -18,7 +18,7 @@
                 </div>
             </div>
            <div class="face face2">
-              <div style="width: 100%; height: 100%; text-align: center;" routerLink="/showform/{{ forms._id }}" class="btn btn-outline-success">Ver</div>
+              <div style="width: 100%; height: 100%; text-align: center;" routerLink="/showform/{{ forms._id }}/{{false}}" class="btn btn-outline-success">Ver</div>
            </div>
           </div>
         </div>
@@ -40,7 +40,7 @@
                 </div>
             </div>
            <div class="face face2">
-              <div style="width: 100%; height: 100%; text-align: center;" routerLink="/showform/{{ forms._id }}" class="btn btn-outline-success">Ver</div>
+              <div style="width: 100%; height: 100%; text-align: center;" routerLink="/showform/{{ pendingForm._id }}/{{true}}" class="btn btn-outline-success">Ver</div>
            </div>
           </div>
         </div>
@@ -50,6 +50,47 @@
 </div>
 
 <div id="A" class="tabcontent">
-  <h3>Aprobados</h3>
-  <p>Tokyo is the capital of Japan.</p>
+
+  <h3>Formularios que he aprobado</h3>
+  <div class="col-12">
+    <div *ngFor="let pendingForm of pendingForms">
+        <div class="container">
+        <div class="card">
+          <div class="row">
+            <div class="face face1">
+                <div class="content">
+                    <h3>{{ pendingForm.name }}</h3>
+                   <p >Aplicante: {{ pendingForm.applicant }}</p>
+                </div>
+            </div>
+           <div class="face face2">
+              <div style="width: 100%; height: 100%; text-align: center;" routerLink="/showform/{{ pendingForm._id }}/{{true}}" class="btn btn-outline-success">Ver</div>
+           </div>
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
+
+
+  <h3>Formularios que me han aprobado</h3>
+  <div class="col-12">
+    <div *ngFor="let pendingForm of pendingForms">
+        <div class="container">
+        <div class="card">
+          <div class="row">
+            <div class="face face1">
+                <div class="content">
+                    <h3>{{ pendingForm.name }}</h3>
+                   <p >Aplicante: {{ pendingForm.applicant }}</p>
+                </div>
+            </div>
+           <div class="face face2">
+              <div style="width: 100%; height: 100%; text-align: center;" routerLink="/showform/{{ pendingForm._id }}/{{true}}" class="btn btn-outline-success">Ver</div>
+           </div>
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
 </div>
