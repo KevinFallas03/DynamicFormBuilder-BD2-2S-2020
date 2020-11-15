@@ -172,7 +172,7 @@ export class EditComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.templateId = params.get('id'); //'5fae39ce27537125f4836267';//
       this.getTemplateById();
-    })
+    });
   }
 
   getTemplateById(){

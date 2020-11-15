@@ -11,6 +11,6 @@ router.post("/", templatesController.create);
 
 router.put("/:id", templatesController.edit);
 
-router.delete("/", templatesController.delete);
+router.delete("/:id", templatesController.delete);
 
 module.exports = router;
