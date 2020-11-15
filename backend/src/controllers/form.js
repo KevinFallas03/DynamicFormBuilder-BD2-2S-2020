@@ -47,7 +47,23 @@ formController.getAll = async (req, res) => {
         );
     }   
 }
+formController.getById = async (req, res) => {
+    const { id } = req.params;
 
+    try {
+
+        const aprovalsOfUser = await Form.findById(id);
+
+        res.status(202).send(aprovalsOfUser);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'the request failed', 
+              error: err
+            }
+        );
+    }   
+};
 formController.getPending = async (req, res) => {
     var {id} =  req.params;
     

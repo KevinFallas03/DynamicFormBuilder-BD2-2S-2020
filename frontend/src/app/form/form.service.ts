@@ -18,7 +18,9 @@ export class FormService {
     return this._http.post<any>(this._apiUrl , form, {headers});
   }
   getById(id){
-    return this._http.get<any>(this._apiUrl,id);
+    return this._http.get<any>(
+      `${this._apiUrl}/${id}`
+    );
   }
   getFormsByRequester(idUser){
     return this._http.get<any>(

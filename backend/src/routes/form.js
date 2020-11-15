@@ -11,6 +11,8 @@ router.get("/pending/:id", formController.getPending); // pending
 
 router.get("/", formController.getAll); // getAll
 
+router.get("/:id", formController.getById); // getAll
+
 router.post("/", formController.create);
 
 router.put("/", formController.edit);
