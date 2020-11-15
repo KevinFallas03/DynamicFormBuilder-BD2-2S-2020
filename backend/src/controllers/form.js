@@ -65,12 +65,12 @@ formController.getById = async (req, res) => {
     }   
 };
 formController.getPending = async (req, res) => {
-    const { idList } = req.params;
-
+    var {id} =  req.params;
+    
+    var idList = id.split(',')
     try {
-
-        const aprovalsOfUser = await Form.find( { template: { $in: idList } } );
-
+        const aprovalsOfUser = await Form.find( { template: { $in: idList } } ).populate('applicant');
+        console.log(aprovalsOfUser)
         res.status(202).send(aprovalsOfUser);
     } catch (err) {
         res.status(500).json(

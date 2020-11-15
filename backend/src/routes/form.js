@@ -7,7 +7,7 @@ router.get("/requested/:id", formController.getRequested); // tengo que sacar el
 
 router.get("/aproved/:id", formController.getAproved); // aproved
 
-router.get("/pending/:idList", formController.getPending); // pending
+router.get("/pending/:id", formController.getPending); // pending
 
 router.get("/", formController.getAll); // getAll
 
