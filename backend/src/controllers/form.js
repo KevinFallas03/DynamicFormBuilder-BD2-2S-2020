@@ -88,6 +88,21 @@ formController.getAproved = async (req, res) => {
     });
 };
 
+formController.edit = async (req, res) => {
+    const aprovalInfo = req.body;
+    try {
+        const updatedApproval = await Form.findByIdAndUpdate( aprovalInfo._id, aprovalInfo );
+        res.status(202).send(updatedApproval);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'Approval edition failed', 
+              error: err
+            }
+        );
+    }   
+};
+
 formController.create = async (req, res) => {
     const form = new Form(req.body);
     try{
@@ -96,12 +111,6 @@ formController.create = async (req, res) => {
     } catch(error){
         res.json({message: error});
     }
-};
-
-formController.edit = async (req, res) => {
-    res.json({
-        message: "Hello from edit!"
-    });
 };
 
 formController.delete = async (req, res) => {
