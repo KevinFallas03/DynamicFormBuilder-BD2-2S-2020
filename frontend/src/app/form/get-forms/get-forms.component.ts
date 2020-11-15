@@ -9,22 +9,23 @@ import { ApprovalsService } from '../../approvals/service/approvals.service';
 })
 export class GetFormsComponent implements OnInit {
 
+  formsRequested:any = []
+
   constructor(
     private _formService: FormService,
     private _ApprovalsService: ApprovalsService
   ) { }
 
   ngOnInit(): void {
+    let idUser = "5fab7bd9e5288a1424748f02";
     //this.getPending(idUser); // Sacar usuario logueado
+    this.getRequested(idUser);
   }
 
   openCity(cityName,id) {
     // Declare all variables
     var i, tabcontent, tablinks, tab;
   
-    // Get all elements with class="tabcontent" and hide them
-    
-    // Get all elements with class="tablinks" and remove the class "active"
     tabcontent = document.getElementsByClassName("tabcontent");
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
@@ -38,6 +39,14 @@ export class GetFormsComponent implements OnInit {
     document.getElementById(id).style.backgroundColor = "#0074d9";
     document.getElementById(id).style.color = "white";
     document.getElementById(cityName).style.display = "block";
+  }
+
+  getRequested(idUser){
+    this._formService.getFormsByRequester(idUser).subscribe(
+      data => {
+        this.formsRequested = data
+      }
+    );
   }
 
 
