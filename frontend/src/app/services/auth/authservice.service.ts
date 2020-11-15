@@ -62,4 +62,8 @@ export class AuthserviceService {
     return this.httpclient.delete(`${this.AUTH_SERVER}/${user.id}`);
   }
 
+  logOut(headers): Observable<any> {
+    return this.httpclient.post(`${this.AUTH_SERVER}/home/logoff`, {}, headers);
+  }
+
 }

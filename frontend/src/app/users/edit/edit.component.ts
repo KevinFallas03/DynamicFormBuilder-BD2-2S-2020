@@ -45,7 +45,7 @@ export class EditComponent implements OnInit {
  }
 
   isSelected = false;
-  selectedUser = new User("", "", false, "");
+  selectedUser = new User("", "", "", "", "", "", "", false, "");
 
   userList = [];
 
@@ -56,6 +56,11 @@ export class EditComponent implements OnInit {
       data => {
         this.selectedUser.username = data[0].username;
         this.selectedUser.isAdmin = data[0].isAdmin;
+        this.selectedUser.firstName = data[0].firstName;
+        this.selectedUser.secondName = data[0].secondName;
+        this.selectedUser.lastName = data[0].lastName;
+        this.selectedUser.secondLastName = data[0].secondLastName;
+        this.selectedUser.email = data[0].email;
         console.log(data);
         this.isSelected = true;
       },
