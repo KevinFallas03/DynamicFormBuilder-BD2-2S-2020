@@ -1,20 +1,22 @@
-<h1 class="display-4">Formularios</h1>
-<ul class="nav nav-tabs" style="padding-top: 10px">
-    <li class="tabs nav-item" style="margin-left: 5px">
-      <a class="nav-link list-group-item-dark " style="font-size: 20px" href="#1">Solicitados</a>
-    </li>
-    <li class="tabs nav-item" style="margin-left: 5px">
-      <a class="nav-link list-group-item-dark " style="font-size: 20px" href="#2">Pendientes</a>
-    </li>   
-    <li class="tabs nav-item"  style="margin-left: 5px">
-      <a class="nav-link list-group-item-dark" style="font-size: 20px" href="#3">Aprobados</a>
-    </li>
+<!-- Tab links -->
+<div class="tab">
+  <button id = "m" class="tablinks" (click)="openCity('London')">London</button>
+  <button class="tablinks" (click)="openCity('Paris')">Paris</button>
+  <button class="tablinks" (click)="openCity('Tokyo')">Tokyo</button>
+</div>
 
-    <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active" id="1"></div>
-      <div role="tabpanel" class="tab-pane " id="2"></div>
-      <div role="tabpanel" class="tab-pane " id="3"></div>
+<!-- Tab content -->
+<div id="London" class="tabcontent">
+  <h3>London</h3>
+  <p>London is the capital city of England.</p>
+</div>
 
-    </div>
-    <!--      {{pendingForms.Name}}  Asi se llama a la lista, se hace unos for para iterar                -->
-  </ul>
+<div id="Paris" class="tabcontent">
+  <h3>Paris</h3>
+  <p>Paris is the capital of France.</p>
+</div>
+
+<div id="Tokyo" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
