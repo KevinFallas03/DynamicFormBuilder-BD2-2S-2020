@@ -20,7 +20,6 @@ import { FormRoutingModule } from './form/form-routing.module';
     AppComponent,
     HomeComponent,
     ApprovalsComponent,
-    HomeComponent
   ],
   imports: [
     AuthRoutingModule,
