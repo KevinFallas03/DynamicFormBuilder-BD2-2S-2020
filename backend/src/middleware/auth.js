@@ -22,7 +22,7 @@ const auth = async(req, res, next) => {
         }
 
         // Sets the request information
-        req.user = user;
+        req.user = {username: user.username, password: user.password, isAdmin: user.isAdmin};
         req.token = token;
 
         // Finishes running the middleware

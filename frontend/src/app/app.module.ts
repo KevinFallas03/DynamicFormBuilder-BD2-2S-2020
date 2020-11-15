@@ -1,4 +1,3 @@
-import { LoginComponent } from './auth/login/login.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,12 +10,15 @@ import { HomeComponent } from './home/home.component';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import { TemplateBuilderRoutingModule } from './template-builder/template-builder-routing.module';
 import { FormRoutingModule } from './form/form-routing.module';
-import { BrowserAnimationsModule }from "@angular/platform-browser/animations" 
+import { BrowserAnimationsModule }from "@angular/platform-browser/animations";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap' 
+import { ApprovalsModule } from './approvals/approvals.module';
+import { DndModule } from 'ngx-drag-drop';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     AuthRoutingModule,
@@ -26,9 +28,14 @@ import { BrowserAnimationsModule }from "@angular/platform-browser/animations"
     FormsModule,
     HttpClientModule,
     TemplateBuilderRoutingModule,
-    FormRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NgbModule,
+    DndModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormRoutingModule,
+    ApprovalsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
