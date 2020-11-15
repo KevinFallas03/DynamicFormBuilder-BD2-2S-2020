@@ -7,25 +7,22 @@
 
 <div id="S" class="tabcontent">
   <div class="col-12">
-    <div *ngFor="let forms of formsRequested" style="width: 25rem;">
+    <div *ngFor="let forms of formsRequested">
         <div class="container">
         <div class="card">
+          <div class="face face2">
+               <div class="content">
+                  <div class="btn-group">
+                      <a routerLink="/get/{{template._id}}" class="btn btn-outline-success">Ver</a>
+                  </div>
+               </div>
+           </div>
             <div class="face face1">
                 <div class="content">
                     <h3>{{ forms.name }}</h3>
                     <p >{{ forms.description }}</p>
                 </div>
             </div>
-           <div class="face face2">
-               <div class="content">
-                    <div class="btn-group" style="width:100%">
-                        <a routerLink="/get/{{template._id}}" class="btn btn-outline-success">Ver</a>
-                        <a routerLink="/update/{{template._id}}" class="btn btn-outline-primary">Editar</a>
-                        <a href="#" class="btn btn-outline-dark">Rutas</a>
-                        <a href="#" class="btn btn-outline-danger">Eliminar</a>
-                    </div>
-               </div>
-           </div>
         </div>
         </div>
     </div>
