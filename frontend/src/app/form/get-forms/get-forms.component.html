@@ -10,19 +10,17 @@
     <div *ngFor="let forms of formsRequested">
         <div class="container">
         <div class="card">
-          <div class="face face2">
-               <div class="content">
-                  <div class="btn-group">
-                      <a routerLink="/get/{{template._id}}" class="btn btn-outline-success">Ver</a>
-                  </div>
-               </div>
-           </div>
+          <div class="row">
             <div class="face face1">
                 <div class="content">
                     <h3>{{ forms.name }}</h3>
                     <p >{{ forms.description }}</p>
                 </div>
             </div>
+           <div class="face face2">
+              <div style="width: 100%; height: 100%; text-align: center;" routerLink="/get/{{template._id}}" class="btn btn-outline-success">Ver</div>
+           </div>
+          </div>
         </div>
         </div>
     </div>
