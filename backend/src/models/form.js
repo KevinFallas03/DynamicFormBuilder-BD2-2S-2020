@@ -20,7 +20,9 @@ const formSchema = new Schema({
     responses: [{
         label: String,
         value: String,
-        values: []
+        values: [],
+        type:{type:String},
+        required:Boolean 
     }],
     status:{
         type: String,
