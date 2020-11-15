@@ -1,6 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵqueryRefresh } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user/user';
 import { AuthserviceService } from 'src/app/services/auth/authservice.service';
 
 @Component({
@@ -28,8 +29,78 @@ export class EditComponent implements OnInit {
      this.router.navigate([".."]);
    }
 
-   }, error => {console.log("USER NOT ADMIN")});
+   }, error => {this.router.navigate([".."])});
  
+   // Obtains all users from the database
+   this.authService.getUsers().subscribe(
+     data => {
+        this.userList = data;
+     },
+     error => {
+       this.userList = [];
+       console.log("Error getting all users");
+     }
+   )
+
  }
+
+  isSelected = false;
+  selectedUser = new User("", "", false, "");
+
+  userList = [];
+
+
+  accessEdit() {
+    this.authService.getUserData(this.selectedUser)
+    .subscribe(
+      data => {
+        this.selectedUser.username = data[0].username;
+        this.selectedUser.isAdmin = data[0].isAdmin;
+        console.log(data);
+        this.isSelected = true;
+      },
+      error => {
+        console.log("CANT OBTAIN THE USER");
+        this.isSelected = false;
+      }
+    );
+  }
+
+
+  editUser() {
+    console.log(this.selectedUser.isAdmin);
+
+    this.authService.updateUser(this.selectedUser)
+    .subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+
+    // Recarga la pagina 
+    window.location.reload();
+  }
+
+  deleteUser() {
+    // Borra el usuario tomando el id
+    this.authService.deleteUser(this.selectedUser)
+    .subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+
+    // Recarga la pagina 
+    window.location.reload();
+  }
+
+
 
 }

@@ -29,12 +29,12 @@ export class CreateComponent implements OnInit {
      this.router.navigate([".."]);
    }
 
-   }, error => {console.log("USER NOT ADMIN")});
+   }, error => {this.router.navigate([".."])});
  
  }
 
 
-  userModel = new User("", "", false);
+  userModel = new User("", "", false, "");
 
   createUser() {
     this.authService.createUser(this.userModel)

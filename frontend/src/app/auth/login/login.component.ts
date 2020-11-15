@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   // Saves the user data
-  userModel = new User('', '', false);
+  userModel = new User('', '', false, "");
 
   // Logs a user through the login route.
   logIn() {

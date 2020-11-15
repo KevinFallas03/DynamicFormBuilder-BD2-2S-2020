@@ -22,6 +22,13 @@ router.get('/authorize', auth, userController.isAdmin);
 // Post method to post to create a new user with or without admin permissions
 router.post('/createNew', userController.createUser);
 
-router.patch('/edit/:id', userController.updateUser);
+// Edits a specific user
+router.patch('/edit', userController.updateUser);
+
+// Obtains all the users from the database
+router.get('/:id', userController.getUserInfo);
+
+// Deletes the specified user
+router.delete('/:id', userController.deleteUser);
 
 module.exports = router;
