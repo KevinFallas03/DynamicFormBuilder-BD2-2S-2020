@@ -25,4 +25,8 @@ export class TemplateBuilderService {
     return this._http.put(this._apiUrl+'/'+id, updatedTemplate);
   }
 
+  deleteById(id){
+    return this._http.delete(this._apiUrl+'/'+id);
+  }
+
 }

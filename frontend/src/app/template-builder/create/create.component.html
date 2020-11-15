@@ -6,26 +6,17 @@
 </header>
 
 <div *ngIf="model && !report" class="padding20 white-bg">
-    <!-- <div class="row">
-      <div class="col-12">
-          <div class="btn-cont">
-              <button (click)="submitTemplate()" class="btn btn-primary pull-left">Guardar</button>
-          </div>
-      </div>
-    </div> -->
-
     <a  (click)="submitTemplate()" class="float">
       <i class="fas fa-save my-float"></i>
     </a>
     <div class="spacer30"></div>
     <div class="row">
       <div class="col-4">
-        
         <!--a draggable element-->
+        <h4 style="margin-top: 1%; font-size: 22px;">Seleccione los campos</h4>
+        <p>Diseñe su plantilla arrastrando y soltando los campos al area de la plantilla.</p>
         <div class="sticky-container">
           <ul class="sticky">
-            <h4 style="margin-top: 15px; font-size: 22px;">Seleccione los campos</h4>
-            <p>Diseñe su plantilla arrastrando y soltando los campos al area de la plantilla.</p>
             <div class="fields" *ngFor="let item of fieldModels">
               <div class="field pointer shadow-bg" style="height: 30px; width: 170px;" [dndDraggable]="item" [dndEffectAllowed]="'copy'" (dndEnd)="onDragEnd($event)">
                 <div class="row">

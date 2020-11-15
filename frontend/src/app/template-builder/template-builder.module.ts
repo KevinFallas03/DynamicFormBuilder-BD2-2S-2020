@@ -13,9 +13,10 @@ import { DndModule } from 'ngx-drag-drop';
 
 import { FormsModule }   from '@angular/forms';
 import { EditComponent } from './edit/edit.component';
+import { GetOneComponent } from './get-one/get-one.component';
 
 @NgModule({
-  declarations: [MenuComponent,CreateComponent,GetComponent, EditComponent],
+  declarations: [MenuComponent,CreateComponent,GetComponent, EditComponent, GetOneComponent],
   imports: [
     CommonModule,
     TemplateBuilderRoutingModule,

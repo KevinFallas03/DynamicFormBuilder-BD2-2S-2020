@@ -45,7 +45,7 @@ templateController.edit = async (req, res) => {
 
 templateController.delete = async (req, res) => {
     try{
-        const templates = await Template.deleteMany({});
+        const templates = await Template.deleteOne({_id: req.params.id});
         res.json(templates);
     }
     catch(error){

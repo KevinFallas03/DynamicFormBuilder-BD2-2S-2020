@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 import { TemplateBuilderService } from '../template-builder.service';
 
@@ -12,7 +13,8 @@ export class GetComponent implements OnInit {
   templates:any = [{}];
 
   constructor(
-    private _templateBuilderService: TemplateBuilderService
+    private _templateBuilderService: TemplateBuilderService,
+    private router:Router,
     ) { }
 
   ngOnInit(): void {
@@ -24,5 +26,14 @@ export class GetComponent implements OnInit {
         this.templates = data
       }
     );
+  }
+  deleteTemplate(id){
+    this._templateBuilderService.deleteById(id).subscribe(
+      data =>{
+        swal.fire("Plantilla eliminada","",'success');
+      }
+    );
+    this.get();
+    this.router.navigate(['get']);
   }
 }
