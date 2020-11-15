@@ -13,4 +13,7 @@ router.put("/", approvalController.edit);
 
 router.delete("/:approvalId", approvalController.delete);
 
+// dev-mode
+// router.delete("/", approvalController.deleteMany);
+
 module.exports = router;

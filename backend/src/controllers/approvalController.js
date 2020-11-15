@@ -10,7 +10,11 @@ const approvalController = {};
 approvalController.get = async (req, res) => {
     const { id } = req.params;
     try {
-        const approvalByTemplateName = await Approval.find({template:{_id:id}});
+        const approvalByTemplateName = await Approval.find(
+            {"template":{_id:id}}, 
+            {'approvers.username':1, 'authors.username':1}
+        ).populate("approvers").populate("authors");
+     
         res.status(202).send(approvalByTemplateName);
     } catch (err) {
         res.status(500).json(
@@ -104,5 +108,20 @@ approvalController.delete = async (req, res) => {
         );
     }
 };
+
+// god-mode
+// approvalController.deleteMany = async (req, res) => {
+//     try {
+//         const deletedApproval = await Approval.deleteMany({});
+//         res.status(202).send(deletedApproval);
+//     } catch(err) {
+//         res.status(500).json(
+//             { 
+//               message : 'Approval deletion failed', 
+//               error: err
+//             }
+//         );
+//     }
+// };
 
 module.exports = approvalController;
