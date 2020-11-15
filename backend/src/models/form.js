@@ -7,14 +7,20 @@ const formSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Templates'
     },
+    name: String,
+    description: String,
     applicant: { 
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    approvers: [{ 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     responses: [{
-        itemName: String,
-        type: String,
-        response: String
+        label: String,
+        value: String,
+        values: []
     }],
     status:{
         type: String,

@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FormService {
   
-  _apiUrl = "http://localhost:3000/api/forms";
+  _apiUrl = "http://localhost:3000/api/form";
   
   constructor(private _http: HttpClient) { }
   
@@ -19,5 +19,11 @@ export class FormService {
   }
   getById(id){
     return this._http.get<any>(this._apiUrl,id);
+  }
+
+  getFormsById(idList){
+    return this._http.get<any>(
+      `${this._apiUrl}/pending/${idList}`
+    );
   }
 }
