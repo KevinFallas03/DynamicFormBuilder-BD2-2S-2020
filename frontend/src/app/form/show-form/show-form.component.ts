@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { field, value } from '../../global.model';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 import { FormService } from '../form.service';
 
@@ -17,7 +18,9 @@ export class ShowFormComponent implements OnInit {
 
   constructor(
       private _formService: FormService,
-      public route: ActivatedRoute) { }
+      public route: ActivatedRoute,
+      private _location: Location
+      ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
