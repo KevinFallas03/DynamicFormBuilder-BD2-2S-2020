@@ -5,6 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import swal from 'sweetalert2';
 
 import { TemplateBuilderService } from '../template-builder.service';
+import { AuthserviceService } from 'src/app/services/auth/authservice.service';
+import { HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-create',
@@ -163,12 +166,27 @@ export class CreateComponent implements OnInit {
 
   constructor(
     private route:ActivatedRoute,
-    private router:Router,
-    private _templateBuilderService: TemplateBuilderService
+    private _templateBuilderService: TemplateBuilderService,
+    private authService: AuthserviceService,
+    private router: Router
   ) { }
 
   ngOnInit() {
 
+
+    /*
+      Checks if the user is an administrator in order to let them access.
+    */
+    this.authService.isAdmin({headers: new HttpHeaders(
+      {"Authorization": `Bearer ${localStorage.getItem("authToken")}`})
+    }).subscribe(data => {
+      
+      // Checks if the user has access
+      if (!data.isAdmin) {
+        this.router.navigate([".."]);
+      }
+
+    }, error => {console.log("USER NOT ADMIN")});
   }
 
   onDragStart(event:DragEvent) {

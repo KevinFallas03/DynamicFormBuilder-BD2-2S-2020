@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const bcrypt = require("bcrypt");
 
 /*
     All functions related to user maniupulation in the database.
@@ -13,10 +14,10 @@ const usersController = {};
 usersController.createUser = async (req, res) => {
 
     // Creates the new user
-    const newUser = new User({
+    var newUser = new User({
         username: req.body.username, // Unique username handled in model
         password: req.body.password,
-        isAdmin: false
+        isAdmin: req.body.isAdmin
     });
 
     const token = await newUser.generateToken();
@@ -62,7 +63,7 @@ usersController.login = async (req, res) => {
     try {
         const user = await User.getFromCredentials(req.body.username, req.body.password);
         const token = await user.generateToken();
-        
+
         // 200: OK
         res.status(200).json({user, token});
     } catch (error) {
@@ -91,7 +92,7 @@ usersController.getUsers = async (req, res) => {
 usersController.getUsersWithMinimalDetails = async (req, res) => {
 
     try {
-        const users = await User.find({}, { username:true});
+        const users = await User.find({}, { username:true}).sort({username: 1});
 
         // 200: OK
         res.status(200).json(users);
@@ -104,13 +105,40 @@ usersController.getUsersWithMinimalDetails = async (req, res) => {
 
 // Updates the information of a single user
 usersController.updateUser = async (req, res) => {
-    res.send("UPDATING A USER");
-}
+    try {
 
+        var updatedUser = {};
+
+        if (req.body.password == "") {
+            updatedUser = await User.updateOne({_id: req.body.id}, {$set: {
+                username: req.body.username, 
+                isAdmin: req.body.isAdmin
+            }});
+        } else {
+            // Encrypts the password before updating it
+            updatedUser = await User.updateOne({_id: req.body.id}, {$set: {
+                username: req.body.username, 
+                password: await bcrypt.hash(req.body.password, 8),
+                isAdmin: req.body.isAdmin
+            }});
+        }
+
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        res.status(400).json({Error: "Something went wrong"});
+    }
+}
 
 // Deletes a single user
 usersController.deleteUser = async (req, res) => {
-    res.send("DELETING A USER");
+    try {
+        
+        const removedUser= await User.deleteOne({_id: req.params.id});
+
+        res.status(200).json(removedUser);
+    } catch (error) {
+        res.status(400).json({Error: "Something went wrong"});
+    }
 }
 
 
@@ -146,6 +174,28 @@ usersController.forceLogoff = async (req, res) => {
         res.status(400).json({Error: "Something went wrong"});
     }
 
+}
+
+// Checks if the user is an administrator.
+usersController.isAdmin = async (req, res) => {
+    try {
+        res.status(200).json({isAdmin: req.user.isAdmin});
+    } catch (error) {
+        res.status(400).json({Error: "Something went wrong"});
+    }
+}
+
+// Gets the information of one specific user
+usersController.getUserInfo = async (req, res) => {
+    try {
+        const users = await User.find({_id: req.params.id}, {username: true, password: true, isAdmin: true});
+
+        // 200: OK
+        res.status(200).json(users);
+    } catch (error) {
+        // 400: Bad Request
+        res.status(400).send(error);
+    }
 }
 
 
