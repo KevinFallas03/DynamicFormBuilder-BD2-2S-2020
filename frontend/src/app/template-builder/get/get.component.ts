@@ -12,7 +12,7 @@ import { TemplateBuilderService } from '../template-builder.service';
 })
 export class GetComponent implements OnInit {
 
-  templates:any=[{}];
+  templates:any = [{}];
 
   constructor(
     private _templateBuilderService: TemplateBuilderService,
@@ -44,5 +44,14 @@ export class GetComponent implements OnInit {
         this.templates = data
       }
     );
+  }
+  deleteTemplate(id){
+    this._templateBuilderService.deleteById(id).subscribe(
+      data =>{
+        swal.fire("Plantilla eliminada","",'success');
+      }
+    );
+    this.get();
+    this.router.navigate(['get']);
   }
 }

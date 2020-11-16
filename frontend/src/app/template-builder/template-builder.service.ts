@@ -18,7 +18,15 @@ export class TemplateBuilderService {
     return this._http.get<any>(this._apiUrl);
   }
   getById(id){
-    console.log(id);
     return this._http.get<any>(this._apiUrl+'/'+id);
   }
+
+  findByIdAndUpdate(id, updatedTemplate){
+    return this._http.put(this._apiUrl+'/'+id, updatedTemplate);
+  }
+
+  deleteById(id){
+    return this._http.delete(this._apiUrl+'/'+id);
+  }
+
 }

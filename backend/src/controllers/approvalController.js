@@ -8,14 +8,40 @@ const approvalController = {};
  * @param {*} res 
  */
 approvalController.get = async (req, res) => {
-    const { templateName } = req.params;
+    const { id } = req.params;
     try {
-        const approvalByTemplateName = await Approval.find({template:{name:templateName}});
+        const approvalByTemplateName = await Approval.find(
+            {"template":{_id:id}}, 
+            {'approvers.username':1, 'authors.username':1}
+        ).populate("approvers").populate("authors");
+     
         res.status(202).send(approvalByTemplateName);
     } catch (err) {
         res.status(500).json(
             { 
               message : 'Approval get request failed', 
+              error: err
+            }
+        );
+    }   
+};
+
+
+/**
+ * Get the approvals binded to a specific user
+ * @param {*} req.params.templateName template name to filter
+ * @param {*} res 
+ */
+approvalController.getPending = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const aprovalsOfUser = await Approval.find({approvers : id},{template : 1});
+        res.status(202).send(aprovalsOfUser);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'the request failed', 
               error: err
             }
         );
@@ -50,9 +76,10 @@ approvalController.edit = async (req, res) => {
 approvalController.create = async (req, res) => {
     const newApproval = req.body;
     try {
-        const createdApproval = await Approval.insert(newApproval);
+        const createdApproval = await Approval.insertMany([newApproval]);
         res.status(202).send(createdApproval);
     } catch (err) {
+        console.log(err);
         res.status(500).json(
             { 
               message : 'Approval creation failed', 
@@ -81,5 +108,20 @@ approvalController.delete = async (req, res) => {
         );
     }
 };
+
+// god-mode
+// approvalController.deleteMany = async (req, res) => {
+//     try {
+//         const deletedApproval = await Approval.deleteMany({});
+//         res.status(202).send(deletedApproval);
+//     } catch(err) {
+//         res.status(500).json(
+//             { 
+//               message : 'Approval deletion failed', 
+//               error: err
+//             }
+//         );
+//     }
+// };
 
 module.exports = approvalController;

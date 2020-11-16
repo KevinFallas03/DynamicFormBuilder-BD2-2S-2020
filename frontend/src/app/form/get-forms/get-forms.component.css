@@ -1,0 +1,116 @@
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid rgb(196, 185, 185);
+    background-color: #ffffff;
+  }
+  
+  /* Style the buttons that are used to open the tab content */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: rgb(255, 255, 255);
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid rgb(255, 255, 255);
+    border-top: none;
+  }
+  body{
+    margin-left: 3%;
+    padding: 0;
+    min-height: 100vh;
+    background: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    font-family: arial;
+  }
+  
+  .container{
+    display: contents;
+    justify-content: space-between;
+  }
+  .card-columns {
+    column-count: 1;
+  }
+  .container .card{
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .container .card .face{
+    width: 200px;
+    height: 100px;
+    transition: 0.5s;
+  }
+  
+  .container .card .face.face1{
+    width: 90%;
+    height: 70px;
+    position: relative;
+    background: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transform: translateX(100px);
+  }
+  
+  .container .card:hover .face.face1{
+    background: #294b29e0;
+    transform: translateX(0px);
+  }
+  
+  .container .card .face.face1 .content{
+    opacity: 0.8;
+    transition: 0.3s;
+  }
+  
+  .container .card:hover .face.face1 .content{
+    opacity: 1;
+  }
+  
+  .container .card .face.face1 .content h3{
+    margin: 10px 0 0;
+    padding: 0;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: 1.5em;
+  }
+
+  .container .card:hover .face.face1 .content h3{
+    color:white;
+  }
+  
+  .container .card .face.face2{
+    width: 10%;
+    height: 70px;
+    background: #fff;
+    transform: translateX(-30px);
+  }
+  
+  .container .card:hover .face.face2{
+    transform: translateX(0);
+  }
+  
+  .container .card .face.face2 .content p{
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container .card .face.face2 .content a{
+    display:  flex;
+    font-family: arial;
+  }

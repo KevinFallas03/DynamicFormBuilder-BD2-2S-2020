@@ -34,11 +34,18 @@ templateController.create = async (req, res) => {
 };
 
 templateController.edit = async (req, res) => {
+    //const template = new Template(req, res);
+    try{
+        const updatedTemplate = await Template.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        res.json(updatedTemplate);
+    } catch(error){
+        res.json({message: error});
+    }
 };
 
 templateController.delete = async (req, res) => {
     try{
-        const templates = await Template.deleteMany({},callback);
+        const templates = await Template.deleteOne({_id: req.params.id});
         res.json(templates);
     }
     catch(error){

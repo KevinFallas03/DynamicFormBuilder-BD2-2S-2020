@@ -9,8 +9,8 @@ router.get("/:id", templatesController.getById);
 
 router.post("/", templatesController.create);
 
-router.put("/", templatesController.edit);
+router.put("/:id", templatesController.edit);
 
-router.delete("/", templatesController.delete);
+router.delete("/:id", templatesController.delete);
 
 module.exports = router;

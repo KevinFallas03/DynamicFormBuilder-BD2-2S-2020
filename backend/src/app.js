@@ -26,7 +26,7 @@ app.use("/", require("./routes/access"));
 app.use("/home", require("./routes/home"));
 
 // Approval service
-app.use("/approval", require("./routes/approval"));
+app.use("/api/approval", require("./routes/approval"));
 
 
 

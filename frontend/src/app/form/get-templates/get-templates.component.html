@@ -1,14 +1,24 @@
-<!--The code to display images -->
-<div class="card-columns">
-    <div *ngFor="let template of templates" style="width: 18rem;">
-        <div class="container">
-        <div class="card">
-            <div class="card-body">
-            <h5 class="card-title">{{ template.name }}</h5>
-            <p class="card-text">{{ template.description }}</p>
-            <a routerLink="/filltemplate/{{ template._id }}" class="btn btn-primary">Generar</a>
+
+<body>
+    <div class="card-columns" style="margin-top:1%">
+        <div *ngFor="let template of templates" style="width: 25rem;">
+            <div class="container">
+            <div class="card">
+                <div class="face face1">
+                    <div class="content">
+                        <h3>{{ template.name }}</h3>
+                        <p >{{ template.description }}</p>
+                    </div>
+                </div>
+               <div class="face face2">
+                   <div class="content">
+                        <div class="btn-group" style="width:100%">
+                            <a routerLink="/filltemplate/{{ template._id }}"  class="btn btn-outline-primary">Generar</a>
+                        </div>
+                   </div>
+               </div>
+            </div>
             </div>
         </div>
-        </div>
     </div>
-</div>
+    </body>

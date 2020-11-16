@@ -12,9 +12,9 @@
     <div class="spacer30"></div>
     <div class="row">
       <div class="col-4">
-        <!--a draggable element-->
         <h4 style="margin-top: 1%; font-size: 22px;">Seleccione los campos</h4>
         <p>Diseñe su plantilla arrastrando y soltando los campos al area de la plantilla.</p>
+        <!--a draggable element-->
         <div class="sticky-container" style="margin-top:-1%">
           <ul class="sticky">
             <div class="fields" *ngFor="let item of fieldModels">
@@ -31,18 +31,16 @@
       </div>
       <div class="col-8">
         <h1>Diseño plantilla</h1>
-        <div class="form-group"
-        style="margin-bottom: 0px !important; padding: 30px 60px 5px 60px;">
+        <div class="form-group" style="margin-bottom: 0px !important; padding: 30px 60px 5px 60px;">
         <h2><input class="form-control" type="text" [(ngModel)]="model.name" /></h2>
         <input class="form-control" type="text" [(ngModel)]="model.description" />
         </div>
-  
         <!--a dropzone-->
         <!--to allow dropping content that is not [dndDraggable] set dndAllowExternal to true-->
         <section dndDropzone
         (dndDragover)="onDragover($event)"
         (dndDrop)="onDrop($event,model.attributes)" class="dndDropArea"
-        [ngClass]="{'empty':model.attributes.length == 0}"> 
+        [ngClass]="{'empty':model.attributes.length == 0}">
   
         <div class="field" *ngFor="let item of model.attributes;let i= index;" 
           (dndStart)="onDragStart($event)"
@@ -246,8 +244,7 @@
   style="max-width:500px;"
   >
   
-  <div class="row"
-  style="padding:30px;">
+  <div class="row" style="padding:30px;">
     <div class="col-12">
       <h1 style="margin-bottom: 20px;">Vista previa</h1>
       <h2>{{model.name}}</h2>  

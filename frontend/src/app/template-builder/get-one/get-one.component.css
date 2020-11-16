@@ -81,7 +81,7 @@
     width: 30px;
     height: 30px;
     text-align: center;
-    font-size: 20px;
+    font-size: 24px;
     vertical-align: middle;
 
 }
@@ -116,39 +116,4 @@
     height: 25px;
     background: white;
     border: none;
-}
-
-body{
-	font-family:Verdana, Geneva, sans-serif;
-	font-size:18px;
-	background-color:#CCC;
-}
-
-.float{
-	position:fixed;
-	width:75px;
-	height:75px;
-	bottom:40px;
-	right:40px;
-	background-color:#0C9;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-    box-shadow: 2px 2px 3px #999;
-    font-size:40px;
-}
-
-.my-float{
-    margin-top:18px;
-}
-
-.sticky-container{
-    padding:0px;
-    margin:0px;
-    position:fixed;
-    top:px;
-    width:210px;
-    z-index: 1100;
-    left: -10px;
-    width:272px;
 }

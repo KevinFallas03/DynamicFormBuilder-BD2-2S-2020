@@ -45,7 +45,7 @@ export class AuthserviceService {
 
   // Gets the username and id of all currently selected users
   getUsers(): Observable<any> {
-    return this.httpclient.get(`${this.AUTH_SERVER}/userDump`);
+    return this.httpclient.get(`${this.AUTH_SERVER}/users`);
   }
 
   // Gets the data of one user based on id

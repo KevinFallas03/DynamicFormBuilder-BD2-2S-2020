@@ -18,29 +18,33 @@ export class FillTemplateComponent implements OnInit {
   model:any = {};
   templateId : string;
 
-  //reports:any = [];
+  formFields:Array<any>=[];
+  filledForm = {
+    template: '',
+    applicant: '',
+    name:'Nombre..',
+    description:'Descripcion..',
+    responses: this.formFields
+  };
   
   constructor(
     private _formService: FormService,
     public route: ActivatedRoute,
-    //public router: Router,
     private _templateBuilderService:TemplateBuilderService
   ) { }
 
   ngOnInit(): void {
-
-    
     this.route.paramMap.subscribe((params: ParamMap) => {
 
       this.templateId = params.get('_id');
-      console.log(this.templateId);
       this.getTemplateById(this.templateId);
     })
-    
   }
+
   toggleValue(item){
     item.selected = !item.selected;
   }
+
   getTemplateById(templateId){
     this._templateBuilderService.getById(templateId).subscribe(
       data => {
@@ -48,11 +52,12 @@ export class FillTemplateComponent implements OnInit {
       }
     );
   }
+
   submitForm(){
     let valid = true;
     let validationArray = JSON.parse(JSON.stringify(this.model.attributes));
     validationArray.reverse().forEach(field => {
-      console.log(field.label+'=>'+field.required+"=>"+field.value);
+      //console.log(field.label+'=>'+field.required+"=>"+field.value);
       if(field.required && !field.value && field.type != 'checkbox'){
         swal.fire('Error','Please enter '+field.label,'error');
         valid = false;
@@ -77,26 +82,23 @@ export class FillTemplateComponent implements OnInit {
     if(!valid){
       return false;
     }
-    /*let input = new FormData;
-    input.append('formId',this.model._id);
-    input.append('attributes',JSON.stringify(this.model.attributes))*/
+    this.filledForm.template = this.model._id;
+    this.filledForm.name = this.model.name;
+    this.filledForm.description = this.model.description;
+    this.filledForm.applicant = "5fab7bd9e5288a1424748f02";
+
+    this.model.attributes.forEach((element:{label,value,values}) => {
+      const { label, value, values } = element;
+      this.formFields.push({ label , value , values });
+    });
+    console.log(this.filledForm);
     
-    
-    /*
-    this._formService.post(this.model).subscribe( 
+    this._formService.post(this.filledForm).subscribe( 
       data => {
-        swal.fire('Enhorabuena',data.name+' se ha creado exitosamente','success');
+        swal.fire('Enhorabuena','El formulario se ha subido exitosamente','success');
+        console.log(data);
       }
-    )*/
-
-
-    // this.us.postDataApi('/user/formFill',input).subscribe(r=>{
-    //   console.log(r);
-    //   swal('Success','You have contact sucessfully','success');
-    //   this.success = true;
-    // },error=>{
-    //   swal('Error',error.message,'error');
-    // });
+    )
   }
 
 }

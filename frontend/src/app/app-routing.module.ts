@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'forms', loadChildren: () => import('./form/form.module').then(m => m.FormModule) },
   { path: 'templates', loadChildren: () => import('./template-builder/template-builder.module').then(m => m.TemplateBuilderModule) },
   { path: '', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-  { path: 'approvals', loadChildren: () => import('./approvals/approvals-routing.module').then(m => m.ApprovalsRoutingModule) },
+  { path: 'approvals', loadChildren: () => import('./approvals/approvals.module').then(m => m.ApprovalsModule) },
   { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) }
 ];
 

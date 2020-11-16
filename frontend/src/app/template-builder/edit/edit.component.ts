@@ -1,27 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { DndDropEvent,DropEffect} from 'ngx-drag-drop';
 import { field, value } from '../../global.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import swal from 'sweetalert2';
 
 import { TemplateBuilderService } from '../template-builder.service';
-import { AuthserviceService } from 'src/app/services/auth/authservice.service';
-import { HttpHeaders } from '@angular/common/http';
-
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.css']
 })
-export class CreateComponent implements OnInit {
-
-  value:value={
-    label:"",
-    value:""
-  };
-  success = false;
-
+export class EditComponent implements OnInit {
+  value:value={label:"", value:""};
   fieldModels:Array<field>=[
     {
       "type": "text",
@@ -152,41 +143,44 @@ export class CreateComponent implements OnInit {
       ]
     }
   ];
-
   modelFields:Array<field>=[];
   model:any = {
     id: '',
     name:'Nombre..',
     description:'Descripcion..',
+    theme:{
+      bgColor:"ffffff",
+      textColor:"555555",
+      bannerImage:""
+    },
     attributes:this.modelFields
   };
-
-  report = false;
+  templateId : string;
   reports:any = [];
 
+  //flags for html
+  success = false;
+  report = false;
+
   constructor(
-    private route:ActivatedRoute,
-    private _templateBuilderService: TemplateBuilderService,
-    private authService: AuthserviceService,
-    private router: Router
+    private route: ActivatedRoute,
+    private router: Router,
+    private _templateBuilderService: TemplateBuilderService
   ) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.templateId = params.get('id'); //'5fae39ce27537125f4836267';//
+      this.getTemplateById();
+    });
+  }
 
-
-    /*
-      Checks if the user is an administrator in order to let them access.
-    */
-    this.authService.isAdmin({headers: new HttpHeaders(
-      {"Authorization": `Bearer ${localStorage.getItem("authToken")}`})
-    }).subscribe(data => {
-      
-      // Checks if the user has access
-      if (!data.isAdmin) {
-        this.router.navigate([".."]);
+  getTemplateById(){
+    this._templateBuilderService.getById(this.templateId).subscribe(
+      data => {
+        this.model = data; 
       }
-
-    }, error => {console.log("USER NOT ADMIN")});
+    );
   }
 
   onDragStart(event:DragEvent) {
@@ -255,25 +249,22 @@ export class CreateComponent implements OnInit {
     });
 
   }
-
+  
   initReport(){
     this.report = true; 
-    let input = {
-      id:this.model._id
-    }
   }
+
   toggleValue(item){
     item.selected = !item.selected;
   }
 
   submitTemplate(){
     this.success = true;
-    this._templateBuilderService.post(this.model).subscribe( 
+    this._templateBuilderService.findByIdAndUpdate(this.templateId, this.model).subscribe( 
       data => {
-        this.model.id = data._id;
-        swal.fire('Enhorabuena',"Plantilla "+data.name+' creada exitosamente','success');
-
-        this.router.navigate([`/approvals/create/${this.model.id}`]);
+        this.model = data;
+        swal.fire('Enhorabuena',"Plantilla "+this.model.name+' actualizada exitosamente','success');
+        this.router.navigate(['/get']);
       }
     )
   }
