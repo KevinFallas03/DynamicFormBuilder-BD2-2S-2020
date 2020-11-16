@@ -19,12 +19,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem("authToken")) {
-      this.router.navigate(['/home']); // Redirects to home with a get request
+      this.router.navigate(['/']); // Redirects to home with a get request
     } 
   }
 
   // Saves the user data
-  userModel = new User('', '', false, "");
+  userModel = new User("", "", "", "", "", "", "", false, "");
 
   // Logs a user through the login route.
   logIn() {

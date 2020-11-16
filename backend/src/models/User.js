@@ -11,7 +11,27 @@ require('dotenv/config');
 
 const UserSchema = new Schema(
     {
+        firstName: {
+            type: String,
+            required: true
+        },
+        secondName: {
+            type: String
+        },
+        lastName: {
+            type: String,
+            required: true
+        },
+        secondLastName: {
+            type: String
+        },
         username: { 
+            type: String,
+            unique: true,
+            required: true,
+            trim: true
+        },
+        email: {
             type: String,
             unique: true,
             required: true,
@@ -20,7 +40,8 @@ const UserSchema = new Schema(
         password: {
             type: String,
             required: true,
-            minlength: 7   
+            minlength: 7,
+            trim: true   
         },
         tokens: [{
             token: {
