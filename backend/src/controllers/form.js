@@ -67,9 +67,15 @@ formController.getById = async (req, res) => {
 formController.getPending = async (req, res) => {
     var {id} =  req.params;
     
-    var idList = id.split(',')
+
+    var infoCompleta = JSON.parse(id)
+
+
+    var templateList = infoCompleta.map( e => e.template)
+
+    console.log(templateList)
     try {
-        const aprovalsOfUser = await Form.find( { template: { $in: idList } } )//.populate('applicant'); usar despues
+        const aprovalsOfUser = await Form.find( { template: { $in: templateList } } )//.populate('applicant'); usar despues
         console.log(aprovalsOfUser)
         res.status(202).send(aprovalsOfUser);
     } catch (err) {
@@ -89,14 +95,17 @@ formController.getAproved = async (req, res) => {
 };
 
 formController.edit = async (req, res) => {
-    console.log("back")
     var {info} =  req.params;
+    console.log(info)
     var approvalInfo = JSON.parse(info)
+
+    console.log(approvalInfo)
 
     var data = {}
     data.user = approvalInfo.userId
     data.approved = approvalInfo.approved
 
+    console.log("viene data")
     console.log(data)
     try { 
         const updatedApproval = await Form.updateOne({ _id: approvalInfo.formId }, { $addToSet: { approvers: [data] }});
@@ -109,6 +118,10 @@ formController.edit = async (req, res) => {
             }
         );
     }   
+
+    // aca 
+
+    
 };
 
 formController.create = async (req, res) => {

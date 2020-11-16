@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import {Location} from '@angular/common';
 
 import { FormService } from '../form.service';
+import { ApprovalsService } from 'src/app/approvals/service/approvals.service';
 
 @Component({
   selector: 'app-show-form',
@@ -18,6 +19,7 @@ export class ShowFormComponent implements OnInit {
 
   constructor(
       private _formService: FormService,
+      private _approvalService: ApprovalsService,
       public route: ActivatedRoute,
       private _location: Location
       ) { }
@@ -42,13 +44,30 @@ export class ShowFormComponent implements OnInit {
 
   approveForm(isApproved){
 
-    let prueba = '{"userId":"5fab7bd9e5288a1424748f02","formId":"'+this.formId+'","approved":"'+isApproved+'"}'; 
+      // poner el usuario automatico
 
-    this._formService.approveForm(prueba).subscribe(
+    let userId = "5fab7bd9e5288a1424748f02"
+
+    let prueba = '{"userId":"'+userId+'","formId":"'+this.formId+'","approved":"'+isApproved+'"}'; 
+
+    console.log("donde estoy");
+    this._approvalService.getTemplatesByUser(userId).subscribe(
       data => {
-        console.log(data);
+        
+
+        this._formService.approveForm(data).subscribe(
+          data2 => {
+            // me retorna el objeto 
+            console.log(data2);
+    
+            // form.id
+            
+          }
+        );
+        
       }
-    );
+
+    );  
 
   }
 }

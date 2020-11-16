@@ -82,17 +82,15 @@ export class GetFormsComponent implements OnInit {
     this._ApprovalsService.getTemplatesByUser(idUser).subscribe(
       data => {
         
-        var idList = data.map( e => e.template)
-
-
-        console.log(idList)
+        var info = JSON.stringify(data) 
+      
         
-        this._formService.getFormsById(idList).subscribe(
+        this._formService.getFormsById(info).subscribe(
           data2 => {
             this.pendingForms = data2
           }
         );
-      }
+       }
     );
 
      
