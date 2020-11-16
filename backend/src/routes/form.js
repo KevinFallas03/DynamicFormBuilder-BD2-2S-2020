@@ -15,7 +15,7 @@ router.get("/:id", formController.getById); // getAll
 
 router.post("/", formController.create);
 
-router.put("/aproved/:id", formController.edit); // hace la funcion de aprobar
+router.put("/approved/:info", formController.edit); // hace la funcion de aprobar
 
 router.delete("/", formController.delete);
 

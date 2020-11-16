@@ -89,9 +89,17 @@ formController.getAproved = async (req, res) => {
 };
 
 formController.edit = async (req, res) => {
-    const aprovalInfo = req.body;
-    try {
-        const updatedApproval = await Form.findByIdAndUpdate( aprovalInfo._id, aprovalInfo );
+    console.log("back")
+    var {info} =  req.params;
+    var approvalInfo = JSON.parse(info)
+
+    var data = {}
+    data.user = approvalInfo.userId
+    data.approved = approvalInfo.approved
+
+    console.log(data)
+    try { 
+        const updatedApproval = await Form.updateOne({ _id: approvalInfo.formId }, { $addToSet: { approvers: [data] }});
         res.status(202).send(updatedApproval);
     } catch (err) {
         res.status(500).json(

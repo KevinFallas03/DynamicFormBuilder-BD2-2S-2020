@@ -39,4 +39,16 @@ export class ShowFormComponent implements OnInit {
       }
     );
   }
+
+  approveForm(isApproved){
+
+    let prueba = '{"userId":"5fab7bd9e5288a1424748f02","formId":"'+this.formId+'","approved":"'+isApproved+'"}'; 
+
+    this._formService.approveForm(prueba).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
+
+  }
 }

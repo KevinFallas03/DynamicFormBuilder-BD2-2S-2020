@@ -33,4 +33,13 @@ export class FormService {
       `${this._apiUrl}/pending/${idList}`, {headers}
     );
   }
+
+  approveForm(approvalInfo)
+  {
+    const headers = {"Content-Type":"application/json"};
+    return this._http.put<any>(
+      `${this._apiUrl}/approved/${approvalInfo}`, {headers}
+    );
+
+  }
 }
