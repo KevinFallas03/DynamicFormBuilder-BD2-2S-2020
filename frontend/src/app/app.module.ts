@@ -14,11 +14,12 @@ import { BrowserAnimationsModule }from "@angular/platform-browser/animations";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap' 
 import { ApprovalsModule } from './approvals/approvals.module';
 import { DndModule } from 'ngx-drag-drop';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    HomeComponent
   ],
   imports: [
     AuthRoutingModule,
@@ -35,7 +36,8 @@ import { DndModule } from 'ngx-drag-drop';
     HttpClientModule,
     ReactiveFormsModule,
     FormRoutingModule,
-    ApprovalsModule
+    ApprovalsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

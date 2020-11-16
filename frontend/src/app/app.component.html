@@ -6,11 +6,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <a class="navbar-brand" href="/home">Portal</a>
+      <a class="navbar-brand" href="/home">Portal</a> 
 
-      <div *ngIf="logged"> 
-
-      </ul>
         <ul class="navbar-nav" style="margin-left: 20px;">
           <li class="nav-item" style="margin-left: 8px;">
             <a class="nav-link" href="/forms" style="color: aliceblue;">Formularios</a>
@@ -18,22 +15,22 @@
           <li class="nav-item" style="margin-left: 8px;">
             <a class="nav-link" href="#" style="color: aliceblue;">Aprobaciones</a>
           </li>
-          <li class="nav-item" style="margin-left: 8px;">
-            <a class="nav-link" href="/templates" style="color: aliceblue;">Plantillas</a>
-          </li>
-          <li class="nav-item" style="margin-left: 8px;">
-            <a class="nav-link" href="/users" style="color: aliceblue;">Usuarios</a>
-          </li>
-  
+
+          <!-- OPCIONES DE ADMINISTRADORES -->
+            <li *ngIf="isAdmin" class="nav-item" style="margin-left: 8px;">
+              <a class="nav-link" href="/templates" style="color: aliceblue;">Plantillas</a>
+            </li>
+            <li *ngIf="isAdmin" class="nav-item" style="margin-left: 8px;">
+              <a class="nav-link" href="/users" style="color: aliceblue;">Usuarios</a>
+            </li>
+          
           <button class="btn btn-outline-light my-2 my-sm-0" type="submit" (click)="logOut()">Log out</button>
         </ul>
-
-      </div>
       
     </div>
   </nav> 
       
-</div>
+  </div>
 
 </header>
 <div class="container-fluid">

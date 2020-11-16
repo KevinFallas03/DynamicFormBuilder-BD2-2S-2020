@@ -166,7 +166,7 @@ usersController.logoff = async (req, res) => {
         req.user.tokens = req.user.tokens.filter((tk) => {
             return tk.token != req.token;
         });
-        console.log(req.user);
+        
         // Updates the tokens
         await req.user.save();
         res.status(200).json({});
