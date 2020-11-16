@@ -1,9 +1,9 @@
 <div *ngIf="model" class="container marginT60  marginB30" style="max-width:500px;">
     <div class = "col-1" *ngIf="pending">
-        <a  (click)="approveForm(1)" class="float" style="background-color: #0C9;bottom:10%;">
+        <a  (click)="approveForm(1)" href="_location.back()" class="float" style="background-color: #0C9;bottom:10%;">
             <i class="fas fa-check my-float"></i>
         </a>
-        <a  (click)="approveForm(0)" class="float" style="background-color: rgb(199, 59, 59);bottom:25%;">
+        <a  (click)="approveForm(0)" href="_location.back()" class="float" style="background-color: rgb(199, 59, 59);bottom:25%;">
             <i class="fas fa-times my-float"></i>
         </a>
     </div>
