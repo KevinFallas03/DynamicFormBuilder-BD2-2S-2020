@@ -1,0 +1,95 @@
+<div *ngIf="model" class="container marginT60  marginB30" style="max-width:500px;">
+    <div class = "col-1" *ngIf="pending">
+        <a  (click)="approveForm(1)" class="float" style="background-color: #0C9;bottom:10%;">
+            <i class="fas fa-check my-float"></i>
+        </a>
+        <a  (click)="approveForm(0)" class="float" style="background-color: rgb(199, 59, 59);bottom:25%;">
+            <i class="fas fa-times my-float"></i>
+        </a>
+    </div>
+    <a  (click)="_location.back()" class="float" style="background-color: rgb(121, 145, 226);bottom:45%;left:40px;">
+        <i class="fas fa-chevron-left my-float"></i>
+    </a>
+    <div class="col-12">
+        <h2>{{model.name}}</h2>  
+    </div>
+    <div class="col-12">
+        <p>{{model.description}}</p>  
+    </div>
+    <form class="ftheme" >
+        <div *ngIf="!success" class="col-12">
+            <div *ngFor="let item of model.responses" class="form-group">
+                <div *ngIf="item.type=='text'">
+                    <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+                    <input type="text" class="form-control" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" readonly>
+                </div>
+                <div *ngIf="item.type=='email'">
+                    <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+                    <input type="email" class="form-control" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" readonly>
+                </div>
+                <div *ngIf="item.type=='phone'">
+                    <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+                    <input type="email" class="form-control" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" readonly>
+                </div>
+                <div *ngIf="item.type=='number'">
+                    <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+                    <input type="number" class="form-control" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" readonly>
+                </div>
+                <div *ngIf="item.type=='date'">
+                    <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+                    <input type="date" class="form-control" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" readonly>
+                </div>
+                <div *ngIf="item.type=='datetime-local'">
+                    <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+                    <input type="datetime-local" class="form-control"  [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" readonly>
+                </div>
+                <div *ngIf="item.type=='textarea'">
+                    <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+                    <textarea class="form-control"  [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" readonly></textarea>
+                </div>
+                <div *ngIf="item.type=='paragraph'">
+                    <p class="form-text">{{item.placeholder}}</p>
+                </div>
+                <div *ngIf="item.type=='autocomplete'">
+                    <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+                        <div *ngFor="let v of item.values">
+                            <div *ngIf="item.value == v.value">
+                                <input type="text" [(ngModel)]="v.label" [ngModelOptions]="{standalone: true}" disabled='disabled'>
+                            </div>
+                        </div>  
+                </div>
+                <div *ngIf="item.type=='checkbox'">
+                    <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+                    <div *ngFor="let v of item.values" class="inline-form-group">
+                        <label class="cust-check-bx">
+                            <div *ngIf="v.selected">
+                                <input type="checkbox" [value]="v.value" name="{{item.name}}"  disabled='disabled' checked> {{v.label}}
+                            </div>
+                            <div *ngIf="!v.selected">
+                                <input type="checkbox" [value]="v.value" name="{{item.name}}"  disabled='disabled'> {{v.label}}
+                            </div>
+                            <span class="checkmark"></span>
+                        </label>    
+                    </div>
+                </div>
+                <div *ngIf="item.type=='radio'">
+                    <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+                    <div *ngFor="let v of item.values" class="inline-form-group">
+                        <label class="cust-check-bx">
+                            <div *ngIf="item.value == v.value">
+                                <input type="radio" [value]="v.value" name="{{item.name}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" disabled='disabled' checked> {{v.label}}
+                            </div>
+                            <div *ngIf="item.value != v.value">
+                                <input type="radio" [value]="v.value" name="{{item.name}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" disabled='disabled'> {{v.label}}
+                            </div>
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div *ngIf="item.type=='button'" class="btn-cont">
+                    <input type="{{item.subtype}}" (click)="submit()" value="{{item.label}}" class="btn btn-primary"  >
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

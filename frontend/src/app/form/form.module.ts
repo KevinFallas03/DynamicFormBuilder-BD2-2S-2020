@@ -13,9 +13,10 @@ import { FormService } from './form.service'
 import { DndModule } from 'ngx-drag-drop';
 
 import { FormsModule }   from '@angular/forms';
+import { ShowFormComponent } from './show-form/show-form.component';
 
 @NgModule({
-  declarations: [MenuComponent,GetFormsComponent,GetTemplatesComponent, FillTemplateComponent],
+  declarations: [MenuComponent,GetFormsComponent,GetTemplatesComponent, FillTemplateComponent, ShowFormComponent],
   imports: [
     CommonModule,
     FormRoutingModule,

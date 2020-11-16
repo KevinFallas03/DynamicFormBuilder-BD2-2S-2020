@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,9 @@ export class FormService {
     return this._http.post<any>(this._apiUrl , form, {headers});
   }
   getById(id){
-    return this._http.get<any>(this._apiUrl,id);
+    return this._http.get<any>(
+      `${this._apiUrl}/${id}`
+    );
   }
   getFormsByRequester(idUser){
     return this._http.get<any>(
@@ -26,8 +28,18 @@ export class FormService {
     );
   }
   getFormsById(idList){
+    const headers = {"Content-Type":"application/json"};
     return this._http.get<any>(
-      `${this._apiUrl}/pending/${idList}`
+      `${this._apiUrl}/pending/${idList}`, {headers}
     );
+  }
+
+  approveForm(approvalInfo)
+  {
+    const headers = {"Content-Type":"application/json"};
+    return this._http.put<any>(
+      `${this._apiUrl}/approved/${approvalInfo}`, {headers}
+    );
+
   }
 }

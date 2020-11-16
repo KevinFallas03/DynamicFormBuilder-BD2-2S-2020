@@ -47,14 +47,36 @@ formController.getAll = async (req, res) => {
         );
     }   
 }
-
-formController.getPending = async (req, res) => {
-    const { idList } = req.params;
+formController.getById = async (req, res) => {
+    const { id } = req.params;
 
     try {
 
-        const aprovalsOfUser = await Form.find( { template: { $in: idList } } );
+        const aprovalsOfUser = await Form.findById(id);
 
+        res.status(202).send(aprovalsOfUser);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'the request failed', 
+              error: err
+            }
+        );
+    }   
+};
+formController.getPending = async (req, res) => {
+    var {id} =  req.params;
+    
+
+    var infoCompleta = JSON.parse(id)
+
+
+    var templateList = infoCompleta.map( e => e.template)
+
+    console.log(templateList)
+    try {
+        const aprovalsOfUser = await Form.find( { template: { $in: templateList } } )//.populate('applicant'); usar despues
+        console.log(aprovalsOfUser)
         res.status(202).send(aprovalsOfUser);
     } catch (err) {
         res.status(500).json(
@@ -72,6 +94,36 @@ formController.getAproved = async (req, res) => {
     });
 };
 
+formController.edit = async (req, res) => {
+    var {info} =  req.params;
+    console.log(info)
+    var approvalInfo = JSON.parse(info)
+
+    console.log(approvalInfo)
+
+    var data = {}
+    data.user = approvalInfo.userId
+    data.approved = approvalInfo.approved
+
+    console.log("viene data")
+    console.log(data)
+    try { 
+        const updatedApproval = await Form.updateOne({ _id: approvalInfo.formId }, { $addToSet: { approvers: [data] }});
+        res.status(202).send(updatedApproval);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'Approval edition failed', 
+              error: err
+            }
+        );
+    }   
+
+    // aca 
+
+    
+};
+
 formController.create = async (req, res) => {
     const form = new Form(req.body);
     try{
@@ -80,12 +132,6 @@ formController.create = async (req, res) => {
     } catch(error){
         res.json({message: error});
     }
-};
-
-formController.edit = async (req, res) => {
-    res.json({
-        message: "Hello from edit!"
-    });
 };
 
 formController.delete = async (req, res) => {

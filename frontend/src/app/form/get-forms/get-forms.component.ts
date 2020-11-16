@@ -11,6 +11,9 @@ export class GetFormsComponent implements OnInit {
 
   formsRequested:any = [{}]
 
+  idTemplatesList:any = [{}]
+  pendingForms:any = [{}]
+
   constructor(
     private _formService: FormService,
     private _ApprovalsService: ApprovalsService
@@ -19,9 +22,34 @@ export class GetFormsComponent implements OnInit {
   ngOnInit(): void {
     let idUser = "5fab7bd9e5288a1424748f02";
     this.getRequested(idUser);
+    //this.getPending(idUser);
   }
 
-  openCity(cityName,id) {
+  changeTab(idTab,id) {
+
+    console.log("estoy cambiando");
+    switch(id)
+    {
+      case 1: // solicitudes
+
+        break;
+      case 2:
+        
+        let idUser2 = "5fab7bd9e5288a1424748f02"; // cliente de aprobaciones
+        this.getPending(idUser2);
+        // if(Object.entries(this.idTemplatesList[0]).length == 0)
+        // {
+          
+          
+        // }
+        // //console.log(this.idTemplatesList)
+        break;
+      case 3:  // aprobaciones
+
+        break;
+    }
+
+
     // Declare all variables
     var i, tabcontent, tablinks, tab;
   
@@ -37,34 +65,36 @@ export class GetFormsComponent implements OnInit {
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(id).style.backgroundColor = "#0074d9";
     document.getElementById(id).style.color = "white";
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(idTab).style.display = "block";
+
   }
 
   getRequested(idUser){
     this._formService.getFormsByRequester(idUser).subscribe(
       data => {
-        console.log(this.formsRequested)
         this.formsRequested = data
       }
     );
   }
 
 
-
-
- /* getPending(idUser){
+  getPending(idUser){
     this._ApprovalsService.getTemplatesByUser(idUser).subscribe(
       data => {
-        this.idTemplatesList = data
-      }
+        
+        var info = JSON.stringify(data) 
+      
+        
+        this._formService.getFormsById(info).subscribe(
+          data2 => {
+            this.pendingForms = data2
+          }
+        );
+       }
     );
 
-    this._formService.getFormsById(this.idTemplatesList).subscribe(
-      data => {
-        this.pendingForms = data
-      }
-    );
+     
 
 
-  }*/
+  }
 }

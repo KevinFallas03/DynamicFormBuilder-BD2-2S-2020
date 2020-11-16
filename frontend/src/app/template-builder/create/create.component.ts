@@ -265,6 +265,9 @@ export class CreateComponent implements OnInit {
   toggleValue(item){
     item.selected = !item.selected;
   }
+  toggleValueRadio(item){
+    item.checked.value = !item.checked.value;
+  }
 
   submitTemplate(){
     this.success = true;

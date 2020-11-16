@@ -49,9 +49,10 @@ export class GetComponent implements OnInit {
     this._templateBuilderService.deleteById(id).subscribe(
       data =>{
         swal.fire("Plantilla eliminada","",'success');
+        this.get();
       }
     );
-    this.get();
+    
     this.router.navigate(['get']);
   }
 }

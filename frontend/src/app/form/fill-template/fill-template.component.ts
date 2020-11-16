@@ -87,9 +87,9 @@ export class FillTemplateComponent implements OnInit {
     this.filledForm.description = this.model.description;
     this.filledForm.applicant = "5fab7bd9e5288a1424748f02";
 
-    this.model.attributes.forEach((element:{label,value,values}) => {
-      const { label, value, values } = element;
-      this.formFields.push({ label , value , values });
+    this.model.attributes.forEach((element:{label,value,values,type,required}) => {
+      const { label,value,values,type,required } = element;
+      this.formFields.push({ label,value,values,type,required });
     });
     console.log(this.filledForm);
     
