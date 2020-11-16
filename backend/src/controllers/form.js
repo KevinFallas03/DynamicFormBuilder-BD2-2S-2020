@@ -67,17 +67,17 @@ formController.getById = async (req, res) => {
 formController.getPending = async (req, res) => {
     var {id} =  req.params;
     
-
     var infoCompleta = JSON.parse(id)
 
-
+    var user =infoCompleta.shift();
     var templateList = infoCompleta.map( e => e.template)
 
-    console.log(templateList)
+    // 'approvers.user' : user.userId
     try {
-        const aprovalsOfUser = await Form.find( { template: { $in: templateList } } )//.populate('applicant'); usar despues
-        console.log(aprovalsOfUser)
-        res.status(202).send(aprovalsOfUser);
+       const aprovalsOfUser = await Form.find( { template: { $in: templateList } }  )
+       
+         console.log(aprovalsOfUser)
+         res.status(202).send(aprovalsOfUser);
     } catch (err) {
         res.status(500).json(
             { 
@@ -96,20 +96,33 @@ formController.getAproved = async (req, res) => {
 
 formController.edit = async (req, res) => {
     var {info} =  req.params;
-    console.log(info)
+    //console.log(info)
     var approvalInfo = JSON.parse(info)
 
-    console.log(approvalInfo)
-
     var data = {}
-    data.user = approvalInfo.userId
-    data.approved = approvalInfo.approved
+    data.user = approvalInfo[0].userId
+    data.approved = approvalInfo[0].approved
 
-    console.log("viene data")
+  //  approvalInfo.shift()
+
+    console.log("data")
     console.log(data)
+
+    console.log(approvalInfo[0].formId)
+   
     try { 
-        const updatedApproval = await Form.updateOne({ _id: approvalInfo.formId }, { $addToSet: { approvers: [data] }});
-        res.status(202).send(updatedApproval);
+        // tengo que vaildar si ya esta adentro
+
+        const verForm = await Form.find({ _id: approvalInfo[0].formId })
+
+        console.log("Form")
+        console.log(verForm[0].approvers)
+
+        //const updatedApproval = await Form.updateOne({ _id: approvalInfo[0].formId }, { $addToSet: { approvers: data }});
+      
+        
+        
+        //res.status(202).send(updatedApproval);
     } catch (err) {
         res.status(500).json(
             { 

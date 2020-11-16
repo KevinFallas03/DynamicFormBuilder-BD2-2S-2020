@@ -35,8 +35,9 @@ export class GetFormsComponent implements OnInit {
         break;
       case 2:
         
-        let idUser2 = "5fab7bd9e5288a1424748f02"; // cliente de aprobaciones
-        this.getPending(idUser2);
+        let userId = "5fab7bd9e5288a1424748f02"
+
+        this.getPending(userId);
         // if(Object.entries(this.idTemplatesList[0]).length == 0)
         // {
           
@@ -81,18 +82,24 @@ export class GetFormsComponent implements OnInit {
 
 
   getPending(idUser){
+
     this._ApprovalsService.getTemplatesByUser(idUser).subscribe(
       data => {
         
         var info = JSON.stringify(data) 
-      
-        
-        this._formService.getFormsById(info).subscribe(
+
+        let prueba = '{"userId":"'+idUser+'"}';
+        var res = info.substring(1);
+        var info2 = '['+prueba+','+res;
+
+
+        this._formService.getFormsById(info2).subscribe(
           data2 => {
             this.pendingForms = data2
           }
         );
-       }
+
+        }
     );
 
      

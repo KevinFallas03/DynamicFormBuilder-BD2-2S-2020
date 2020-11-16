@@ -55,10 +55,16 @@ export class ShowFormComponent implements OnInit {
       data => {
         
         // tengo que parsear los datos para mandarlos
+        var list= JSON.stringify(data)
+        //  var list= JSON.stringify(data)
+        //  console.log("Pruebo desde el show")
+        //  var list2 = '{"userId":"'+userId+'},'+list
+        var res = list.substring(1);
+        var mm = '['+prueba+','+res;
 
-        // var list= data.map()
+        console.log(mm)
 
-        this._formService.approveForm(data).subscribe(
+        this._formService.approveForm(mm).subscribe(
           data2 => {
             // me retorna el objeto 
             console.log(data2);
