@@ -1,5 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthserviceService } from './services/auth/authservice.service';
 
 @Component({
@@ -11,25 +12,32 @@ export class AppComponent {
   title = 'formbuilder';
 
   constructor(
-    private authService: AuthserviceService
+    private authService: AuthserviceService,
+    private router: Router
   ) {}
 
 
-  isLogged = false;
-
   // Logs off a user.
   logOut() {
-    console.log("equisde");
+
     const opts = {headers: new HttpHeaders({
       "Authorization": `Bearer ${localStorage.getItem("authToken")}`
     })};
+
     this.authService.logOut(opts)
     .subscribe(
       data => {
         localStorage.removeItem('authToken');
+        this.router.navigate(['/']);
       },
       error => {console.log("error")}
     );
-    this.isLogged = false;
   }
+
+  getRouter() {
+    return this.router;
+  }
+
+
 }
+

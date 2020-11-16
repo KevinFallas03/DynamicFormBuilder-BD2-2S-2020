@@ -161,11 +161,12 @@ usersController.deleteUser = async (req, res) => {
 usersController.logoff = async (req, res) => {
 
     try {
+        
         // Removes the token being used
         req.user.tokens = req.user.tokens.filter((tk) => {
             return tk.token != req.token;
         });
-
+        console.log(req.user);
         // Updates the tokens
         await req.user.save();
         res.status(200).json({});

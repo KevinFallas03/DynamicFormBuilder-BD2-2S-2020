@@ -9,7 +9,6 @@ require('dotenv/config');
 const auth = async(req, res, next) => {
     
     try {
-        
         // Token format "Bearer (token)"
         const token = req.header('Authorization').replace('Bearer ', '');
         const data = jwt.verify(token, process.env.TOKEN_KEY);
@@ -22,7 +21,7 @@ const auth = async(req, res, next) => {
         }
 
         // Sets the request information
-        req.user = {username: user.username, password: user.password, isAdmin: user.isAdmin};
+        req.user = user;
         req.token = token;
 
         // Finishes running the middleware
