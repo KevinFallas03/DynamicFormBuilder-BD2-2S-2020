@@ -34,7 +34,7 @@ export class CreateComponent implements OnInit {
  }
 
 
-  userModel = new User("", "", false, "");
+  userModel = new User("", "", "", "", "", "", "", false, "");
 
   createUser() {
     this.authService.createUser(this.userModel)

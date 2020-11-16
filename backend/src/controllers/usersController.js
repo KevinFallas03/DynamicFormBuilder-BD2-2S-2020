@@ -15,6 +15,11 @@ usersController.createUser = async (req, res) => {
 
     // Creates the new user
     var newUser = new User({
+        firstName: req.body.firstName,
+        secondName: req.body.secondName,
+        lastName: req.body.lastName,
+        secondLastName: req.body.secondLastName,
+        email: req.body.email,
         username: req.body.username, // Unique username handled in model
         password: req.body.password,
         isAdmin: req.body.isAdmin
@@ -111,13 +116,23 @@ usersController.updateUser = async (req, res) => {
 
         if (req.body.password == "") {
             updatedUser = await User.updateOne({_id: req.body.id}, {$set: {
-                username: req.body.username, 
+                firstName: req.body.firstName,
+                secondName: req.body.secondName,
+                lastName: req.body.lastName,
+                secondLastName: req.body.secondLastName,
+                email: req.body.email,
+                username: req.body.username, // Unique username handled in model
                 isAdmin: req.body.isAdmin
             }});
         } else {
             // Encrypts the password before updating it
             updatedUser = await User.updateOne({_id: req.body.id}, {$set: {
-                username: req.body.username, 
+                firstName: req.body.firstName,
+                secondName: req.body.secondName,
+                lastName: req.body.lastName,
+                secondLastName: req.body.secondLastName,
+                email: req.body.email,
+                username: req.body.username, // Unique username handled in model
                 password: await bcrypt.hash(req.body.password, 8),
                 isAdmin: req.body.isAdmin
             }});
@@ -146,11 +161,12 @@ usersController.deleteUser = async (req, res) => {
 usersController.logoff = async (req, res) => {
 
     try {
+        
         // Removes the token being used
         req.user.tokens = req.user.tokens.filter((tk) => {
             return tk.token != req.token;
         });
-
+        console.log(req.user);
         // Updates the tokens
         await req.user.save();
         res.status(200).json({});
@@ -188,7 +204,7 @@ usersController.isAdmin = async (req, res) => {
 // Gets the information of one specific user
 usersController.getUserInfo = async (req, res) => {
     try {
-        const users = await User.find({_id: req.params.id}, {username: true, password: true, isAdmin: true});
+        const users = await User.find({_id: req.params.id}, {tokens: false});
 
         // 200: OK
         res.status(200).json(users);

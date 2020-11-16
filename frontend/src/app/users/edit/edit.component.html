@@ -38,7 +38,32 @@
             <label for="passwordInput">Nueva Constraseña</label>
             <input type="text" id="passwordInput" class="form-control" name="password" [(ngModel)]="selectedUser.password">
         </div>
-    
+
+        <div class="form-group">
+            <label for="firstNameInput">Primer Nombre</label>
+            <input id="firstNameInput" type="text" class="form-control" name="firstName" [(ngModel)]="selectedUser.firstName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="secondNameInput">Segundo Nombre</label>
+            <input id="secondNameInput" type="text" class="form-control" name="secondName" [(ngModel)]="selectedUser.secondName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="lastNameInput">Primer Apellido</label>
+            <input id="lastNameInput" type="text" class="form-control" name="lastName" [(ngModel)]="selectedUser.lastName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="secLastNameInput">Segundo Apellido</label>
+            <input id="secLastNameInput" type="text" class="form-control" name="secLastName" [(ngModel)]="selectedUser.secondLastName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="emailInput">E-Mail</label>
+            <input id="emailInput" type="email" class="form-control" name="email" [(ngModel)]="selectedUser.email" required>
+        </div>
+
         <div class="form-group">
             <label>Permisos de administrador?</label>
     
