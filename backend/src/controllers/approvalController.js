@@ -1,4 +1,5 @@
 const Approval = require("../models/Approval");
+const Template = require('../models/template');
 
 const approvalController = {};
 
@@ -25,6 +26,36 @@ approvalController.get = async (req, res) => {
         );
     }   
 };
+
+
+
+/**
+ * Get templates by user when he is approver (minimun for every approval route)
+ * @param {*} req.params.userId 
+ * @param {*} res 
+ */
+approvalController.getPendingByUser = async (req, res) => {
+    const { userId } = req.params;
+    try {
+
+        const approvalByUser = await Approval.find(
+            {"approvers":{"_id" : userId }}, 
+            {'approvers.username':1, 'minimumApprovalAmount':1, 'template':1}
+        ).populate({'path':"approvers", "select":"username"})
+         .populate({'path':"approvers", "select":"isAdmin"});
+
+        res.status(202).send(approvalByUser);
+
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'Approval get request failed', 
+              error: err
+            }
+        );
+    }   
+};
+
 
 
 /**
