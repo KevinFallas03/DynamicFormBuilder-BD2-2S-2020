@@ -47,6 +47,8 @@ export class GetFormsComponent implements OnInit {
       case 3:  // aprobaciones
 
         break;
+      case 4:
+        break;
     }
 
 

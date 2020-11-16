@@ -54,6 +54,9 @@ export class ShowFormComponent implements OnInit {
     this._approvalService.getTemplatesByUser(userId).subscribe(
       data => {
         
+        // tengo que parsear los datos para mandarlos
+
+        // var list= data.map()
 
         this._formService.approveForm(data).subscribe(
           data2 => {
