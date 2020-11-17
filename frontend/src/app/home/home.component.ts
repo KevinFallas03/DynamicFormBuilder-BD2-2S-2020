@@ -1,3 +1,4 @@
+import { _RecycleViewRepeaterStrategy } from '@angular/cdk/collections';
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouteReuseStrategy } from '@angular/router';
@@ -16,6 +17,11 @@ export class HomeComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    document.body.style.backgroundImage = 'url(https://i.imgur.com/0o4LbRb.jpg)';
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundAttachment = 'fixed';
+    document.body.style.backgroundSize = "100% 100%"
+    
     if (!localStorage.getItem("authToken")) {
       this.router.navigate(['/']); // Redirects to home with a get request
     } else {
