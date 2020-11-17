@@ -19,6 +19,9 @@ export class ApprovalsService {
   getTemplatesByUser(id) {
     return this._http.get<any>( `${this._apiUrl}/pending/byUser/${id}`);
   }
+  getTemplatesByAuthor(idUser){
+    return this._http.get<any>( `${this._apiUrl}/templates/byAuthor/${idUser}`);
+  }
 
   deleteById(id) {
     return this._http.delete(

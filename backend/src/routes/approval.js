@@ -9,6 +9,8 @@ router.get("/pending/byUser/:userId", approvalController.getPendingByUser);
 
 router.get("/pending/:id", approvalController.getPending);
 
+router.get("/templates/byAuthor/:id", approvalController.getTemplatesByAuthor);
+
 router.post("/", approvalController.create);
 
 router.put("/", approvalController.edit);

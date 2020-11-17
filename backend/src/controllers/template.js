@@ -13,6 +13,18 @@ templateController.get = async (req, res) => {
         res.json({message: error});
     }
 };
+
+templateController.getManyById = async (req, res) => {
+    const { ids } = req.params;
+    var jsonIds = JSON.parse(ids);
+    try{
+        const templates = await Template.find( { '_id' : { $in : jsonIds.data } } );
+        res.json(templates);
+    }
+    catch(error){
+        res.json({message: error});
+    }
+};
 templateController.getById = async (req, res) => {
     try{
         const templates = await Template.findById(req.params.id);

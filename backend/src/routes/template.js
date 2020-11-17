@@ -3,7 +3,7 @@ const router = express.Router();
 
 const templatesController = require("../controllers/template");
 
-router.get("/", templatesController.get);
+router.get("/many/:ids", templatesController.getManyById);
 
 router.get("/:id", templatesController.getById);
 

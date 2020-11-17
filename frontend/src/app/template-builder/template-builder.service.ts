@@ -20,6 +20,9 @@ export class TemplateBuilderService {
   getById(id){
     return this._http.get<any>(this._apiUrl+'/'+id);
   }
+  getManyById(data){
+    return this._http.get<any>(this._apiUrl+'/many/'+data);
+  }
 
   findByIdAndUpdate(id, updatedTemplate){
     return this._http.put(this._apiUrl+'/'+id, updatedTemplate);

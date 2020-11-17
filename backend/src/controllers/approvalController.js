@@ -27,7 +27,19 @@ approvalController.get = async (req, res) => {
     }   
 };
 
-
+approvalController.getTemplatesByAuthor = async (req, res) => {
+    try {
+        const approvalByTemplateName = await Approval.find( {"authors":{"_id" : req.params.id }} , {'template':1});
+        res.status(202).send(approvalByTemplateName);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'Approval get request failed', 
+              error: err
+            }
+        );
+    }   
+};
 
 /**
  * Get templates by user when he is approver (minimun for every approval route)
