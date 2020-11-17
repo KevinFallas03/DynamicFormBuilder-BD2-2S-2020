@@ -31,4 +31,7 @@ router.get('/:id', userController.getUserInfo);
 // Deletes the specified user
 router.delete('/:id', userController.deleteUser);
 
+// Get the user id given a token
+router.get('/userByToken/:token', userController.getUserByToken);
+
 module.exports = router;

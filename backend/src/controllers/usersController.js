@@ -77,6 +77,19 @@ usersController.login = async (req, res) => {
     }
 }
 
+// Given a user token, return the user id that have this token in the token list
+usersController.getUserByToken = async (req, res) => {
+    const { token } = req.params;
+    try {
+        const user = await User.find(
+            { 'tokens.token':token }, 
+            { _id:1, username:1, firstName:1, secondName:1, lastName:1, secondLastName:1, isAdmin:1, tokens:1 }
+        );
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(401).send(error);
+    }
+}
 
 // Obtains all the users
 usersController.getUsers = async (req, res) => {
