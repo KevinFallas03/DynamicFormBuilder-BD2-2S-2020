@@ -83,3 +83,9 @@ body{
   font-family: arial;
   padding: 5px;
 }
+.container .card:hover .face.face1 .content h3{
+  color:white;
+}
+.container .card:hover .face.face1{
+  color:white;
+}
