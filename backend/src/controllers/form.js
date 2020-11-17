@@ -128,7 +128,8 @@ formController.getApproved = async (req, res) => {
     var {id} =  req.params;
 
     try {
-        const aprovalsOfUser = await Form.find( {'applicant' : id , 'status' : "Aprovado"} )
+        const aprovalsOfUser = await Form.find( {'applicant' : id , 'status' : "Aprobado"} )
+        console.log(aprovalsOfUser)
         res.status(202).send(aprovalsOfUser);
     } catch (err) {
         res.status(500).json(

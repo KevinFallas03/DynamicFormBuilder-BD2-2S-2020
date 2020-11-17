@@ -9,9 +9,9 @@ router.get("/approvedByMe/:id", formController.getApprovedByMe);
 
 router.get("/denegatedByMe/:id", formController.getDenegatedByMe); 
 
-router.get("/approved/:id", formController.getApprovedByMe); 
+router.get("/approved/:id", formController.getApproved); 
 
-router.get("/denegated/:id", formController.getDenegatedByMe); 
+router.get("/denegated/:id", formController.getDenegated); 
 
 router.get("/pending/:id", formController.getPending); 
 
