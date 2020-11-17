@@ -14,6 +14,13 @@ export class GetFormsComponent implements OnInit {
   idTemplatesList:any = [{}]
   pendingForms:any = [{}]
 
+  approvedFormsByMe:any = [{}]
+  denegatedFormsByMe:any = [{}]
+
+
+  approvedFormsForMe:any = [{}]
+  denegatedFormsForMe:any = [{}]
+
   constructor(
     private _formService: FormService,
     private _ApprovalsService: ApprovalsService
@@ -22,33 +29,27 @@ export class GetFormsComponent implements OnInit {
   ngOnInit(): void {
     let idUser = "5fab7bd9e5288a1424748f02";
     this.getRequested(idUser);
-    //this.getPending(idUser);
   }
 
   changeTab(idTab,id) {
 
     console.log("estoy cambiando");
+    let userId = "5fab7bd9e5288a1424748f02"
     switch(id)
     {
       case 1: // solicitudes
 
         break;
       case 2:
-        
-        let userId = "5fab7bd9e5288a1424748f02"
-
         this.getPending(userId);
-        // if(Object.entries(this.idTemplatesList[0]).length == 0)
-        // {
-          
-          
-        // }
-        // //console.log(this.idTemplatesList)
         break;
       case 3:  // aprobaciones
-
+        this.getApprovedByMe(userId);
+        this.getApproved(userId);// falta ver los aprobados totales --- aca
         break;
       case 4:
+        this.getDenegatedByMe(userId);
+        this.getDenegated(userId);// falta ver los denegados totales --- aca
         break;
     }
 
@@ -101,9 +102,39 @@ export class GetFormsComponent implements OnInit {
 
         }
     );
-
-     
-
-
+    
   }
+
+  getApprovedByMe(idUser){
+    this._formService.getApprovedByMe(idUser).subscribe(
+      data => {
+        this.approvedFormsByMe = data
+      }
+    );
+  }
+
+  getDenegatedByMe(idUser){
+    this._formService.getDenegatedByMe(idUser).subscribe(
+      data => {
+        this.denegatedFormsByMe = data
+      }
+    );
+  }
+
+  getApproved(idUser){
+    this._formService.getApproved(idUser).subscribe(
+      data => {
+        this.approvedFormsForMe = data
+      }
+    );
+  }
+
+  getDenegated(idUser){
+    this._formService.getDenegated(idUser).subscribe(
+      data => {
+        this.denegatedFormsForMe = data
+      }
+    );
+  }
+
 }

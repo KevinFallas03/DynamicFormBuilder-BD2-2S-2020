@@ -51,9 +51,7 @@ formController.getById = async (req, res) => {
     const { id } = req.params;
 
     try {
-
         const aprovalsOfUser = await Form.findById(id);
-
         res.status(202).send(aprovalsOfUser);
     } catch (err) {
         res.status(500).json(
@@ -72,12 +70,13 @@ formController.getPending = async (req, res) => {
     var user =infoCompleta.shift();
     var templateList = infoCompleta.map( e => e.template)
 
-    // 'approvers.user' : user.userId
+    //Funciona
+   
     try {
-       const aprovalsOfUser = await Form.find( { template: { $in: templateList } }  )
-       
-         console.log(aprovalsOfUser)
-         res.status(202).send(aprovalsOfUser);
+        
+        const isApprovedAlready = await Form.find({$and : [ {'approvers.user' : {$nin : user.userId}}, 
+        { template: { $in: templateList } } ]})
+        res.status(202).send(isApprovedAlready);
     } catch (err) {
         res.status(500).json(
             { 
@@ -88,41 +87,133 @@ formController.getPending = async (req, res) => {
     }   
 };
 
-formController.getAproved = async (req, res) => {
-    res.json({
-        message: "Hello from get aproved!"
-    });
+formController.getApprovedByMe = async (req, res) => {
+
+    var {id} =  req.params;
+
+    try {
+        const aprovalsOfUser = await Form.find( {'approvers.user' : id , 'approvers.approved' : true} )
+        res.status(202).send(aprovalsOfUser);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'the request failed', 
+              error: err
+            }
+        );
+    }   
+};
+
+
+formController.getDenegatedByMe = async (req, res) => {
+    // solo ocupa el Id
+    var {id} =  req.params;
+    
+    try {
+       const aprovalsOfUser = await Form.find( {'approvers.user' : id , 'approvers.approved' : false} )
+        res.status(202).send(aprovalsOfUser);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'the request failed', 
+              error: err
+            }
+        );
+    }   
+};
+
+
+formController.getApproved = async (req, res) => {
+
+    var {id} =  req.params;
+
+    try {
+        const aprovalsOfUser = await Form.find( {'applicant' : id , 'status' : "Aprovado"} )
+        res.status(202).send(aprovalsOfUser);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'the request failed', 
+              error: err
+            }
+        );
+    }   
+};
+
+formController.getDenegated = async (req, res) => {
+    // solo ocupa el Id
+    var {id} =  req.params;
+    
+    try {
+        const aprovalsOfUser = await Form.find( {'applicant' : id , 'status' : "Denegado"} )
+        res.status(202).send(aprovalsOfUser);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'the request failed', 
+              error: err
+            }
+        );
+    }   
 };
 
 formController.edit = async (req, res) => {
     var {info} =  req.params;
-    //console.log(info)
     var approvalInfo = JSON.parse(info)
+    console.log("informacion")
+    console.log(approvalInfo)
 
+    // se puede usar el shift pero validar el id
     var data = {}
+    data._id = approvalInfo[0].userId
     data.user = approvalInfo[0].userId
     data.approved = approvalInfo[0].approved
 
-  //  approvalInfo.shift()
-
-    console.log("data")
-    console.log(data)
-
-    console.log(approvalInfo[0].formId)
    
     try { 
-        // tengo que vaildar si ya esta adentro
+        // Se añade el aprobador en la lista con el booleano true or false
+        const updatedApproval = await Form.updateOne({ _id: approvalInfo[0].formId }, { $addToSet: { approvers: [data] }});
+        res.status(202).send(updatedApproval);
 
-        const verForm = await Form.find({ _id: approvalInfo[0].formId })
+        // Se saca el form actual, con los aprobadores actualizados
+        const actualForm = await Form.findOne({ _id: approvalInfo[0].formId })
 
-        console.log("Form")
-        console.log(verForm[0].approvers)
+        // se obtiene el minimo de aprobadores necesarios para ese template
+        var min = 0
+        var total = 0
+        approvalInfo.forEach(e => {
+            if(e.template == actualForm.template){
+                total=  Object.keys(e.approvers).length
+                min = e.minimumApprovalAmount
+            }
+         });
 
-        //const updatedApproval = await Form.updateOne({ _id: approvalInfo[0].formId }, { $addToSet: { approvers: data }});
-      
+        // obtiene el numero de personas que le dieron positivo al form
+        var numApprovers = 0
+        actualForm.approvers.forEach(e => {
+            if(e.approved == "true"){
+                numApprovers++;
+            }
+         });
         
+        var count = Object.keys(actualForm.approvers).length
+
+        if(count == total)
+        {
+            // Cambia el estado si logra llegar al minimo o mas
+            if(numApprovers >= min)
+            {
+                const changeStatus = await Form.updateOne({ _id: approvalInfo[0].formId }, { status: "Aprobado"});
+                res.status(202).send(updatedApproval);
+            }
+            else{
+                const changeStatus = await Form.updateOne({ _id: approvalInfo[0].formId }, { status: "Denegado"});
+                res.status(202).send(updatedApproval);
+            }
+        }
         
-        //res.status(202).send(updatedApproval);
+
+
     } catch (err) {
         res.status(500).json(
             { 
@@ -132,7 +223,7 @@ formController.edit = async (req, res) => {
         );
     }   
 
-    // aca 
+    // aca hay que cambiar 
 
     
 };

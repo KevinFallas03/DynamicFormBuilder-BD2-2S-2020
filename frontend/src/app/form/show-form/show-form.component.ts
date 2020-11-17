@@ -46,6 +46,8 @@ export class ShowFormComponent implements OnInit {
 
       // poner el usuario automatico
 
+    
+
     let userId = "5fab7bd9e5288a1424748f02"
 
     let prueba = '{"userId":"'+userId+'","formId":"'+this.formId+'","approved":"'+isApproved+'"}'; 
@@ -54,14 +56,11 @@ export class ShowFormComponent implements OnInit {
     this._approvalService.getTemplatesByUser(userId).subscribe(
       data => {
         
-        // tengo que parsear los datos para mandarlos
         var list= JSON.stringify(data)
-        //  var list= JSON.stringify(data)
-        //  console.log("Pruebo desde el show")
-        //  var list2 = '{"userId":"'+userId+'},'+list
         var res = list.substring(1);
         var mm = '['+prueba+','+res;
 
+      
         console.log(mm)
 
         this._formService.approveForm(mm).subscribe(
@@ -78,5 +77,6 @@ export class ShowFormComponent implements OnInit {
 
     );  
 
+   this._location.back();
   }
 }
