@@ -40,6 +40,39 @@ export class FormService {
     return this._http.put<any>(
       `${this._apiUrl}/approved/${approvalInfo}`, {headers}
     );
-
   }
+
+  getApprovedByMe(idUser)
+  {
+    const headers = {"Content-Type":"application/json"};
+    return this._http.get<any>(
+      `${this._apiUrl}/approvedByMe/${idUser}`, {headers}
+    );
+  }
+
+  getDenegatedByMe(idUser)
+  {
+    const headers = {"Content-Type":"application/json"};
+    return this._http.get<any>(
+      `${this._apiUrl}/denegatedByMe/${idUser}`, {headers}
+    );
+  }
+
+  getApproved(idUser)
+  {
+    const headers = {"Content-Type":"application/json"};
+    return this._http.get<any>(
+      `${this._apiUrl}/approved/${idUser}`, {headers}
+    );
+  }
+
+  getDenegated(idUser)
+  {
+    const headers = {"Content-Type":"application/json"};
+    return this._http.get<any>(
+      `${this._apiUrl}/denegated/${idUser}`, {headers}
+    );
+  }
+
+  
 }

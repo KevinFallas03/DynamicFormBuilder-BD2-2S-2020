@@ -3,7 +3,7 @@
   <button id = "1" class="tablinks" (click)="changeTab('S',1)">Solicitados</button>
   <button id = "2" class="tablinks" (click)="changeTab('P',2)">Pendientes</button>
   <button id = "3" class="tablinks" (click)="changeTab('A',3)">Aprobados</button>
-  <button id = "3" class="tablinks" (click)="changeTab('A',3)">Denegados</button>
+  <button id = "4" class="tablinks" (click)="changeTab('D',4)">Denegados</button>
 </div>
 
 <div id="S" class="tabcontent">
@@ -50,67 +50,69 @@
   </div>
 </div>
 
-  <div id="A" class="tabcontent">
-
-      <h3>Formularios que he aprobado</h3>
-      <div class="col-12">
-        <div *ngFor="let pendingForm of pendingForms">
-            <div class="container">
-            <div class="card">
-              <div class="row">
-                <div class="face face1">
-                    <div class="content">
-                        <h3>{{ pendingForm.name }}</h3>
-                      <p >Aplicante: {{ pendingForm.applicant }}</p>
-                    </div>
-                </div>
-              <div class="face face2">
-                  <div style="width: 100%; height: 100%; text-align: center;" routerLink="/showform/{{ pendingForm._id }}/{{true}}" class="btn btn-outline-success">Ver</div>
-              </div>
+<div id="A" class="tabcontent">
+  <h3>Formularios que he aprobado</h3>
+  <div class="col-12">
+    <div *ngFor="let approvedForm of approvedFormsByMe">
+      <div class="container">
+        <div class="card">
+          <div class="row">
+            <div class="face face1">
+              <div class="content">
+                <h3>{{ approvedForm.name }}</h3>
+                <p> Estado general: {{ approvedForm.status }}</p>
               </div>
             </div>
+            <div class="face face2">
+              <div style="width: 100%; height: 100%; text-align: center;" routerLink="/showform/{{ approvedForm._id }}/{{false}}" class="btn btn-outline-success">Ver</div>
             </div>
+          </div>
         </div>
       </div>
-
-
-      <h3>Formularios que me han aprobado</h3>
-      <div class="col-12">
-        <div *ngFor="let pendingForm of pendingForms">
-            <div class="container">
-            <div class="card">
-              <div class="row">
-                <div class="face face1">
-                    <div class="content">
-                        <h3>{{ pendingForm.name }}</h3>
-                      <p >Aplicante: {{ pendingForm.applicant }}</p>
-                    </div>
-                </div>
-              <div class="face face2">
-                  <div style="width: 100%; height: 100%; text-align: center;" routerLink="/showform/{{ pendingForm._id }}/{{true}}" class="btn btn-outline-success">Ver</div>
-              </div>
-              </div>
-            </div>
-            </div>
-        </div>
+    </div>
   </div>
 
-  <div id="D" class="tabcontent">
 
-    <h3>Formularios que he denegado</h3>
+    <h3>Formularios que me han aprobado</h3>
     <div class="col-12">
-      <div *ngFor="let pendingForm of pendingForms">
+      <div *ngFor="let approvedForm2 of approvedFormsForMe">
           <div class="container">
           <div class="card">
             <div class="row">
               <div class="face face1">
                   <div class="content">
-                      <h3>{{ pendingForm.name }}</h3>
-                    <p >Aplicante: {{ pendingForm.applicant }}</p>
+                    <h3>{{ approvedForm2.name }}</h3>
+                    <p> Estado general: {{ approvedForm2.status }}</p>
                   </div>
               </div>
             <div class="face face2">
-                <div style="width: 100%; height: 100%; text-align: center;" routerLink="/showform/{{ pendingForm._id }}/{{true}}" class="btn btn-outline-success">Ver</div>
+                <div style="width: 100%; height: 100%; text-align: center;" routerLink="/showform/{{ approvedForm2._id }}/{{false}}" class="btn btn-outline-success">Ver</div>
+            </div>
+            </div>
+          </div>
+          </div>
+      </div>
+  </div>
+
+  
+</div>
+
+<div id="D" class="tabcontent">
+
+    <h3>Formularios que he denegado</h3>
+    <div class="col-12">
+      <div *ngFor="let denegatedForm of denegatedFormsByMe">
+          <div class="container">
+          <div class="card">
+            <div class="row">
+              <div class="face face1">
+                  <div class="content">
+                    <h3>{{ denegatedForm.name }}</h3>
+                    <p> Estado general: {{ denegatedForm.status }}</p>
+                  </div>
+              </div>
+            <div class="face face2">
+                <div style="width: 100%; height: 100%; text-align: center;" routerLink="/showform/{{ denegatedForm._id }}/{{false}}" class="btn btn-outline-success">Ver</div>
             </div>
             </div>
           </div>
@@ -121,24 +123,23 @@
 
     <h3>Formularios que me han denegado</h3>
     <div class="col-12">
-      <div *ngFor="let pendingForm of pendingForms">
+      <div *ngFor="let denegatedForm2 of denegatedFormsForMe">
           <div class="container">
           <div class="card">
             <div class="row">
               <div class="face face1">
                   <div class="content">
-                      <h3>{{ pendingForm.name }}</h3>
-                    <p >Aplicante: {{ pendingForm.applicant }}</p>
+                    <h3>{{ denegatedForm2.name }}</h3>
+                    <p> Estado general: {{ denegatedForm2.status }}</p>
                   </div>
               </div>
             <div class="face face2">
-                <div style="width: 100%; height: 100%; text-align: center;" routerLink="/showform/{{ pendingForm._id }}/{{true}}" class="btn btn-outline-success">Ver</div>
+                <div style="width: 100%; height: 100%; text-align: center;" routerLink="/showform/{{ denegatedForm2._id }}/{{false}}" class="btn btn-outline-success">Ver</div>
             </div>
             </div>
           </div>
           </div>
       </div>
-</div>
 
 
 </div>

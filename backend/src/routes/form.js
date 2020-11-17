@@ -3,17 +3,19 @@ const router = express.Router();
 
 const formController = require("../controllers/form");
 
-router.get("/requested/:id", formController.getRequested); // tengo que sacar el user actual
+router.get("/requested/:id", formController.getRequested); 
 
-router.get("/", formController.getAproved); // aproved
+router.get("/approvedByMe/:id", formController.getApprovedByMe); 
 
-router.get("/pending/:id", formController.getPending); // pending
+router.get("/denegatedByMe/:id", formController.getDenegatedByMe); 
 
-router.get("/", formController.getAll); // getAll
+router.get("/approved/:id", formController.getApproved); 
 
-router.get("/:id", formController.getById); // getAll
+router.get("/denegated/:id", formController.getDenegated); 
 
-router.post("/", formController.create);
+router.get("/pending/:id", formController.getPending); 
+
+router.get("/:id", formController.getById); 
 
 router.put("/approved/:info", formController.edit); // hace la funcion de aprobar
 
