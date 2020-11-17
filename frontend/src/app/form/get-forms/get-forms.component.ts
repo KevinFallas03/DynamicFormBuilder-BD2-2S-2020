@@ -27,14 +27,14 @@ export class GetFormsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let idUser = "5fab7bd9e5288a1424748f02";
+    let idUser = "5fb2132805951313280461f0";
     this.getRequested(idUser);
   }
 
   changeTab(idTab,id) {
 
     console.log("estoy cambiando");
-    let userId = "5fab7bd9e5288a1424748f02"
+    let userId = "5fb2132805951313280461f0"
     switch(id)
     {
       case 1: // solicitudes
