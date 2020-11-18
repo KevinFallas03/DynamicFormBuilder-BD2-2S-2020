@@ -9,10 +9,10 @@ import { GetOneComponent } from './get-one/get-one.component';
 
 const routes: Routes = [
   { path: 'get', component: GetComponent},
-  { path: 'view/:id', component: GetOneComponent},
+  { path: 'get/view/:id', component: GetOneComponent},
   { path: '', component: MenuComponent },
   { path: 'create', component: CreateComponent },
-  { path: 'update/:id', component: EditComponent }
+  { path: 'get/update/:id', component: EditComponent }
 ];
 
 @NgModule({

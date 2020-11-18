@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { field, value } from '../../global.model';
 import swal from 'sweetalert2';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 import { TemplateBuilderService } from '../template-builder.service';
 import { AuthserviceService } from 'src/app/services/auth/authservice.service';
@@ -22,7 +23,8 @@ export class GetOneComponent implements OnInit {
     public route: ActivatedRoute,
     public router: Router,
     private _templateBuilderService:TemplateBuilderService,
-    private authService : AuthserviceService
+    private authService : AuthserviceService,
+    private _location: Location,
   ) { }
 
   ngOnInit(): void {

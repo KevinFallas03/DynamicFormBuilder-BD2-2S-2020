@@ -2,8 +2,8 @@
 <div *ngIf="selectedTemplate" class="jumbotron">
   <body>
   <h2 class="display-4" >Rutas de aprobacion</h2>
-  <p class="lead" >Aca poder crear y eliminar las rutas de aprobacion para la plantilla '{{ selectedTemplate.name }}'</p>
-  <input type="button" class="btn btn-info" routerLink="get" value="Volver a inicio">
+  <p class="lead" >Aca podes crear y eliminar las rutas de aprobacion para la plantilla '{{ selectedTemplate.name }}'</p>
+  <input type="button" class="btn btn-info" routerLink="/get" value="Volver a inicio">
 
   <div style="height: 40px;"></div>
 
@@ -37,18 +37,16 @@
 
 <h1 class="display-4 text-center" >Rutas existentes</h1>
 <body> 
-  <div >
+  <div>
 
     <div *ngFor="let ap of approvals" class="row " style="
     margin-bottom: 2%; 
     border-radius: 25px;
     background: rgb(60, 124, 219);
-    width: 45%;
-    height: 60px;
-    size:100%;
+    width: 60%;
+    height: 60%;
     align-items: center;
-    padding-left: 3%;
-    margin-left: 18%;"
+    padding-left: 3%;"
     >
       <div class="dropdown mat-container" style="margin-right: 2%;">
         <button class="dropbtn">Autores</button>
@@ -64,9 +62,9 @@
         </div>
       </div>
 
-      <input type="button" class="btn btn-dark mat-container" value="Aprobacion con: {{ap.minimumApprovalAmount}} permisos" style="margin-right: 2%;">
+      <input type="button" class="btn btn-dark mat-container" value="Aprobacion con: {{ap.minimumApprovalAmount}} permisos" style="margin-right: 10%;">
 
-      <div class=" mat-container " style="margin-right: 2%;">
+      <div class=" mat-container ">
         <a class="btn btn-info list-group-item " (click)="deleteById(ap._id)" style="background-color: red;"><i class="fa fa-trash" aria-hidden="true"style="color: white;" ></i></a>   
       </div>
 
