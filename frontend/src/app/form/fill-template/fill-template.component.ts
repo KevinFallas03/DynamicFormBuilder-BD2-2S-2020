@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { field, value } from '../../global.model';
 import swal from 'sweetalert2';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import {Location} from '@angular/common';
+
 
 import { FormService } from '../form.service';
 import { TemplateBuilderService } from '../../template-builder/template-builder.service';
@@ -30,7 +32,8 @@ export class FillTemplateComponent implements OnInit {
   constructor(
     private _formService: FormService,
     public route: ActivatedRoute,
-    private _templateBuilderService:TemplateBuilderService
+    private _templateBuilderService:TemplateBuilderService,
+    private _location: Location
   ) { }
 
   ngOnInit(): void {
@@ -96,7 +99,7 @@ export class FillTemplateComponent implements OnInit {
     this._formService.post(this.filledForm).subscribe( 
       data => {
         swal.fire('Enhorabuena','El formulario se ha subido exitosamente','success');
-        console.log(data);
+        this._location.back();
       }
     )
   }

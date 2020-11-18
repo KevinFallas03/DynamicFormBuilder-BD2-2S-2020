@@ -13,6 +13,8 @@ router.get("/approved/:id", formController.getApproved);
 
 router.get("/denegated/:id", formController.getDenegated); 
 
+router.post("/", formController.create);
+
 router.get("/pending/:id", formController.getPending); 
 
 router.get("/:id", formController.getById); 
