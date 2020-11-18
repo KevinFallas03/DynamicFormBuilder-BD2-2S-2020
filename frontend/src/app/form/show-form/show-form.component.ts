@@ -1,3 +1,4 @@
+import { AuthserviceService } from 'src/app/services/auth/authservice.service';
 import { Component, OnInit } from '@angular/core';
 import { field, value } from '../../global.model';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
@@ -16,17 +17,24 @@ export class ShowFormComponent implements OnInit {
   model:any = {}
   formId : string;
   pending : boolean;
+  userId : string;
 
   constructor(
       private _formService: FormService,
       private _approvalService: ApprovalsService,
       public route: ActivatedRoute,
-      private _location: Location
+      private _location: Location,
+      private authService : AuthserviceService
       ) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params: ParamMap) => {
 
+    if (!this.authService.tryAccess())
+      return;
+
+    this.userId = this.authService.getLoggedUser()._id;
+
+    this.route.paramMap.subscribe((params: ParamMap) => {
         this.formId = params.get('_id');
         this.pending = JSON.parse(params.get('pending'));
         console.log(this.formId);
@@ -44,37 +52,20 @@ export class ShowFormComponent implements OnInit {
 
   approveForm(isApproved){
 
-      // poner el usuario automatico
+    let approvalData = '{"userId":"'+this.userId+'","formId":"'+this.formId+'","approved":"'+isApproved+'"}'; 
 
-    
-
-    let userId = "5fab7bd9e5288a1424748f02"
-
-    let prueba = '{"userId":"'+userId+'","formId":"'+this.formId+'","approved":"'+isApproved+'"}'; 
-
-    console.log("donde estoy");
-    this._approvalService.getTemplatesByUser(userId).subscribe(
+    this._approvalService.getTemplatesByUser(this.userId).subscribe(
       data => {
-        
         var list= JSON.stringify(data)
         var res = list.substring(1);
-        var mm = '['+prueba+','+res;
+        var finalData = '['+approvalData+','+res;
 
-      
-        console.log(mm)
-
-        this._formService.approveForm(mm).subscribe(
+        this._formService.approveForm(finalData).subscribe(
           data2 => {
-            // me retorna el objeto 
-            console.log(data2);
-    
-            // form.id
-            
+            console.log(data2);   
           }
         );
-        
       }
-
     );  
 
    this._location.back();

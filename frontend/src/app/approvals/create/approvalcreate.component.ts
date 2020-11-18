@@ -31,11 +31,15 @@ export class ApprovalCreateComponent implements OnInit {
     private authService : AuthserviceService,
     private templateService : TemplateBuilderService,
     public route: ActivatedRoute,
-    public router : Router
+    public router : Router,
   ) 
   { }
 
   ngOnInit() {
+
+    if (!this.authService.tryAccess())
+      return;
+    
     this.route.paramMap.subscribe( (params: ParamMap) => {
       let id = params.get('_id');
       this.getById(id);

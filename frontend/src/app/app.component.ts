@@ -42,6 +42,7 @@ export class AppComponent {
     .subscribe(
       data => {
         localStorage.removeItem('authToken');
+        localStorage.removeItem('loggedUser');
         this.router.navigate(['/']);
       },
       error => {console.log("error")}

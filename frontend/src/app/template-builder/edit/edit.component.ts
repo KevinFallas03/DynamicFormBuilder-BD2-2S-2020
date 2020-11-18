@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import swal from 'sweetalert2';
 
 import { TemplateBuilderService } from '../template-builder.service';
+import { AuthserviceService } from 'src/app/services/auth/authservice.service';
 
 @Component({
   selector: 'app-edit',
@@ -165,10 +166,15 @@ export class EditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private _templateBuilderService: TemplateBuilderService
+    private _templateBuilderService: TemplateBuilderService,
+    private authService : AuthserviceService,
   ) { }
 
   ngOnInit() {
+
+    if (!this.authService.tryAccess())
+      return;
+
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.templateId = params.get('id'); //'5fae39ce27537125f4836267';//
       this.getTemplateById();

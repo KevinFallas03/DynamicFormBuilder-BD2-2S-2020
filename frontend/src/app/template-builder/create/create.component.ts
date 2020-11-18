@@ -173,7 +173,8 @@ export class CreateComponent implements OnInit {
 
   ngOnInit() {
 
-
+    if (!this.authService.tryAccess())
+      return;
     /*
       Checks if the user is an administrator in order to let them access.
     */
