@@ -76,6 +76,10 @@ export class ApprovalCreateComponent implements OnInit {
     this.approvalService.deleteById(id).subscribe(
       (data:any) => {
         this.updateApprovalByTemplate();
+        swal.fire({
+          icon: 'success',
+          title: 'Se ha eliminado la ruta correctamente',
+        });
       }
     );
   }
