@@ -1,3 +1,4 @@
+import { AuthserviceService } from 'src/app/services/auth/authservice.service';
 import { Component, OnInit } from '@angular/core';
 import { FormService } from '../form.service';
 import { ApprovalsService } from '../../approvals/service/approvals.service';
@@ -23,18 +24,22 @@ export class GetFormsComponent implements OnInit {
 
   constructor(
     private _formService: FormService,
-    private _ApprovalsService: ApprovalsService
+    private _ApprovalsService: ApprovalsService,
+    private authService : AuthserviceService
   ) { }
 
   ngOnInit(): void {
-    let idUser = "5fab7bd9e5288a1424748f02";
-    this.getRequested(idUser);
+    
+    if (!this.authService.tryAccess())
+      return;
+
+    this.getRequested(this.authService.getLoggedUser()._id);
   }
 
   changeTab(idTab,id) {
 
     console.log("estoy cambiando");
-    let userId = "5fab7bd9e5288a1424748f02"
+    let userId = this.authService.getLoggedUser()._id;
     switch(id)
     {
       case 1: // solicitudes

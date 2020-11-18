@@ -1,3 +1,4 @@
+import { AuthserviceService } from 'src/app/services/auth/authservice.service';
 import { Component, OnInit } from '@angular/core';
 import swal from 'sweetalert2';
 import { FormService } from '../form.service';
@@ -17,14 +18,19 @@ export class GetTemplatesComponent implements OnInit {
   constructor(
     private _formService: FormService,
     private _TemplateBuilderService: TemplateBuilderService,
-    private _ApprovalsService :ApprovalsService
+    private _ApprovalsService :ApprovalsService,
+    private authService : AuthserviceService
     ) { }
 
   ngOnInit(): void {
+
+    if (!this.authService.tryAccess())
+      return;
+
     this.get();
   }
-  get(){
-    this._ApprovalsService.getTemplatesByAuthor("5fb0d06254e6012c84906589").subscribe(
+  get() {
+    this._ApprovalsService.getTemplatesByAuthor(this.authService.getLoggedUser()._id).subscribe(
       data => {
         var templates=[];
         data.forEach(element => {

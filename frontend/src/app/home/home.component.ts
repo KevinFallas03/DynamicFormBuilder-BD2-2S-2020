@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private authService: AuthserviceService,
-    private router: Router
+    private router: Router,
     ) { }
 
   ngOnInit(): void {
@@ -22,11 +22,7 @@ export class HomeComponent implements OnInit {
     document.body.style.backgroundAttachment = 'fixed';
     document.body.style.backgroundSize = "100% 100%"
     
-    if (!localStorage.getItem("authToken")) {
-      this.router.navigate(['/']); // Redirects to home with a get request
-    } else {
-      this.loadHome();
-    }
+    this.authService.tryAccess();
   }
 
   // Logs a user through the login route.

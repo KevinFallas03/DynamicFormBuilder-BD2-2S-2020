@@ -4,6 +4,7 @@ import swal from 'sweetalert2';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import { TemplateBuilderService } from '../template-builder.service';
+import { AuthserviceService } from 'src/app/services/auth/authservice.service';
 
 @Component({
   selector: 'app-get-one',
@@ -20,10 +21,15 @@ export class GetOneComponent implements OnInit {
   constructor(
     public route: ActivatedRoute,
     public router: Router,
-    private _templateBuilderService:TemplateBuilderService
+    private _templateBuilderService:TemplateBuilderService,
+    private authService : AuthserviceService
   ) { }
 
   ngOnInit(): void {
+
+    if (!this.authService.tryAccess())
+      return;
+
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.templateId = params.get('id');
       this.getTemplateById();

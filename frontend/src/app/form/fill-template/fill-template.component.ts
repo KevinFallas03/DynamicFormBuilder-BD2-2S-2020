@@ -1,3 +1,4 @@
+import { AuthserviceService } from 'src/app/services/auth/authservice.service';
 import { Component, OnInit } from '@angular/core';
 import { field, value } from '../../global.model';
 import swal from 'sweetalert2';
@@ -30,10 +31,15 @@ export class FillTemplateComponent implements OnInit {
   constructor(
     private _formService: FormService,
     public route: ActivatedRoute,
-    private _templateBuilderService:TemplateBuilderService
+    private _templateBuilderService:TemplateBuilderService,
+    private authService : AuthserviceService
   ) { }
 
   ngOnInit(): void {
+
+    if (!this.authService.tryAccess())
+      return;
+
     this.route.paramMap.subscribe((params: ParamMap) => {
 
       this.templateId = params.get('_id');
@@ -85,7 +91,7 @@ export class FillTemplateComponent implements OnInit {
     this.filledForm.template = this.model._id;
     this.filledForm.name = this.model.name;
     this.filledForm.description = this.model.description;
-    this.filledForm.applicant = "5fab7bd9e5288a1424748f02";
+    this.filledForm.applicant = this.authService.getLoggedUser()._id;
 
     this.model.attributes.forEach((element:{label,value,values,type,required}) => {
       const { label,value,values,type,required } = element;

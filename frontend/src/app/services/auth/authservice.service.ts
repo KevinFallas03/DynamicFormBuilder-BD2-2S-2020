@@ -1,8 +1,9 @@
+import swal from 'sweetalert2';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user/user';
-
 
 
 // Service to login and register a user
@@ -15,7 +16,7 @@ export class AuthserviceService {
   private AUTH_SERVER: string = 'http://localhost:3000';
   public token: string;
 
-  constructor(private httpclient: HttpClient) { }
+  constructor(private httpclient: HttpClient, private router : Router) { }
 
 
   // Method to log in a user through injections
@@ -66,4 +67,25 @@ export class AuthserviceService {
     return this.httpclient.post(`${this.AUTH_SERVER}/home/logoff`, {}, headers);
   }
 
+  getUserByToken(token){
+    return this.httpclient.get(`${this.AUTH_SERVER}/userByToken/${token}`);
+  }
+
+  getLoggedUser(){
+    let loggedUser = localStorage.getItem("loggedUser");
+    return JSON.parse(loggedUser) || {};
+  }
+
+  tryAccess() {
+    if (!localStorage.getItem("authToken")) {
+      swal.fire({
+        icon: 'info',
+        title: 'Necesitas iniciar sesion para acceder',
+        text: 'Inicia sesion o crea una nueva cuenta para empezar!'
+      })
+      this.router.navigate(['/']); // Redirects to home with a get request
+      return false;
+    }
+    return true;
+  }
 }
