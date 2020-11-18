@@ -44,7 +44,7 @@ export class GetFormsComponent implements OnInit {
     switch(id)
     {
       case 1: // solicitudes
-
+        this.getRequested(userId);
         break;
       case 2:
         this.getPending(userId);
