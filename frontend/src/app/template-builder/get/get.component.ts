@@ -55,9 +55,9 @@ export class GetComponent implements OnInit {
     this._ApprovalsService.getQuantityByTemplate(id).subscribe(
       (quantity:any) => {
         if(quantity.count == 0){
-          return  "Borrador"
+          this.type =  "Borrador"
         }else{
-          return "No Borrador"
+          this.type = "Completo"
         }
       }
     );
