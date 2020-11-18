@@ -7,6 +7,8 @@ import {Location} from '@angular/common';
 import { FormService } from '../form.service';
 import { ApprovalsService } from 'src/app/approvals/service/approvals.service';
 
+import swal from 'sweetalert2'
+
 @Component({
   selector: 'app-show-form',
   templateUrl: './show-form.component.html',
@@ -37,7 +39,6 @@ export class ShowFormComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
         this.formId = params.get('_id');
         this.pending = JSON.parse(params.get('pending'));
-        console.log(this.formId);
         this.getFormById(this.formId);
       })
   }
@@ -45,7 +46,6 @@ export class ShowFormComponent implements OnInit {
     this._formService.getById(formId).subscribe(
       data => {
         this.model = data; 
-        console.log(data);
       }
     );
   }
@@ -62,7 +62,7 @@ export class ShowFormComponent implements OnInit {
 
         this._formService.approveForm(finalData).subscribe(
           data2 => {
-            console.log(data2);   
+            swal.fire('Enhorabuena','Se ha registrado su respuesta a este formulario.','success');
           }
         );
       }

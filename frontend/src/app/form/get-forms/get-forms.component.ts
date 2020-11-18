@@ -38,7 +38,6 @@ export class GetFormsComponent implements OnInit {
 
   changeTab(idTab,id) {
 
-    console.log("estoy cambiando");
     let userId = this.authService.getLoggedUser()._id;
     switch(id)
     {

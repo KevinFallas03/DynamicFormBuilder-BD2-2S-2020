@@ -67,7 +67,6 @@ export class EditComponent implements OnInit {
         this.selectedUser.lastName = data[0].lastName;
         this.selectedUser.secondLastName = data[0].secondLastName;
         this.selectedUser.email = data[0].email;
-        console.log(data);
         this.isSelected = true;
       },
       error => {
@@ -79,7 +78,6 @@ export class EditComponent implements OnInit {
 
 
   editUser() {
-    console.log(this.selectedUser.isAdmin);
 
     this.authService.updateUser(this.selectedUser)
     .subscribe(

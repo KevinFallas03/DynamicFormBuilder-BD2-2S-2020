@@ -129,7 +129,6 @@ formController.getApproved = async (req, res) => {
 
     try {
         const aprovalsOfUser = await Form.find( {'applicant' : id , 'status' : "Aprobado"} )
-        console.log(aprovalsOfUser)
         res.status(202).send(aprovalsOfUser);
     } catch (err) {
         res.status(500).json(
@@ -161,8 +160,6 @@ formController.getDenegated = async (req, res) => {
 formController.edit = async (req, res) => {
     var {info} =  req.params;
     var approvalInfo = JSON.parse(info)
-    console.log("informacion")
-    console.log(approvalInfo)
 
     // se puede usar el shift pero validar el id
     var data = {}
@@ -174,7 +171,6 @@ formController.edit = async (req, res) => {
     try { 
         // Se añade el aprobador en la lista con el booleano true or false
         const updatedApproval = await Form.updateOne({ _id: approvalInfo[0].formId }, { $addToSet: { approvers: [data] }});
-        res.status(202).send(updatedApproval);
 
         // Se saca el form actual, con los aprobadores actualizados
         const actualForm = await Form.findOne({ _id: approvalInfo[0].formId })
@@ -192,7 +188,7 @@ formController.edit = async (req, res) => {
         // obtiene el numero de personas que le dieron positivo al form
         var numApprovers = 0
         actualForm.approvers.forEach(e => {
-            if(e.approved == "true"){
+            if(e.approved){
                 numApprovers++;
             }
          });

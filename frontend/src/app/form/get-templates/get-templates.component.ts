@@ -40,7 +40,6 @@ export class GetTemplatesComponent implements OnInit {
         this._TemplateBuilderService.getManyById(JSON.stringify(jsonTemplates)).subscribe(
           data => {
             this.templates = data
-            console.log(data);
           }
         );
       }

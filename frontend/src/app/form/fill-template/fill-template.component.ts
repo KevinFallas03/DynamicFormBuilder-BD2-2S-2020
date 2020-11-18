@@ -66,7 +66,6 @@ export class FillTemplateComponent implements OnInit {
     let valid = true;
     let validationArray = JSON.parse(JSON.stringify(this.model.attributes));
     validationArray.reverse().forEach(field => {
-      //console.log(field.label+'=>'+field.required+"=>"+field.value);
       if(field.required && !field.value && field.type != 'checkbox'){
         swal.fire('Error','Please enter '+field.label,'error');
         valid = false;
@@ -100,7 +99,6 @@ export class FillTemplateComponent implements OnInit {
       const { label,value,values,type,required } = element;
       this.formFields.push({ label,value,values,type,required });
     });
-    console.log(this.filledForm);
     
     this._formService.post(this.filledForm).subscribe( 
       data => {
