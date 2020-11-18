@@ -75,7 +75,7 @@ formController.getPending = async (req, res) => {
     try {
         
         const isApprovedAlready = await Form.find({$and : [ {'approvers.user' : {$nin : user.userId}}, 
-        { template: { $in: templateList } } ]})
+        { template: { $in: templateList } } ]}).populate({'path':"applicant", "select":"username"})
         res.status(202).send(isApprovedAlready);
     } catch (err) {
         res.status(500).json(
