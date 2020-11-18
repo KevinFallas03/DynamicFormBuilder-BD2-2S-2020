@@ -34,10 +34,12 @@ export class GetFormsComponent implements OnInit {
       return;
 
     this.getRequested(this.authService.getLoggedUser()._id);
+    this.changeTab(localStorage['id1'],parseInt(localStorage['id2']));
   }
 
   changeTab(idTab,id) {
 
+    this.saveData(idTab,id);
     let userId = this.authService.getLoggedUser()._id;
     switch(id)
     {
@@ -76,7 +78,10 @@ export class GetFormsComponent implements OnInit {
     document.getElementById(idTab).style.display = "block";
 
   }
-
+  saveData(id1,id2){
+    localStorage['id1'] = id1;
+    localStorage['id2'] = id2;
+  }
   getRequested(idUser){
     this._formService.getFormsByRequester(idUser).subscribe(
       data => {

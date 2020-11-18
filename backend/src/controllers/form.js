@@ -23,7 +23,7 @@ formController.get = async (req, res) => {
 formController.getRequested = async (req, res) => {
     var userId  = req.params.id;
     try {
-        const formsbyUserId = await Form.find({ applicant:userId });
+        const formsbyUserId = await Form.find({ applicant:userId,status:'Pendiente' });
         res.status(202).send(formsbyUserId);
     } catch (err) {
         res.status(500).json(
