@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthserviceService } from 'src/app/services/auth/authservice.service';
 import swal from 'sweetalert2';
 import { TemplateBuilderService } from '../template-builder.service';
+import { ApprovalsService } from '../../approvals/service/approvals.service'
 
 @Component({
   selector: 'app-get',
@@ -13,10 +14,12 @@ import { TemplateBuilderService } from '../template-builder.service';
 export class GetComponent implements OnInit {
 
   templates:any = [{}];
-
+  type = "";
+  message = "";
   constructor(
     private _templateBuilderService: TemplateBuilderService,
     private authService: AuthserviceService,
+    private _ApprovalsService :ApprovalsService,
     private router: Router
     ) { }
 
@@ -45,6 +48,17 @@ export class GetComponent implements OnInit {
     this._templateBuilderService.getAll().subscribe(
       data => {
         this.templates = data
+      }
+    );
+  }
+  haveRoutes(id){
+    this._ApprovalsService.getQuantityByTemplate(id).subscribe(
+      (quantity:any) => {
+        if(quantity.count == 0){
+          return  "Borrador"
+        }else{
+          return "No Borrador"
+        }
       }
     );
   }

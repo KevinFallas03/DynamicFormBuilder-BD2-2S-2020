@@ -5,7 +5,11 @@ const approvalController = require("../controllers/approvalController");
 
 router.get("/templates/:id", approvalController.get);
 
+router.get("/allTemplates", approvalController.getAllTemplates);
+
 router.get("/pending/byUser/:userId", approvalController.getPendingByUser);
+
+router.get("/templates/quantity/:id", approvalController.getQuantityById);
 
 router.get("/pending/:id", approvalController.getPending);
 

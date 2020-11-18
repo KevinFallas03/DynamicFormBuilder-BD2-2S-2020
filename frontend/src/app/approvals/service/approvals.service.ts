@@ -16,6 +16,12 @@ export class ApprovalsService {
     );
   }
 
+  getQuantityByTemplate(id) {
+    return this._http.get<any>(
+      `${this._apiUrl}/templates/quantity/${id}`
+    );
+  }
+
   getTemplatesByUser(id) {
     return this._http.get<any>( `${this._apiUrl}/pending/byUser/${id}`);
   }

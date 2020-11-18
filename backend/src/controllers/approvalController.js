@@ -26,11 +26,40 @@ approvalController.get = async (req, res) => {
         );
     }   
 };
+approvalController.getQuantityById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const quantity = await Approval.find({ "template":{_id:id}}).count();
+        const jsonInt = {count:quantity}
+        res.status(202).send(jsonInt);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'Approval get request failed', 
+              error: err
+            }
+        );
+    }   
+};
 
 approvalController.getTemplatesByAuthor = async (req, res) => {
     try {
         const approvalByTemplateName = await Approval.find( {"authors":{"_id" : req.params.id }} , {'template':1});
         res.status(202).send(approvalByTemplateName);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'Approval get request failed', 
+              error: err
+            }
+        );
+    }   
+};
+
+approvalController.getAllTemplates = async (req, res) => {
+    try {
+        const allTemplates = await Approval.find( {} , {'template':1});
+        res.status(202).send(allTemplates);
     } catch (err) {
         res.status(500).json(
             { 
