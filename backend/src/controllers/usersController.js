@@ -25,14 +25,12 @@ usersController.createUser = async (req, res) => {
         isAdmin: req.body.isAdmin
     });
 
-    const token = await newUser.generateToken();
-
     // Tries to save the user
     try {
         await newUser.save();
 
         // 201: user was created and saved successfully
-        res.status(201).send({newUser, token});
+        res.status(201).send({newUser});
 
         // TODO - UnhandledPromiseRejectionWarning on duplicate usernames.
 

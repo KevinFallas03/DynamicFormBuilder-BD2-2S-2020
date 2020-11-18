@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user';
 import { AuthserviceService } from 'src/app/services/auth/authservice.service';
 
+import swal from 'sweetalert2'
+
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -82,32 +84,54 @@ export class EditComponent implements OnInit {
     this.authService.updateUser(this.selectedUser)
     .subscribe(
       data => {
-        console.log(data);
+        swal.fire({
+          icon: 'success',
+          title: 'Usuario actualizados',
+          text: `Se ha actualizado la información de ${this.selectedUser.username}.`,
+          confirmButtonText: "Listo."
+        }).then((result) => { 
+          // Recarga la pagina 
+          window.location.reload();
+        });
       },
       error => {
-        console.log(error);
+        swal.fire({
+          icon: 'error',
+          title: 'Oh no!',
+          text: `No se pudo actualizar la información de ${this.selectedUser.username}.`
+        })
       }
     )
-
-    // Recarga la pagina 
-    window.location.reload();
   }
 
+  
   deleteUser() {
     // Borra el usuario tomando el id
     this.authService.deleteUser(this.selectedUser)
     .subscribe(
       data => {
-        console.log(data);
+        swal.fire({
+          icon: 'success',
+          title: 'Usuarios actualizados',
+          text: `Se ha borrado ${this.selectedUser.username} del sistema.`,
+          confirmButtonText: "Listo."
+        }).then((result) => { 
+          // Recarga la pagina 
+          window.location.reload();
+        });
       },
       error => {
-        console.log(error);
+        swal.fire({
+          icon: 'error',
+          title: 'Oh no!',
+          text: `No se pudo borrar a ${this.selectedUser.username} del sistema.`
+        })
       }
     );
 
+    
 
-    // Recarga la pagina 
-    window.location.reload();
+
   }
 
 

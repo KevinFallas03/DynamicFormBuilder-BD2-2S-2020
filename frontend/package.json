@@ -33,7 +33,7 @@
     "bootstrap": "^4.5.3",
     "ngx-drag-drop": "^2.0.0",
     "rxjs": "~6.6.0",
-    "sweetalert2": "^10.9.1",
+    "sweetalert2": "^10.10.1",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

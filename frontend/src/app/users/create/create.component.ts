@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user';
 import { AuthserviceService } from 'src/app/services/auth/authservice.service';
 
+import swal from 'sweetalert2';
+
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -45,11 +47,23 @@ export class CreateComponent implements OnInit {
     .subscribe(
       
       data => {
-        console.log("User created succesfully");
+          swal.fire({
+            icon: 'success',
+            title: 'Usuario creado!',
+            text: `Se ha creado ${this.userModel.username}.`,
+            confirmButtonText: "Listo."
+          }).then((result) => { 
+          // Recarga la pagina 
+          this.router.navigate(['/users']);
+        });
       },
 
       error => {
-        console.log("Something went wrong creating the user");
+        swal.fire({
+          icon: 'error',
+          title: 'Oh no!',
+          text: `No se pudo crear al usuario ${this.userModel.username}.`
+        })
       }
     
     );
