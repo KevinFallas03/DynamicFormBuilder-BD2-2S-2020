@@ -34,7 +34,7 @@ export class FillTemplateComponent implements OnInit {
     private _formService: FormService,
     public route: ActivatedRoute,
     private _templateBuilderService:TemplateBuilderService,
-    private _location: Location
+    private _location: Location,
     private authService : AuthserviceService
   ) { }
 
