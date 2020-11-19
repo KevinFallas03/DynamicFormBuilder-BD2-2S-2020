@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
         willClose: () => {
           clearInterval(timerInterval)
         }
-      }).then((result) => {})
+      }) 
     }
     if(localStorage["isLogged"] == "true"){
       localStorage.setItem("isLogged", "false");
