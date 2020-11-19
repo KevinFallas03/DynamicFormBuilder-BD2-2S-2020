@@ -13,7 +13,7 @@ import { User } from 'src/app/models/user/user';
 })
 export class AuthserviceService {
 
-  private AUTH_SERVER: string = 'http://localhost:3000';
+  private AUTH_SERVER: string = '';
   public token: string;
 
   constructor(private httpclient: HttpClient, private router : Router) { }

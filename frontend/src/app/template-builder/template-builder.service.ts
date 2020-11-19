@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TemplateBuilderService {
 
-  _apiUrl = "http://localhost:3000/api/template";
+  _apiUrl = "api/template";
 
   constructor(private _http: HttpClient) { }
 

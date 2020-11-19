@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class FormService {
   
-  _apiUrl = "http://localhost:3000/api/form";
+  _apiUrl = "api/form";
   
   constructor(private _http: HttpClient) { }
   

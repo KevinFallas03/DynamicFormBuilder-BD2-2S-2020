@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApprovalsService {
  
-  _apiUrl = "http://localhost:3000/api/approval";
+  _apiUrl = "api/approval";
   
   constructor(private _http: HttpClient) { }
 
