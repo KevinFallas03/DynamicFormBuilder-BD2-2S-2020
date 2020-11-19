@@ -29,16 +29,15 @@ export class LoginComponent implements OnInit {
   logIn() {
     this.authService.loginUser(this.userModel)
     .subscribe(
-      data => {
+      (data:{token,user:{_id,firstName,lastName}}) => {
         if (data.token) {
 
           // Saves token in localStorage
           localStorage.setItem("authToken", data.token);
+          localStorage.setItem("isLogged", "true");
 
           // Saves the user object in localStorage too...
-          localStorage.setItem("loggedUser", JSON.stringify(data.user));
-          
-          console.log(this.authService.getLoggedUser());
+          localStorage.setItem("loggedUser", JSON.stringify({_id:data.user._id,firstName:data.user.firstName,lastName:data.user.lastName}));
 
           // Redirects to home with a get request
           this.router.navigate(['/home']).then(
