@@ -34,11 +34,7 @@ const templateSchema = new Schema(
     createdBy: { 
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User' 
-    },
-    availableFor: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }]
+    }
   },
   {timestamps: true}
 );
