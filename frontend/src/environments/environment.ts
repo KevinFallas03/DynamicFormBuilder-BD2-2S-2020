@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'https://dynamic-form-builder.vercel.app'
+  url: 'https://dynamic-form-builder.vercel.app/'
 };
 
 /*
