@@ -50,7 +50,7 @@
 
 .img-wrapper h2
 {
-	background: tomato;
+	background: #333;
     font-family: Poppins;
     font-size: 30px;
 	color: #fff;
@@ -121,13 +121,13 @@
 
 .img-wrapper ul li a
 {
-	color: tomato;
+	color: #ffffff;
 	background: rgba(255,255,255,0);
 }
 
 .img-wrapper ul li i
 {
-	color: tomato;
+	color: #ffffff;
 	background: rgba(255,255,255,0);
 }
 
