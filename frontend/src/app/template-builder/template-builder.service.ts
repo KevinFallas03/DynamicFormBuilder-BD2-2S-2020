@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class TemplateBuilderService {
 
-  _apiUrl = "api/template";
+  _apiUrl = environment.url + "/api/template";
+
 
   constructor(private _http: HttpClient) { }
 

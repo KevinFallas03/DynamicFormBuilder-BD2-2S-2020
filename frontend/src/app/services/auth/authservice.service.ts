@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user/user';
+import { environment } from '../../../environments/environment'
 
 
 // Service to login and register a user
@@ -13,7 +14,7 @@ import { User } from 'src/app/models/user/user';
 })
 export class AuthserviceService {
 
-  private AUTH_SERVER: string = '';
+  private AUTH_SERVER: string = environment.url;
   public token: string;
 
   constructor(private httpclient: HttpClient, private router : Router) { }
