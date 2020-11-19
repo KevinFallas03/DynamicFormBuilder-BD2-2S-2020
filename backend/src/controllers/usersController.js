@@ -125,6 +125,12 @@ usersController.updateUser = async (req, res) => {
 
         var updatedUser = {};
 
+        if (req.body.firstName == "" || req.body.lastName == "" ||
+         req.body.email == "" || req.body.username =="") {
+            throw new Error("Invalid update");
+        }
+
+
         if (req.body.password == "") {
             updatedUser = await User.updateOne({_id: req.body.id}, {$set: {
                 firstName: req.body.firstName,

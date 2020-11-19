@@ -60,13 +60,13 @@ export class EditComponent implements OnInit {
     this.authService.getUserData(this.selectedUser)
     .subscribe(
       data => {
-        this.selectedUser.username = data[0].username;
+        this.selectedUser.username = data[0].username.trim();
         this.selectedUser.isAdmin = data[0].isAdmin;
-        this.selectedUser.firstName = data[0].firstName;
-        this.selectedUser.secondName = data[0].secondName;
-        this.selectedUser.lastName = data[0].lastName;
-        this.selectedUser.secondLastName = data[0].secondLastName;
-        this.selectedUser.email = data[0].email;
+        this.selectedUser.firstName = data[0].firstName.trim();
+        this.selectedUser.secondName = data[0].secondName.trim();
+        this.selectedUser.lastName = data[0].lastName.trim();
+        this.selectedUser.secondLastName = data[0].secondLastName.trim();
+        this.selectedUser.email = data[0].email.trim();
         this.isSelected = true;
       },
       error => {
@@ -78,31 +78,31 @@ export class EditComponent implements OnInit {
 
 
   editUser() {
-
-    this.authService.updateUser(this.selectedUser)
-    .subscribe(
-      data => {
-        swal.fire({
-          icon: 'success',
-          title: 'Usuario actualizados',
-          text: `Se ha actualizado la información de ${this.selectedUser.username}.`,
-          confirmButtonText: "Listo."
-        }).then((result) => { 
-          // Recarga la pagina 
-          window.location.reload();
-        });
-      },
-      error => {
-        swal.fire({
-          icon: 'error',
-          title: 'Oh no!',
-          text: `No se pudo actualizar la información de ${this.selectedUser.username}.`
-        })
-      }
-    )
-  }
-
+      this.authService.updateUser(this.selectedUser)
+        .subscribe(
+          data => {
+            swal.fire({
+              icon: 'success',
+              title: 'Usuario actualizados',
+              text: `Se ha actualizado la información de ${this.selectedUser.username}.`,
+              confirmButtonText: "Listo."
+            }).then((result) => { 
+              // Recarga la pagina 
+              window.location.reload();
+            });
+          },
+          error => {
+            swal.fire({
+              icon: 'error',
+              title: 'Oh no!',
+              text: `No se pudo actualizar la información de ${this.selectedUser.username}.`
+            })
+          }
+        )
+    }
   
+
+
   deleteUser() {
     // Borra el usuario tomando el id
     this.authService.deleteUser(this.selectedUser)
