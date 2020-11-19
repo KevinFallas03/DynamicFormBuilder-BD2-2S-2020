@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
 
   // Logs a user through the login route.
   loadHome() {
-    
     const opts = {headers: new HttpHeaders({
       "Authorization": `Bearer ${localStorage.getItem("authToken")}`
     })}
@@ -35,10 +34,10 @@ export class HomeComponent implements OnInit {
     this.authService.loadHome(opts)
     .subscribe(
       data => {
-        window.location.reload();
+        // console.log(data);
       }, 
       error => {
-        
+        console.log("error equis de");
       }
     );
   }
