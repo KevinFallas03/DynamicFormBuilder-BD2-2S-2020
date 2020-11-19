@@ -70,12 +70,15 @@ formController.getPending = async (req, res) => {
     var user =infoCompleta.shift();
     var templateList = infoCompleta.map( e => e.template)
 
+    console.log(infoCompleta)
+
     //Funciona
    
     try {
         
-        const isApprovedAlready = await Form.find({$and : [ {'approvers.user' : {$nin : user.userId}}, 
-        { template: { $in: templateList } } ]}).populate({'path':"applicant", "select":"username"})
+        const isApprovedAlready = await Form.find({$and : [ {'approvers.user' : {$nin : user.userId}},
+         { template: { $in: templateList } } , {status : 'Pendiente'} ]
+        }).populate({'path':"applicant", "select":"username"})
         res.status(202).send(isApprovedAlready);
     } catch (err) {
         res.status(500).json(
@@ -195,19 +198,20 @@ formController.edit = async (req, res) => {
         
         var count = Object.keys(actualForm.approvers).length
 
-        if(count == total)
-        {
-            // Cambia el estado si logra llegar al minimo o mas
-            if(numApprovers >= min)
+        console.log(min)
+        console.log(numApprovers)
+        if(numApprovers >= min)
             {
                 const changeStatus = await Form.updateOne({ _id: approvalInfo[0].formId }, { status: "Aprobado"});
                 res.status(202).send(updatedApproval);
             }
-            else{
-                const changeStatus = await Form.updateOne({ _id: approvalInfo[0].formId }, { status: "Denegado"});
-                res.status(202).send(updatedApproval);
-            }
+        else if(count == total)
+        {
+            // Cambia el estado si logra llegar al minimo o mas
+            const changeStatus = await Form.updateOne({ _id: approvalInfo[0].formId }, { status: "Denegado"});
+            res.status(202).send(updatedApproval);
         }
+        
         
 
 

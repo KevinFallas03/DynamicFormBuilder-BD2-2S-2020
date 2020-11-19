@@ -96,6 +96,7 @@ export class GetFormsComponent implements OnInit {
     this._ApprovalsService.getTemplatesByUser(idUser).subscribe(
       data => {
         
+        console.log(data)
         var info = JSON.stringify(data) 
 
         let prueba = '{"userId":"'+idUser+'"}';
