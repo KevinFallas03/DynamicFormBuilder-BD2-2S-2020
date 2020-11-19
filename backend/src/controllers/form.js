@@ -198,8 +198,6 @@ formController.edit = async (req, res) => {
         
         var count = Object.keys(actualForm.approvers).length
 
-        console.log(min)
-        console.log(numApprovers)
         if(numApprovers >= min)
             {
                 const changeStatus = await Form.updateOne({ _id: approvalInfo[0].formId }, { status: "Aprobado"});
