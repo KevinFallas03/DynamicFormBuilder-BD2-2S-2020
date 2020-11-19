@@ -33,11 +33,11 @@ export class AppComponent {
 
   // Logs off a user.
   logOut() {
-    localStorage.setItem("isLogged", "true");
+
     const opts = {headers: new HttpHeaders({
       "Authorization": `Bearer ${localStorage.getItem("authToken")}`
     })};
-    
+
     this.authService.logOut(opts)
     .subscribe(
       data => {
