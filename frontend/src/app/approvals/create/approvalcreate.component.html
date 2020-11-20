@@ -1,12 +1,9 @@
-
 <div *ngIf="selectedTemplate" class="jumbotron">
   <body>
-  <h2 class="display-4" >Rutas de aprobacion</h2>
-  <p class="lead" >Aca podes crear y eliminar las rutas de aprobacion para la plantilla '{{ selectedTemplate.name }}'</p>
-  <input type="button" class="btn btn-info" routerLink="/get" value="Volver a inicio">
-
-  <div style="height: 40px;"></div>
-
+    <h2 class="display-4" >Rutas de aprobacion</h2>
+    <p class="lead" >Aca podes crear y eliminar las rutas de aprobacion para la plantilla '{{ selectedTemplate.name }}'</p>
+    <input type="button" class="btn btn-info" routerLink="/get" value="Volver a inicio">
+    <div style="height: 40px;"></div>
       <div class="mat-container" [formGroup]="approvalForm">
         <mat-form-field appearance="fill" style="margin-left: 2%;">
           <mat-label>Autores</mat-label>
@@ -14,27 +11,22 @@
             <mat-option *ngFor="let user of users" [value]="user" value="user">{{user.username}}</mat-option>
           </mat-select>
         </mat-form-field>
-
         <mat-form-field appearance="fill" style="margin-left: 2%;">
           <mat-label >Aprobadores</mat-label>
           <mat-select  formControlName="approvers" multiple>
             <mat-option (click)="validateInput(input)" *ngFor="let user of users" [value]="user" value="user">{{user.username}}</mat-option>
           </mat-select>
         </mat-form-field>
-
         <mat-form-field hintLabel="" appearance="fill" style="margin-left: 2%;">
           <mat-label>Minima cantidad para aprobacion</mat-label>
           <input matInput #input maxlength="approvalForm.approvers" type="number" min="0" formControlName="minimumApprovalAmount" (click)="validateInput($event)">
           <mat-hint align="end">{{input.value || 0}}/{{ approvalForm.value.approvers.length }} aprobadores</mat-hint>
         </mat-form-field>
-
-         <input style="margin-left:2%" type="submit" (click)="onSubmit(approvalForm.value)"class="btn btn-success form-group" value="Agregar ruta">
+        <input style="margin-left:2%" type="submit" (click)="onSubmit(approvalForm.value)"class="btn btn-success form-group" value="Agregar ruta">
       </div>
     </body>
 </div> <!-- jumbotron --> 
-
 <!-- Seleccionar autores y aprovadores  -->
-
 <h1 class="display-4 text-center" >Rutas existentes</h1>
 <body> 
   <div>
@@ -59,14 +51,12 @@
                   <input type="button" class="btn btn-dark mat-container" value="Aprobacion con: {{ap.minimumApprovalAmount}} permisos" style="margin-right: 5%;">
                 </div>
             </div>
-          <div class="face face2">
-              <div style="width: 100%; height: 100%; text-align: center;" (click)="deleteById(ap._id)" class="btn btn-outline-dark">Eliminar</div>
-          </div>
+            <div class="face face2">
+                <div style="width: 100%; height: 100%; text-align: center;" (click)="deleteById(ap._id)" class="btn btn-outline-dark">Eliminar</div>
+            </div>
           </div>
         </div>
-        </div>
-
+      </div>
     </div>
-
-</div> <!-- cards -->
+  </div> <!-- cards -->
 </body>   

@@ -1,33 +1,19 @@
-<h1>
-    Selección de usuario
-</h1>
-
+<h1>Selección de usuario</h1>
 <!-- Form seleccion de usuario -->
 <form #selectUser="ngForm" (ngSubmit)="accessEdit()">
-    
     <div class="form-group">
-
         <!-- Combobox -->
         <select name="usersCombo" [(ngModel)]="selectedUser.id">
             <option *ngFor="let user of userList" [value]="user._id">{{user.username}}</option>
         </select>
-        
         <!-- Select button -->
         <button class="btn btn-primary" type="submit">Editar</button>
     </div>
-
 </form>
-
-
 <hr>
-
-
 <!-- Editar información del usuario -->
 <div *ngIf="isSelected">
-    <h1>
-        Editar información de {{selectedUser.username}}
-    </h1>
-
+    <h1>Editar información de {{selectedUser.username}}</h1>
     <form #editUserForm="ngForm" (ngSubmit)="editUser()">
         <div class="form-group">
             <label for="UsernameInput">Username</label>
@@ -66,18 +52,12 @@
 
         <div class="form-group">
             <label>Permisos de administrador?</label>
-    
             <input type="checkbox" name="isAdmin" [(ngModel)]="selectedUser.isAdmin" >
         </div>
     
         <div class="form-group">
             <button class="btn btn-primary" type="submit">Actualizar</button>
-        
             <button class="btn btn-danger" type="button" (click)="deleteUser()">Borrar Usuario</button>
         </div>
-
     </form>
-
-
-
 </div>
