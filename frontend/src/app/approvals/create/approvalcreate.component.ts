@@ -1,5 +1,3 @@
-import { value } from './../../global.model';
-import { element } from 'protractor';
 import { TemplateBuilderService } from '../../template-builder/template-builder.service';
 import { AuthserviceService } from '../../services/auth/authservice.service';
 import { ApprovalsService } from '../service/approvals.service';
@@ -7,7 +5,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import swal from 'sweetalert2';
-import { parse } from 'path';
 
 @Component({
   selector: 'app-approval-create',
@@ -39,7 +36,6 @@ export class ApprovalCreateComponent implements OnInit {
   { }
 
   ngOnInit() {
-
     if (!this.authService.tryAccess())
       return;
     
@@ -50,7 +46,7 @@ export class ApprovalCreateComponent implements OnInit {
     });
   }
 
-  getById(id) {
+  getById(id) : void {
     this.templateService.getById(id).subscribe(
       (data:Object[]) => {
         this.selectedTemplate = data;
@@ -87,7 +83,7 @@ export class ApprovalCreateComponent implements OnInit {
     );
   }
 
-  validate() {
+  validate() : boolean {
 
     let formValue = this.approvalForm.value;
     let errorMessages = [];
@@ -111,7 +107,6 @@ export class ApprovalCreateComponent implements OnInit {
       return false;
     }
 
-    console.log(formValue)
     let approvalAmount = parseInt(formValue.minimumApprovalAmount);
     
     if (approvalAmount === 0) {
@@ -128,9 +123,7 @@ export class ApprovalCreateComponent implements OnInit {
   }
 
  validateInput(event) {
-
     let value = parseInt(this.approvalForm.value.minimumApprovalAmount);
-    console.log(value);
 
     if (value > this.approvalForm.value.approvers.length) {
       event.value = this.approvalForm.value.approvers.length;
@@ -142,11 +135,11 @@ export class ApprovalCreateComponent implements OnInit {
       else if (event.target.value < 0) {
         event.target.value = 0;
       }
-   }
+    }
  }
 
-  onSubmit(approval) {
-    if (this.validate()) {
+  onSubmit(approval) : void {
+    if ( this.validate() ) {
       this.createApprovalRoute(approval);
       this.updateApprovalByTemplate();
       swal.fire({
@@ -173,7 +166,7 @@ export class ApprovalCreateComponent implements OnInit {
         minimumApprovalAmount:parseInt(approval.minimumApprovalAmount) 
       }
     ).subscribe(
-      createdApproval =>{ 
+      _ =>{ 
         this.updateApprovalByTemplate();
       }
     );

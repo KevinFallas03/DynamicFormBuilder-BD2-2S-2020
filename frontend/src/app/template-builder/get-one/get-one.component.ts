@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { field, value } from '../../global.model';
-import swal from 'sweetalert2';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import {Location} from '@angular/common';
 
@@ -14,7 +13,6 @@ import { AuthserviceService } from 'src/app/services/auth/authservice.service';
 })
 export class GetOneComponent implements OnInit {
 
-  
   modelFields:Array<field>=[];
   model:any = {};
   templateId : string;
@@ -25,10 +23,9 @@ export class GetOneComponent implements OnInit {
     private _templateBuilderService:TemplateBuilderService,
     private authService : AuthserviceService,
     private _location: Location,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-
     if (!this.authService.tryAccess())
       return;
 
@@ -49,5 +46,4 @@ export class GetOneComponent implements OnInit {
   toggleValue(item){
     item.selected = !item.selected;
   }
-
 }

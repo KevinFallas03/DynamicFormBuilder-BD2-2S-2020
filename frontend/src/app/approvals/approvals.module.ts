@@ -9,7 +9,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 
-
 @NgModule({
   declarations: [
     ApprovalCreateComponent
@@ -22,7 +21,6 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
-    
   ]
 })
 export class ApprovalsModule { }
