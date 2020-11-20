@@ -83,17 +83,14 @@ formController.getPending = async (req, res) => {
         //       { applicant : { $in: a }}]
         // }).populate({'path':"applicant", "select":"username"})
 
-        // const isApprovedAlready = await Form.find({$and : 
-        //     [ { 'approvers.user' : {$nin : user.userId}},
-        //       { status : 'Pendiente'},
-        //       { routes : {$in : routesList }}  ]
-        // })
-
-
+        const isApprovedAlready = await Form.find({$and : 
+            [ { 'approvers.user' : {$nin : user.userId}},
+              { status : 'Pendiente'},
+              { routes : {$in : routesList }}  ]
+        })
         console.log("probando")
         //console.log(isApprovedAlready)
-
-       // res.status(202).send(isApprovedAlready);
+       res.status(202).send(isApprovedAlready);
         
     } catch (err) {
         res.status(500).json(
