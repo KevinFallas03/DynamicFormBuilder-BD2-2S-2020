@@ -113,8 +113,6 @@ approvalController.getPendingByUser = async (req, res) => {
     }   
 };
 
-
-
 /**
  * Get the approvals binded to a specific user
  * @param {*} req.params.templateName template name to filter

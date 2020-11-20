@@ -111,7 +111,6 @@ export class ApprovalCreateComponent implements OnInit {
       return false;
     }
 
-    console.log(formValue)
     let approvalAmount = parseInt(formValue.minimumApprovalAmount);
     
     if (approvalAmount === 0) {
@@ -130,7 +129,6 @@ export class ApprovalCreateComponent implements OnInit {
  validateInput(event) {
 
     let value = parseInt(this.approvalForm.value.minimumApprovalAmount);
-    console.log(value);
 
     if (value > this.approvalForm.value.approvers.length) {
       event.value = this.approvalForm.value.approvers.length;
