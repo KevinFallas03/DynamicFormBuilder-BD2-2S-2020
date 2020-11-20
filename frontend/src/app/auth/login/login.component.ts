@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
           // Saves the user object in localStorage too...
           localStorage.setItem("loggedUser", JSON.stringify(data.user));
-          
+          localStorage.setItem("isLogged", "true");
           console.log(this.authService.getLoggedUser());
 
           // Redirects to home with a get request
