@@ -1,8 +1,8 @@
 import { AuthserviceService } from 'src/app/services/auth/authservice.service';
-import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -48,11 +48,19 @@ export class LoginComponent implements OnInit {
           ); 
 
         } else {
-          alert ("ERROR LOG IN");
+          swal.fire({
+            icon: 'error',
+            title: 'Credenciales Incorrectas',
+            text: `Intentalo de nuevo.`
+          });
         }
       },
       error => {
-        alert (error.message);
+        swal.fire({
+          icon: 'error',
+          title: 'Credenciales Incorrectas',
+          text: `Intentalo de nuevo.`
+        });
       }
     );
   }
