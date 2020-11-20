@@ -8,7 +8,6 @@ import { TemplateBuilderService } from '../template-builder.service';
 import { AuthserviceService } from 'src/app/services/auth/authservice.service';
 import { HttpHeaders } from '@angular/common/http';
 
-
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -20,7 +19,6 @@ export class CreateComponent implements OnInit {
     label:"",
     value:""
   };
-  success = false;
 
   fieldModels:Array<field>=[
     {
@@ -44,7 +42,7 @@ export class CreateComponent implements OnInit {
       "className": "form-control",
       "subtype": "text",
       "regex" : "^([a-zA-Z0-9_.-]+)@([a-zA-Z0-9_.-]+)\.([a-zA-Z]{2,5})$",
-      "errorText": "Please enter a valid email",
+      "errorText": "Por favor ingrese un correo valido",
       "handle":true
     },
     {
@@ -56,7 +54,7 @@ export class CreateComponent implements OnInit {
       "className": "form-control",
       "subtype": "text",
       "regex" : "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$",
-      "errorText": "Please enter a valid phone number",
+      "errorText": "Por favor ingrese un numero valido",
       "handle":true
     },
     {
@@ -190,36 +188,20 @@ export class CreateComponent implements OnInit {
     }, error => {console.log("USER NOT ADMIN")});
   }
 
-  onDragStart(event:DragEvent) {
-    console.log("drag started", JSON.stringify(event, null, 2));
-  }
-  
-  onDragEnd(event:DragEvent) {
-    console.log("drag ended", JSON.stringify(event, null, 2));
-  }
-  
-  onDraggableCopied(event:DragEvent) {
-    console.log("draggable copied", JSON.stringify(event, null, 2));
-  }
-  
-  onDraggableLinked(event:DragEvent) {
-    console.log("draggable linked", JSON.stringify(event, null, 2));
-  }
+  onDragStart(event:DragEvent) {}
+  onDragEnd(event:DragEvent) {}
+  onDraggableCopied(event:DragEvent) {}
+  onDraggableLinked(event:DragEvent) {}
     
-   onDragged( item:any, list:any[], effect:DropEffect ) {
+  onDragged( item:any, list:any[], effect:DropEffect ) {
     if( effect === "move" ) {
       const index = list.indexOf( item );
       list.splice( index, 1 );
     }
   }
       
-  onDragCanceled(event:DragEvent) {
-    console.log("drag cancelled", JSON.stringify(event, null, 2));
-  }
-  
-  onDragover(event:DragEvent) {
-    console.log("dragover", JSON.stringify(event, null, 2));
-  }
+  onDragCanceled(event:DragEvent) {}
+  onDragover(event:DragEvent) {}
   
   onDrop( event:DndDropEvent, list?:any[] ) {
     if( list && (event.dropEffect === "copy" || event.dropEffect === "move") ) {
@@ -242,19 +224,18 @@ export class CreateComponent implements OnInit {
   removeField(i){
     swal.fire(
         {
-            title: 'Are you sure?',
-            text: "Do you want to remove this field?",
+            title: 'Estas seguro?',
+            text: "Quieres eliminar este campo?",
             showCancelButton: true,
             confirmButtonColor: '#00B96F',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, remove!'
+            confirmButtonText: 'Si, eliminar!'
         }
     ).then((result) => {
       if (result.value) {
         this.model.attributes.splice(i,1);
       }
     });
-
   }
 
   initReport(){
@@ -271,12 +252,10 @@ export class CreateComponent implements OnInit {
   }
 
   submitTemplate(){
-    this.success = true;
     this._templateBuilderService.post(this.model).subscribe( 
       data => {
         this.model.id = data._id;
         swal.fire('Enhorabuena',"Plantilla "+data.name+' creada exitosamente','success');
-
         this.router.navigate([`/approvals/create/${this.model.id}`]);
       }
     )

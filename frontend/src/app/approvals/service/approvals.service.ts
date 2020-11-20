@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApprovalsService {
  
-  _apiUrl = "http://localhost:3000/api/approval";
+  _apiUrl = environment.url + "/api/approval";
   
   constructor(private _http: HttpClient) { }
 
@@ -20,6 +21,9 @@ export class ApprovalsService {
     return this._http.get<any>(
       `${this._apiUrl}/templates/quantity/${id}`
     );
+  }
+  getRoutesByAuthorAndTemplate(idAuthor,idTemplate){
+    return this._http.get<any>(`${this._apiUrl}/getByAuthorAndTemplate/${idAuthor}/${idTemplate}`);
   }
 
   getTemplatesByUser(id) {

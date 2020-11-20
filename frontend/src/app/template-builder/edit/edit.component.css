@@ -13,9 +13,11 @@
     overflow: hidden;
     box-shadow: 1px 1px 4px #ccc;
 }
+
 .app-box:hover{
     box-shadow: 1px 1px 4px #999;
 }
+
 .app-box .remove{
     position: absolute;
     right: 21px;
@@ -23,9 +25,11 @@
     color: #545454;
     display:none;
 }
+
 .app-box:hover .remove{
     display:block;
 }
+
 .inline-btn{
     background: #00b970;
     padding: 1px 5px;
@@ -33,12 +37,14 @@
     display: inline-block;
     margin-bottom: 5px;
 }
+
 .box{
     padding: 10px;
     margin-bottom:10px;
     overflow: auto;
     box-shadow: 1px 1px 4px #ddd;
 }
+
 .form-group .form-control{
     font-size:inherit;
     background-color: inherit;
@@ -62,21 +68,26 @@
 .field:hover{
     box-shadow: 1px 1px 4px #ddd;
 }
+
 .toggle-Wrapper{
     padding: 15px;
     background: #d6d6d629;
 }
+
 .dndHandle{
     cursor: pointer;
     color: #999;
 }
+
 .dndDraggingSource{
     opacity:0.3;
 }
+
 .dndPlaceholder{
     background: rgb(206, 238, 238); border-radius: 2px; padding: 20px;
     margin-bottom:10px;
 }
+
 .field .fa{
     width: 30px;
     height: 30px;
@@ -85,6 +96,7 @@
     vertical-align: middle;
 
 }
+
 .red{color:#d9534f}
 .fa-trash{color:#d9534f}
 .marginT60{
@@ -97,6 +109,7 @@
     background:#f8f8f8;
     margin-bottom:20px;
 }
+
 .report-block .row:nth-child(even){
     background:#fff;
 }
@@ -108,6 +121,7 @@
 .dndDropArea .field .fa{
     opacity:0;
 }
+
 .dndDropArea .field:hover .fa{
     opacity:1;
 }

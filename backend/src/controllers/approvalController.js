@@ -41,6 +41,21 @@ approvalController.getQuantityById = async (req, res) => {
         );
     }   
 };
+approvalController.getIdRoutesByAuthorAndTemplate = async (req, res) => {
+    try {
+        const idsRoutesByAuthorAndTemplate = await Approval.find( {"authors":{"_id" : req.params.idAuthor},
+                                                            "template":{"_id" : req.params.idTemplate } } , {'_id':1});
+        res.status(202).send(idsRoutesByAuthorAndTemplate);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'Approval get request failed', 
+              error: err
+            }
+        );
+    }   
+};
+
 
 approvalController.getTemplatesByAuthor = async (req, res) => {
     try {
@@ -81,9 +96,10 @@ approvalController.getPendingByUser = async (req, res) => {
 
         const approvalByUser = await Approval.find(
             {"approvers":{"_id" : userId }}, 
-            {'approvers.username':1, 'minimumApprovalAmount':1, 'template':1}
+            {'approvers.username':1,'authors.username' : 1, 'minimumApprovalAmount':1, 'template':1}
         ).populate({'path':"approvers", "select":"username"})
-         .populate({'path':"approvers", "select":"isAdmin"});
+         .populate({'path':"approvers", "select":"isAdmin"})
+         .populate({'path':"authors", "select":"username"});
 
         res.status(202).send(approvalByUser);
 
@@ -96,8 +112,6 @@ approvalController.getPendingByUser = async (req, res) => {
         );
     }   
 };
-
-
 
 /**
  * Get the approvals binded to a specific user

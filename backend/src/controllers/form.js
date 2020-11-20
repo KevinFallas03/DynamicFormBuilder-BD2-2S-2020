@@ -5,7 +5,6 @@ const template = require("../models/template");
 
 const formController = {};
 
-
 formController.get = async (req, res) => {
     try {
         const FormsbyUserId = await Form.find();
@@ -47,9 +46,9 @@ formController.getAll = async (req, res) => {
         );
     }   
 }
+
 formController.getById = async (req, res) => {
     const { id } = req.params;
-
     try {
         const aprovalsOfUser = await Form.findById(id);
         res.status(202).send(aprovalsOfUser);
@@ -64,19 +63,22 @@ formController.getById = async (req, res) => {
 };
 formController.getPending = async (req, res) => {
     var {id} =  req.params;
-    
     var infoCompleta = JSON.parse(id)
-
     var user =infoCompleta.shift();
-    var templateList = infoCompleta.map( e => e.template)
-
-    //Funciona
+    var routesList = infoCompleta.map( e => e._id)
    
     try {
+        const isApprovedAlready = await Form.find({
+        $and : 
+            [ 
+                { 'approvers.user' : {$nin : user.userId}},
+                { status : 'Pendiente'},
+                { routes : {$in : routesList }}  
+            ]
+        }).populate({'path':"applicant", "select":"username"})
         
-        const isApprovedAlready = await Form.find({$and : [ {'approvers.user' : {$nin : user.userId}}, 
-        { template: { $in: templateList } } ]}).populate({'path':"applicant", "select":"username"})
         res.status(202).send(isApprovedAlready);
+
     } catch (err) {
         res.status(500).json(
             { 
@@ -88,9 +90,7 @@ formController.getPending = async (req, res) => {
 };
 
 formController.getApprovedByMe = async (req, res) => {
-
     var {id} =  req.params;
-
     try {
         const aprovalsOfUser = await Form.find( {'approvers.user' : id , 'approvers.approved' : true} )
         res.status(202).send(aprovalsOfUser);
@@ -104,11 +104,8 @@ formController.getApprovedByMe = async (req, res) => {
     }   
 };
 
-
 formController.getDenegatedByMe = async (req, res) => {
-    // solo ocupa el Id
     var {id} =  req.params;
-    
     try {
        const aprovalsOfUser = await Form.find( {'approvers.user' : id , 'approvers.approved' : false} )
         res.status(202).send(aprovalsOfUser);
@@ -124,7 +121,6 @@ formController.getDenegatedByMe = async (req, res) => {
 
 
 formController.getApproved = async (req, res) => {
-
     var {id} =  req.params;
 
     try {
@@ -141,7 +137,6 @@ formController.getApproved = async (req, res) => {
 };
 
 formController.getDenegated = async (req, res) => {
-    // solo ocupa el Id
     var {id} =  req.params;
     
     try {
@@ -195,22 +190,18 @@ formController.edit = async (req, res) => {
         
         var count = Object.keys(actualForm.approvers).length
 
-        if(count == total)
-        {
-            // Cambia el estado si logra llegar al minimo o mas
-            if(numApprovers >= min)
+        if(numApprovers >= min)
             {
                 const changeStatus = await Form.updateOne({ _id: approvalInfo[0].formId }, { status: "Aprobado"});
                 res.status(202).send(updatedApproval);
             }
-            else{
-                const changeStatus = await Form.updateOne({ _id: approvalInfo[0].formId }, { status: "Denegado"});
-                res.status(202).send(updatedApproval);
-            }
+        else if(count == total)
+        {
+            // Cambia el estado si logra llegar al minimo o mas
+            const changeStatus = await Form.updateOne({ _id: approvalInfo[0].formId }, { status: "Denegado"});
+            res.status(202).send(updatedApproval);
         }
         
-
-
     } catch (err) {
         res.status(500).json(
             { 
@@ -222,7 +213,6 @@ formController.edit = async (req, res) => {
 
     // aca hay que cambiar 
 
-    
 };
 
 formController.create = async (req, res) => {

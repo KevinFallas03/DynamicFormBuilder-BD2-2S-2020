@@ -13,6 +13,11 @@ const formSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    routes: [{ 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Approvals' 
+    }],
+    
     approvers: [{ 
         user : {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
         approved : Boolean  // {user: ass,approved : 0},{}

@@ -4,20 +4,21 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user/user';
-
+import { environment } from '../../../environments/environment'
 
 // Service to login and register a user
-
 @Injectable({
   providedIn: 'root'
 })
 export class AuthserviceService {
 
-  private AUTH_SERVER: string = 'http://localhost:3000';
+  private AUTH_SERVER: string = environment.url;
   public token: string;
 
-  constructor(private httpclient: HttpClient, private router : Router) { }
-
+  constructor(
+    private httpclient: HttpClient, 
+    private router : Router
+  ) { }
 
   // Method to log in a user through injections
   loginUser(user: User): Observable<any> {
@@ -67,16 +68,16 @@ export class AuthserviceService {
     return this.httpclient.post(`${this.AUTH_SERVER}/home/logoff`, {}, headers);
   }
 
-  getUserByToken(token){
+  getUserByToken(token) {
     return this.httpclient.get(`${this.AUTH_SERVER}/userByToken/${token}`);
   }
 
-  getLoggedUser(){
+  getLoggedUser() {
     let loggedUser = localStorage.getItem("loggedUser");
     return JSON.parse(loggedUser) || {};
   }
 
-  tryAccess() {
+  tryAccess() : boolean {
     if (!localStorage.getItem("authToken")) {
       swal.fire({
         icon: 'info',

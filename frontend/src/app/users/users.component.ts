@@ -16,24 +16,22 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    if (!this.authService.tryAccess())
+    if ( !this.authService.tryAccess() )
       return;
 
-     /*
-      Checks if the user is an administrator in order to let them access.
-    */
+     // Checks if the user is an administrator in order to let them access.
     this.authService.isAdmin({headers: new HttpHeaders(
         {"Authorization": `Bearer ${localStorage.getItem("authToken")}`})
-    }).subscribe(data => {
-
-    // Checks if the user has access
-    if (!data.isAdmin) {
-      this.router.navigate([".."]);
-    }
-
-    }, error => {console.log("USER NOT ADMIN")});
-  
+    }).subscribe(
+      data => {
+        // Checks if the user has access
+        if ( !data.isAdmin ) {
+          this.router.navigate([".."]);
+        }
+      }, 
+      _ => {
+        console.log("USER NOT ADMIN")
+      }
+    );
   }
-
 }
