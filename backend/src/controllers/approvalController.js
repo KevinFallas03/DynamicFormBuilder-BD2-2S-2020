@@ -41,6 +41,21 @@ approvalController.getQuantityById = async (req, res) => {
         );
     }   
 };
+approvalController.getIdRoutesByAuthorAndTemplate = async (req, res) => {
+    try {
+        const idsRoutesByAuthorAndTemplate = await Approval.find( {"authors":{"_id" : req.params.idAuthor},
+                                                            "template":{"_id" : req.params.idTemplate } } , {'_id':1});
+        res.status(202).send(idsRoutesByAuthorAndTemplate);
+    } catch (err) {
+        res.status(500).json(
+            { 
+              message : 'Approval get request failed', 
+              error: err
+            }
+        );
+    }   
+};
+
 
 approvalController.getTemplatesByAuthor = async (req, res) => {
     try {

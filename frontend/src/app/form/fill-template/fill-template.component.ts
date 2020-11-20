@@ -4,6 +4,7 @@ import { field, value } from '../../global.model';
 import swal from 'sweetalert2';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import {Location} from '@angular/common';
+import {ApprovalsService} from '../../approvals/service/approvals.service';
 
 
 import { FormService } from '../form.service';
@@ -22,12 +23,15 @@ export class FillTemplateComponent implements OnInit {
   templateId : string;
 
   formFields:Array<any>=[];
+  routesIds:any=[];
+
   filledForm = {
     template: '',
     applicant: '',
     name:'Nombre..',
     description:'Descripcion..',
-    responses: this.formFields
+    responses: this.formFields,
+    routes:this.routesIds
   };
   
   constructor(
@@ -35,7 +39,8 @@ export class FillTemplateComponent implements OnInit {
     public route: ActivatedRoute,
     private _templateBuilderService:TemplateBuilderService,
     private _location: Location,
-    private authService : AuthserviceService
+    private authService : AuthserviceService,
+    private _approvalsService : ApprovalsService
   ) { }
 
   ngOnInit(): void {
@@ -47,6 +52,7 @@ export class FillTemplateComponent implements OnInit {
 
       this.templateId = params.get('_id');
       this.getTemplateById(this.templateId);
+      this.getRoutesByAuthorAndTemplate(this.templateId);
     })
   }
 
@@ -60,6 +66,15 @@ export class FillTemplateComponent implements OnInit {
         this.model = data; 
       }
     );
+  }
+  getRoutesByAuthorAndTemplate(id){
+    this._approvalsService.getRoutesByAuthorAndTemplate(this.authService.getLoggedUser()._id,id).subscribe(
+      data =>{
+        data.forEach(element => {
+          this.routesIds.push(element)
+        });
+      }
+    )
   }
 
   submitForm(){
@@ -94,12 +109,12 @@ export class FillTemplateComponent implements OnInit {
     this.filledForm.name = this.model.name;
     this.filledForm.description = this.model.description;
     this.filledForm.applicant = this.authService.getLoggedUser()._id;
+    
 
     this.model.attributes.forEach((element:{label,value,values,type,required}) => {
       const { label,value,values,type,required } = element;
       this.formFields.push({ label,value,values,type,required });
     });
-    
     this._formService.post(this.filledForm).subscribe( 
       data => {
         swal.fire('Enhorabuena','El formulario se ha subido exitosamente','success');

@@ -15,7 +15,7 @@ const formSchema = new Schema({
     },
     routes: [{ 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Approval' 
+        ref: 'Approvals' 
     }],
     
     approvers: [{ 

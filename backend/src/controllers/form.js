@@ -87,9 +87,9 @@ formController.getPending = async (req, res) => {
             [ { 'approvers.user' : {$nin : user.userId}},
               { status : 'Pendiente'},
               { routes : {$in : routesList }}  ]
-        })
-        console.log("probando")
-        //console.log(isApprovedAlready)
+        }).populate({'path':"applicant", "select":"username"})
+     
+        console.log(isApprovedAlready)
        res.status(202).send(isApprovedAlready);
         
     } catch (err) {
@@ -240,6 +240,7 @@ formController.edit = async (req, res) => {
 };
 
 formController.create = async (req, res) => {
+    console.log(req.body);
     const form = new Form(req.body);
     try{
         const savedForm = await form.save();

@@ -22,6 +22,9 @@ export class ApprovalsService {
       `${this._apiUrl}/templates/quantity/${id}`
     );
   }
+  getRoutesByAuthorAndTemplate(idAuthor,idTemplate){
+    return this._http.get<any>(`${this._apiUrl}/getByAuthorAndTemplate/${idAuthor}/${idTemplate}`);
+  }
 
   getTemplatesByUser(id) {
     return this._http.get<any>( `${this._apiUrl}/pending/byUser/${id}`);
