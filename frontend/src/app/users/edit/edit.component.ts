@@ -3,7 +3,6 @@ import { Component, OnInit, ɵɵqueryRefresh } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user';
 import { AuthserviceService } from 'src/app/services/auth/authservice.service';
-
 import swal from 'sweetalert2'
 
 @Component({
@@ -13,50 +12,47 @@ import swal from 'sweetalert2'
 })
 export class EditComponent implements OnInit {
 
+  isSelected = false;
+  selectedUser = new User("", "", "", "", "", "", "", false, "");
+  userList = [];
+
   constructor(
     private authService: AuthserviceService,
     private router: Router
-    ) { }
+  ) { }
 
-  ngOnInit(): void {
-
-    if (!this.authService.tryAccess())
+  ngOnInit() : void {
+    if ( !this.authService.tryAccess() )
       return;
 
-    /*
-     Checks if the user is an administrator in order to let them access.
-   */
-   this.authService.isAdmin({headers: new HttpHeaders(
-       {"Authorization": `Bearer ${localStorage.getItem("authToken")}`})
-   }).subscribe(data => {
-
-   // Checks if the user has access
-   if (!data.isAdmin) {
-     this.router.navigate([".."]);
-   }
-
-   }, error => {this.router.navigate([".."])});
- 
-   // Obtains all users from the database
-   this.authService.getUsers().subscribe(
-     data => {
+    // Checks if the user is an administrator in order to let them access.
+    this.authService.isAdmin({headers: new HttpHeaders(
+        {"Authorization": `Bearer ${localStorage.getItem("authToken")}`})
+    }).subscribe(
+      data => {
+        // Checks if the user has access
+        if (!data.isAdmin) {
+          this.router.navigate([".."]);
+        }
+      }, 
+      _ => {
+        this.router.navigate([".."])
+      }
+    );
+  
+    // Obtains all users from the database
+    this.authService.getUsers().subscribe(
+      data => {
         this.userList = data;
-     },
-     error => {
-       this.userList = [];
-       console.log("Error getting all users");
-     }
-   )
+      },
+      _ => {
+        this.userList = [];
+        console.log("Error getting all users");
+      }
+    )
+  }
 
- }
-
-  isSelected = false;
-  selectedUser = new User("", "", "", "", "", "", "", false, "");
-
-  userList = [];
-
-
-  accessEdit() {
+  accessEdit() : void {
     this.authService.getUserData(this.selectedUser)
     .subscribe(
       data => {
@@ -69,45 +65,40 @@ export class EditComponent implements OnInit {
         this.selectedUser.email = data[0].email.trim();
         this.isSelected = true;
       },
-      error => {
-        console.log("CANT OBTAIN THE USER");
+      _ => {
+        console.log("Error: can't obtain the user");
         this.isSelected = false;
       }
     );
   }
 
-
-  editUser() {
-      this.authService.updateUser(this.selectedUser)
-        .subscribe(
-          data => {
-            swal.fire({
-              icon: 'success',
-              title: 'Usuario actualizados',
-              text: `Se ha actualizado la información de ${this.selectedUser.username}.`,
-              confirmButtonText: "Listo."
-            }).then((result) => { 
-              // Recarga la pagina 
-              window.location.reload();
-            });
-          },
-          error => {
-            swal.fire({
-              icon: 'error',
-              title: 'Oh no!',
-              text: `No se pudo actualizar la información de ${this.selectedUser.username}.`
-            })
-          }
-        )
-    }
+  editUser() : void {
+    this.authService.updateUser(this.selectedUser).subscribe(
+      _ => {
+        swal.fire({
+          icon: 'success',
+          title: 'Usuario actualizados',
+          text: `Se ha actualizado la información de ${this.selectedUser.username}.`,
+          confirmButtonText: "Listo."
+        }).then((result) => { 
+          // Recarga la pagina 
+          window.location.reload();
+        });
+      },
+      _ => {
+        swal.fire({
+          icon: 'error',
+          title: 'Oh no!',
+          text: `No se pudo actualizar la información de ${this.selectedUser.username}.`
+        })
+      }
+    );
+  }
   
-
-
+  // Delete the user taking the id
   deleteUser() {
-    // Borra el usuario tomando el id
-    this.authService.deleteUser(this.selectedUser)
-    .subscribe(
-      data => {
+    this.authService.deleteUser(this.selectedUser).subscribe(
+      _ => {
         swal.fire({
           icon: 'success',
           title: 'Usuarios actualizados',
@@ -118,7 +109,7 @@ export class EditComponent implements OnInit {
           window.location.reload();
         });
       },
-      error => {
+      _ => {
         swal.fire({
           icon: 'error',
           title: 'Oh no!',
@@ -126,12 +117,5 @@ export class EditComponent implements OnInit {
         })
       }
     );
-
-    
-
-
   }
-
-
-
 }

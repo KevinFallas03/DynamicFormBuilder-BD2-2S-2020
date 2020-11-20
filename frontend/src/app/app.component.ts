@@ -9,27 +9,25 @@ import { AuthserviceService } from './services/auth/authservice.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   title = 'formbuilder';
+  isAdmin = false;
 
   constructor(
     private authService: AuthserviceService,
     private router: Router
   ) {
-    
     const opts = {headers: new HttpHeaders({
       "Authorization": `Bearer ${localStorage.getItem("authToken")}`
     })};
+
     this.authService.isAdmin(opts).subscribe(
       data => {
         this.isAdmin = data.isAdmin;
       },
-      error => {
-      }
-    )
-
+      _ => { }
+    );
   }
-
-  isAdmin = false;
 
   // Logs off a user.
   logOut() {
@@ -40,12 +38,12 @@ export class AppComponent {
     
     this.authService.logOut(opts)
     .subscribe(
-      data => {
+      _ => {
         localStorage.removeItem('authToken');
         localStorage.removeItem('loggedUser');
         this.router.navigate(['/']);
       },
-      error => {console.log("error")}
+      _ => {console.log("error")}
     );
   }
 
@@ -64,11 +62,8 @@ export class AppComponent {
     );
   }
 
-
   // Gets the router
   getRouter() {
     return this.router;
   }
-
 }
-

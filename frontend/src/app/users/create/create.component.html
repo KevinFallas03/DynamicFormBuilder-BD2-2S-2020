@@ -23,7 +23,6 @@
         <input onkeypress="return /[a-zA-Z\s]/i.test(event.key)" id="SecLastNameInput" type="text" class="form-control" name="secondLastName" [(ngModel)]="userModel.secondLastName">
     </div>
 
-    
     <div class="form-group">
         <label for="emailInput">E-Mail</label>
         <input id="emailInput" type="email" class="form-control" name="email" [(ngModel)]="userModel.email" required>
@@ -52,5 +51,4 @@
     <div class="form-group">
         <button class="btn btn-primary" type="submit">Crear</button>
     </div>
-
 </form>
