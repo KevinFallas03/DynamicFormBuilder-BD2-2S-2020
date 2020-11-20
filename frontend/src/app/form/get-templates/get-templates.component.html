@@ -1,8 +1,7 @@
 
-<body>
-    <div class="card-columns">
-        <div *ngFor="let template of templates" style="width: 25rem;">
-            <div class="container">
+<div class="card-columns"style="margin: 2%">
+    <div *ngFor="let template of templates" style="width: 25rem;">
+        <div class="container">
             <div class="card">
                 <div class="face face1">
                     <div class="content">
@@ -10,15 +9,15 @@
                         <p >{{ template.description }}</p>
                     </div>
                 </div>
-               <div class="face face2">
-                   <div class="content">
+                <div class="face face2">
+                    <div class="content">
                         <div class="btn-group" style="width:100%">
                             <a routerLink="filltemplate/{{ template._id }}"  class="btn btn-outline-primary">Generar</a>
                         </div>
-                   </div>
-               </div>
-            </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    </body>
+</div>
+ 

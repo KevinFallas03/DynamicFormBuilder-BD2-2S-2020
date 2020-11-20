@@ -40,14 +40,27 @@ export class ShowFormComponent implements OnInit {
         this.formId = params.get('_id');
         this.pending = JSON.parse(params.get('pending'));
         this.getFormById(this.formId);
-      })
+      }
+    )
   }
   getFormById(formId){
     this._formService.getById(formId).subscribe(
       data => {
         this.model = data; 
+        console.log(this.model)
       }
     );
+  }
+  showApprovers(){
+    let message = ""
+    this.model.approvers.forEach(element => {
+      if(element.user){
+        message = `${message}<br>${element.user.firstName} ${element.user.lastName} ${element.approved ? "&check;":"&#10008;"}`
+      }else{
+        message = `${message}<br>Usuario desconocido ${element.approved ? "&check;":"&#10008;"}`
+      }
+    });
+    swal.fire('Estado actual de aprobaciones',message);
   }
 
   approveForm(isApproved){

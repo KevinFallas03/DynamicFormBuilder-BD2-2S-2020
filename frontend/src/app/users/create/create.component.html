@@ -4,7 +4,7 @@
 
 <form #createUserForm="ngForm" (ngSubmit)="createUser()">
     <div class="form-group">
-        <label for="FirstNameInput">Primer Nombre</label>
+        <label for="FirstNameInput">Primer Nombre</label> <label class="text-danger">*</label>
         <input id="FirstNameInput" type="text" class="form-control" name="firstName" [(ngModel)]="userModel.firstName" required>
     </div>
 
@@ -14,7 +14,7 @@
     </div>
 
     <div class="form-group">
-        <label for="LastNameInput">Primer Apellido</label>
+        <label for="LastNameInput">Primer Apellido</label> <label class="text-danger">*</label>
         <input id="LastNameInput" type="text" class="form-control" name="lastName" [(ngModel)]="userModel.lastName" required>
     </div>
 
@@ -24,22 +24,22 @@
     </div>
 
     <div class="form-group">
-        <label for="emailInput">E-Mail</label>
+        <label for="emailInput">E-Mail</label> <label class="text-danger">*</label>
         <input id="emailInput" type="email" class="form-control" name="email" [(ngModel)]="userModel.email" required>
     </div>
 
     <div class="form-group">
-        <label for="UsernameInput">Nuevo Username</label>
+        <label for="UsernameInput">Username</label> <label class="text-danger">*</label>
         <input id="UsernameInput" type="text" class="form-control" name="username" [(ngModel)]="userModel.username" required>
     </div>
 
     <div class="form-group">
-        <label for="passwordInput">Nueva Constraseña</label>
+        <label for="passwordInput">Constraseña</label> <label class="text-danger">*</label>
         <input type="text" id="passwordInput" class="form-control" name="password" [(ngModel)]="userModel.password" required>
     </div>
 
     <div class="form-group">
-        <label>Permisos de administrador?</label><br>
+        <label>Permisos de administrador?</label> <label class="text-danger">*</label> <br> 
 
         <input type="radio" id="adminTrue" name="adminPerm" value=true [(ngModel)]="userModel.isAdmin" required>
         <label for="adminTrue">Sí</label><br>
