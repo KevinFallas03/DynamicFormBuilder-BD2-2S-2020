@@ -22,7 +22,8 @@ formController.get = async (req, res) => {
 formController.getRequested = async (req, res) => {
     var userId  = req.params.id;
     try {
-        const formsbyUserId = await Form.find({ applicant:userId,status:'Pendiente' });
+        const formsbyUserId = await Form.find({ applicant:userId,status:'Pendiente' })
+        .populate({'path':"approvers.user", "select":"username"});
         res.status(202).send(formsbyUserId);
     } catch (err) {
         res.status(500).json(
@@ -50,7 +51,8 @@ formController.getAll = async (req, res) => {
 formController.getById = async (req, res) => {
     const { id } = req.params;
     try {
-        const aprovalsOfUser = await Form.findById(id);
+        console.log("Si es este")
+        const aprovalsOfUser = await Form.findById(id).populate({'path':"approvers.user", "select":["firstName","lastName"]});
         res.status(202).send(aprovalsOfUser);
     } catch (err) {
         res.status(500).json(
@@ -75,7 +77,7 @@ formController.getPending = async (req, res) => {
                 { status : 'Pendiente'},
                 { routes : {$in : routesList }}  
             ]
-        }).populate({'path':"applicant", "select":"username"})
+        })
         
         res.status(202).send(isApprovedAlready);
 
