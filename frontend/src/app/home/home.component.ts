@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
     document.body.style.backgroundRepeat = 'no-repeat';
     document.body.style.backgroundAttachment = 'fixed';
     document.body.style.backgroundSize = "100% 100%"
+
     this.authService.tryAccess();
   }
 
