@@ -1,3 +1,4 @@
+import { value } from './../../global.model';
 import { element } from 'protractor';
 import { TemplateBuilderService } from '../../template-builder/template-builder.service';
 import { AuthserviceService } from '../../services/auth/authservice.service';
@@ -19,6 +20,8 @@ export class ApprovalCreateComponent implements OnInit {
   templates:Object[] = [];
   selectedTemplate:any;
   approvals:Object[] = [];
+
+  @ViewChild('input') input;
 
   approvalForm = new FormGroup({
     authors: new FormControl([], [Validators.required]),
@@ -125,11 +128,21 @@ export class ApprovalCreateComponent implements OnInit {
   }
 
  validateInput(event) {
-    if (event.target.value > this.approvalForm.value.approvers.length)
-      event.target.value = this.approvalForm.value.approvers.length;
-    else if (event.target.value < 0) {
-      event.target.value = 0;
+
+    let value = parseInt(this.approvalForm.value.minimumApprovalAmount);
+    console.log(value);
+
+    if (value > this.approvalForm.value.approvers.length) {
+      event.value = this.approvalForm.value.approvers.length;
     }
+    
+    if (event && event.target) {
+      if (event.target.value > this.approvalForm.value.approvers.length)
+        event.target.value = this.approvalForm.value.approvers.length;
+      else if (event.target.value < 0) {
+        event.target.value = 0;
+      }
+   }
  }
 
   onSubmit(approval) {
