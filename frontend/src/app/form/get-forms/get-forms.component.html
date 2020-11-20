@@ -31,6 +31,7 @@
 <div id="P" class="tabcontent">
   <div class="col-12">
     <div *ngFor="let pendingForm of pendingForms">
+      <!-- <div *ngIf = "pendingForm"></div> -->
         <div class="container">
         <div class="card">
           <div class="row">
@@ -41,7 +42,7 @@
                 </div>
             </div>
            <div class="face face2">
-              <div style="width: 100%; height: 100%; text-align: center;" [routerLink]="['showform' , pendingForm._id , true]" class="btn btn-outline-dark">Ver</div>
+              <div style="width: 100%; height: 100%; text-align: center;" routerLink="showform/{{ pendingForm._id }}/{{true}}" class="btn btn-outline-dark">Ver</div>
            </div>
           </div>
         </div>

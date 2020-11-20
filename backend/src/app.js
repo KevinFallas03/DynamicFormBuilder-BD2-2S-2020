@@ -28,6 +28,8 @@ app.use("/home", require("./routes/home"));
 // Approval service
 app.use("/api/approval", require("./routes/approval"));
 
-
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('../frontend/dist/frontend'));
+}
 
 module.exports = app;

@@ -10,17 +10,17 @@ import { ApprovalsService } from '../../approvals/service/approvals.service';
 })
 export class GetFormsComponent implements OnInit {
 
-  formsRequested:any = [{}]
+  formsRequested:any = []
 
-  idTemplatesList:any = [{}]
-  pendingForms:any = [{}]
+  idTemplatesList:any = []
+  pendingForms:any = []
 
-  approvedFormsByMe:any = [{}]
-  denegatedFormsByMe:any = [{}]
+  approvedFormsByMe:any = []
+  denegatedFormsByMe:any = []
 
 
-  approvedFormsForMe:any = [{}]
-  denegatedFormsForMe:any = [{}]
+  approvedFormsForMe:any = []
+  denegatedFormsForMe:any = []
 
   constructor(
     private _formService: FormService,

@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DndDropEvent,DropEffect} from 'ngx-drag-drop';
 import { field, value } from '../../global.model';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import swal from 'sweetalert2';
-
 import { TemplateBuilderService } from '../template-builder.service';
 import { AuthserviceService } from 'src/app/services/auth/authservice.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit',
@@ -13,8 +12,13 @@ import { AuthserviceService } from 'src/app/services/auth/authservice.service';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  value:value={label:"", value:""};
-  fieldModels:Array<field>=[
+  
+  value : value = {
+    label : "", 
+    value : ""
+  };
+
+  fieldModels:Array<field> = [
     {
       "type": "text",
       "icon": "fa-font",
@@ -144,18 +148,21 @@ export class EditComponent implements OnInit {
       ]
     }
   ];
-  modelFields:Array<field>=[];
+
+  modelFields : Array<field> = [];
+
   model:any = {
-    id: '',
-    name:'Nombre..',
-    description:'Descripcion..',
+    id : '',
+    name : 'Nombre..',
+    description : 'Descripcion..',
     theme:{
-      bgColor:"ffffff",
-      textColor:"555555",
-      bannerImage:""
+      bgColor : "ffffff",
+      textColor : "555555",
+      bannerImage : ""
     },
-    attributes:this.modelFields
+    attributes : this.modelFields
   };
+
   templateId : string;
   reports:any = [];
 
@@ -171,17 +178,15 @@ export class EditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     if (!this.authService.tryAccess())
       return;
-
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.templateId = params.get('id'); //'5fae39ce27537125f4836267';//
+      this.templateId = params.get('id');
       this.getTemplateById();
     });
   }
 
-  getTemplateById(){
+  getTemplateById () : void {
     this._templateBuilderService.getById(this.templateId).subscribe(
       data => {
         this.model = data; 
@@ -189,78 +194,63 @@ export class EditComponent implements OnInit {
     );
   }
 
-  onDragStart(event:DragEvent) {
-    console.log("drag started", JSON.stringify(event, null, 2));
-  }
+  onDragStart(event : DragEvent) {}
+  onDragEnd(event : DragEvent) {}
+  onDraggableCopied(event : DragEvent) {}
+  onDraggableLinked(event : DragEvent) {}
+  onDragCanceled(event : DragEvent) {}
+  onDragover(event : DragEvent) {}
   
-  onDragEnd(event:DragEvent) {
-    console.log("drag ended", JSON.stringify(event, null, 2));
-  }
-  
-  onDraggableCopied(event:DragEvent) {
-    console.log("draggable copied", JSON.stringify(event, null, 2));
-  }
-  
-  onDraggableLinked(event:DragEvent) {
-    console.log("draggable linked", JSON.stringify(event, null, 2));
-  }
-    
-   onDragged( item:any, list:any[], effect:DropEffect ) {
+  onDragged( item:any, list:any[], effect:DropEffect ) {
     if( effect === "move" ) {
       const index = list.indexOf( item );
       list.splice( index, 1 );
     }
   }
-      
-  onDragCanceled(event:DragEvent) {
-    console.log("drag cancelled", JSON.stringify(event, null, 2));
-  }
   
-  onDragover(event:DragEvent) {
-    console.log("dragover", JSON.stringify(event, null, 2));
-  }
-  
-  onDrop( event:DndDropEvent, list?:any[] ) {
-    if( list && (event.dropEffect === "copy" || event.dropEffect === "move") ) {
-      
-      if(event.dropEffect === "copy")
-      event.data.name = event.data.type+'-'+new Date().getTime();
+  onDrop( event : DndDropEvent, list?:any[] ) {
+    if ( list && (event.dropEffect === "copy" || event.dropEffect === "move") ) 
+    {
+      if ( event.dropEffect === "copy" )
+        event.data.name = event.data.type+'-'+new Date().getTime();
+
       let index = event.index;
-      if( typeof index === "undefined" ) {
+      if ( typeof index === "undefined" ) {
         index = list.length;
       }
       list.splice( index, 0, event.data );
     }
   }
 
-  addValue(values){
-    values.push(this.value);
-    this.value={label:"",value:""};
+  addValue(values) : void {
+    values.push( this.value );
+    this.value = { label : "", value : "" };
   }
 
-  removeField(i){
+  removeField(i) : void {
     swal.fire(
-        {
-            title: 'Are you sure?',
-            text: "Do you want to remove this field?",
-            showCancelButton: true,
-            confirmButtonColor: '#00B96F',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, remove!'
-        }
-    ).then((result) => {
-      if (result.value) {
-        this.model.attributes.splice(i,1);
+      {
+        title: 'Are you sure?',
+        text: "Do you want to remove this field?",
+        showCancelButton: true,
+        confirmButtonColor: '#00B96F',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, remove!'
       }
-    });
-
+    ).then(
+      (result) => {
+        if (result.value) {
+          this.model.attributes.splice(i,1);
+        }
+      }
+    );
   }
   
-  initReport(){
+  initReport() : void {
     this.report = true; 
   }
 
-  toggleValue(item){
+  toggleValue( item ) : void {
     item.selected = !item.selected;
   }
 
@@ -274,5 +264,4 @@ export class EditComponent implements OnInit {
       }
     )
   }
-
 }

@@ -13,83 +13,78 @@ body{
 }
 
 .dropbtn {
-    background-color: #494a99;
-    color: white;
-    padding: 7px;
-    margin-top: 28%;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
+  background-color: #494a99;
+  color: white;
+  padding: 7px;
+  margin-top: 28%;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
 
-  
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-    display: inline-block;
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 150px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    /* padding: 12px 16px; */
-    text-decoration: none;
-    display: block;
-  }
-  
-  
-  /* Show the dropdown menu on hover  ESTE*/
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  /* Change the background color of the dropdown button when the dropdown content is shown */
-  .dropdown:hover .dropbtn {
-    background-color:#7679ff;
-  }
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  display: inline-block;
+}
 
-  body{
-    margin-left: 17%;
-    background-color: #ffffff00;
-    align-items: center;
-  }
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+  
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  /* padding: 12px 16px; */
+  text-decoration: none;
+  display: block;
+}
+  
+/* Show the dropdown menu on hover  ESTE*/
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+  
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color:#7679ff;
+}
 
-  /* Float four columns side by side */
+body{
+  margin-left: 17%;
+  background-color: #ffffff00;
+  align-items: center;
+}
+
+/* Float four columns side by side */
 .column {
-    float: left;
-    /* width: 25%; */
-    padding: 0 10px;
-  }
-  
-  /* Remove extra left and right margins, due to padding in columns */
-  .row {margin: 0 -5px;}
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+  float: left;
+  /* width: 25%; */
+  padding: 0 10px;
+}
 
-  .inputdemoErrors .inputErrorsApp {
-    min-height: 48px; }
-  
-  .inputdemoErrors md-input-container > p {
-    font-size: 0.8em;
-    text-align: left;
-    width: 100%; }
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 0 -5px;}
 
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
+.inputdemoErrors .inputErrorsApp {
+  min-height: 48px; }
 
+.inputdemoErrors md-input-container > p {
+  font-size: 0.8em;
+  text-align: left;
+  width: 100%; }
 
 .container{
   width: 500px;
@@ -166,9 +161,11 @@ body{
   font-family: arial;
   padding: 5px;
 }
+
 .container .card:hover .face.face1 .content h3{
   color:white;
 }
+
 .container .card:hover .face.face1{
   color:white;
 }

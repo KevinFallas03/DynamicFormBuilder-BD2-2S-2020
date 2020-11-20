@@ -1,5 +1,4 @@
 <header>
-  
   <div *ngIf="getRouter().url !== '/'">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,27 +10,19 @@
           <li class="nav-item" style="margin-left: 8px;">
             <a class="nav-link" href="/forms" style="color: aliceblue;">Formularios</a>
           </li>
-
-          <!-- OPCIONES DE ADMINISTRADORES -->
-            <li *ngIf="isAdmin" class="nav-item" style="margin-left: 8px;">
-              <a class="nav-link" href="/templates" style="color: aliceblue;">Plantillas</a>
-            </li>
-            <li *ngIf="isAdmin" class="nav-item" style="margin-left: 8px;">
-              <a class="nav-link" href="/users" style="color: aliceblue;">Usuarios</a>
-            </li>
-          
+          <li *ngIf="isAdmin" class="nav-item" style="margin-left: 8px;">
+            <a class="nav-link" href="/templates" style="color: aliceblue;">Plantillas</a>
+          </li>
+          <li *ngIf="isAdmin" class="nav-item" style="margin-left: 8px;">
+            <a class="nav-link" href="/users" style="color: aliceblue;">Usuarios</a>
+          </li>
           <button class="btn btn-outline-light my-2 my-sm-0" type="submit" (click)="logOut()">Log out</button>
         </ul>
-      
     </div>
-  </nav> 
-      
+  </nav>     
   </div>
-
 </header>
 <div class="container-fluid">
   <router-outlet></router-outlet>
 </div>
-<footer>
-
-</footer>
+<footer></footer>

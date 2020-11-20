@@ -13,7 +13,7 @@ export class MenuComponent implements OnInit {
   constructor(
     private authService: AuthserviceService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit(): void {
 
@@ -26,13 +26,11 @@ export class MenuComponent implements OnInit {
     this.authService.isAdmin({headers: new HttpHeaders(
       {"Authorization": `Bearer ${localStorage.getItem("authToken")}`})
     }).subscribe(data => {
-    
-    // Checks if the user has access
-    if (!data.isAdmin) {
-      this.router.navigate([".."]);
-    }
-
-  }, error => {console.log("USER NOT ADMIN")});
+      // Checks if the user has access
+      if (!data.isAdmin) {
+        this.router.navigate([".."]);
+      }
+    }, error => {console.log("USER NOT ADMIN")});
   }
 
 }

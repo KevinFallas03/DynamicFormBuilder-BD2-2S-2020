@@ -1,38 +1,31 @@
 <!--The code to display images -->
 <div class="card-columns" style="margin: 2%">
     <div *ngFor="let template of templates" style="width: 25rem;">
-        <div class="container" >
-        <div class="card">
-            <div class="face face1">
-                <div class="content">
-                    <h3>{{ template.name }}</h3>
-                    <p >{{ template.description }}</p>
+        <div class="container">
+            <div class="card">
+                <div class="face face1">
+                    <div class="content">
+                        <h3>{{ template.name }}</h3>
+                        <p >{{ template.description }}</p>
+                    </div>
+                </div>
+                <div class="face face2" >
+                    <div class="content" >
+                        <div class="btn-group" style="width:100%">
+                            <div class="dropdown mat-container" style=" margin-left: 2%;margin-right: 4%">
+                                <button class="dropbtn" (mouseover)= "haveRoutes(template._id)">Tipo</button>
+                                <div class="dropdown-content btn btn-primary">
+                                    <a>{{ type }}</a>
+                                </div>
+                            </div>
+                            <a routerLink="view/{{template._id}}" class="btn btn-outline-success">Ver</a>
+                            <a routerLink="update/{{template._id}}" class="btn btn-outline-primary">Editar</a>
+                            <a routerLink="/approvals/create/{{template._id}}" class="btn btn-outline-dark">Rutas</a>
+                            <a (click)="deleteTemplate(template._id)" class="btn btn-outline-danger">Eliminar</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-           <div class="face face2" >
-               <div class="content" >
-                    <div class="btn-group" style="width:100%">
-                        <!-- <div *ngIf = "type; then thenBlock else elseBlock" ></div>
-                        <ng-template #thenBlock>Borrador</ng-template>
-                        <ng-template #elseBlock>NoBorrador</ng-template> -->
-
-                        <div class="dropdown mat-container" style=" margin-left: 2%;margin-right: 4%">
-                            <button class="dropbtn" (mouseover)= "haveRoutes(template._id)">Tipo</button>
-                            <div class="dropdown-content btn btn-primary">
-                              <a>{{type}}</a>
-                            </div>
-                        </div>
-
-
-                        <a routerLink="view/{{template._id}}" class="btn btn-outline-success">Ver</a>
-                        <a routerLink="update/{{template._id}}" class="btn btn-outline-primary">Editar</a>
-                        <a routerLink="/approvals/create/{{template._id}}" class="btn btn-outline-dark">Rutas</a>
-                        <a (click)="deleteTemplate(template._id)" class="btn btn-outline-danger">Eliminar</a>
-                        
-                    </div>
-               </div>
-           </div>
-        </div>
         </div>
     </div>
 </div>

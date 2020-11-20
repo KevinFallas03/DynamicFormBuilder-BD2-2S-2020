@@ -21,7 +21,7 @@ export class GetComponent implements OnInit {
     private authService: AuthserviceService,
     private _ApprovalsService :ApprovalsService,
     private router: Router
-    ) { }
+  ) {}
 
   ngOnInit(): void {
 
@@ -51,6 +51,7 @@ export class GetComponent implements OnInit {
       }
     );
   }
+
   haveRoutes(id){
     this._ApprovalsService.getQuantityByTemplate(id).subscribe(
       (quantity:any) => {
@@ -62,6 +63,7 @@ export class GetComponent implements OnInit {
       }
     );
   }
+
   deleteTemplate(id){
     this._templateBuilderService.deleteById(id).subscribe(
       data =>{
@@ -69,7 +71,6 @@ export class GetComponent implements OnInit {
         this.get();
       }
     );
-    
     this.router.navigate(['get']);
   }
 }
