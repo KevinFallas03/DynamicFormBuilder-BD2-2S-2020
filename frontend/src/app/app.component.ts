@@ -31,6 +31,7 @@ export class AppComponent {
 
   // Logs off a user.
   logOut() {
+
     if ( localStorage["isLogged"] == "false" ) {
       localStorage.setItem("isLogged", "true");
     }
