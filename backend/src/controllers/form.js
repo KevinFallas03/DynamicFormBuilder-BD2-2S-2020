@@ -66,20 +66,35 @@ formController.getPending = async (req, res) => {
     var {id} =  req.params;
     
     var infoCompleta = JSON.parse(id)
-
     var user =infoCompleta.shift();
-    var templateList = infoCompleta.map( e => e.template)
 
-    console.log(infoCompleta)
+     var routesList = infoCompleta.map( e => e._id)
+
+     console.log(routesList)
 
     //Funciona
    
     try {
+
+        // const isApprovedAlready = await Form.find({$and : 
+        //     [ { 'approvers.user' : {$nin : user.userId}},
+        //       { template: { $in: templateList } },
+        //       { status : 'Pendiente'}, 
+        //       { applicant : { $in: a }}]
+        // }).populate({'path':"applicant", "select":"username"})
+
+        // const isApprovedAlready = await Form.find({$and : 
+        //     [ { 'approvers.user' : {$nin : user.userId}},
+        //       { status : 'Pendiente'},
+        //       { routes : {$in : routesList }}  ]
+        // })
+
+
+        console.log("probando")
+        //console.log(isApprovedAlready)
+
+       // res.status(202).send(isApprovedAlready);
         
-        const isApprovedAlready = await Form.find({$and : [ {'approvers.user' : {$nin : user.userId}},
-         { template: { $in: templateList } } , {status : 'Pendiente'} ]
-        }).populate({'path':"applicant", "select":"username"})
-        res.status(202).send(isApprovedAlready);
     } catch (err) {
         res.status(500).json(
             { 

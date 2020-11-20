@@ -81,9 +81,10 @@ approvalController.getPendingByUser = async (req, res) => {
 
         const approvalByUser = await Approval.find(
             {"approvers":{"_id" : userId }}, 
-            {'approvers.username':1, 'minimumApprovalAmount':1, 'template':1}
+            {'approvers.username':1,'authors.username' : 1, 'minimumApprovalAmount':1, 'template':1}
         ).populate({'path':"approvers", "select":"username"})
-         .populate({'path':"approvers", "select":"isAdmin"});
+         .populate({'path':"approvers", "select":"isAdmin"})
+         .populate({'path':"authors", "select":"username"});
 
         res.status(202).send(approvalByUser);
 
