@@ -77,7 +77,7 @@ formController.getPending = async (req, res) => {
                 { status : 'Pendiente'},
                 { routes : {$in : routesList }}  
             ]
-        })
+        }).populate({'path':"applicant", "select":"username"})
         
         res.status(202).send(isApprovedAlready);
 
