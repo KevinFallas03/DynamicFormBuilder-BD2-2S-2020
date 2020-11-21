@@ -67,10 +67,10 @@ export class GetComponent implements OnInit {
   deleteTemplate(id){
     this._templateBuilderService.deleteById(id).subscribe(
       data =>{
+        window.location.reload();
         swal.fire("Plantilla eliminada","",'success');
-        this.get();
       }
     );
-    this.router.navigate(['get']);
+    
   }
 }
