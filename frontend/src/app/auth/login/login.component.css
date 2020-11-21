@@ -18,13 +18,6 @@
  * - no frameworks, preprocessors or resets
  */
 
-/* 'Open Sans' font from Google Fonts */
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
-
-.body {
-  background: #456;
-  font-family: 'Open Sans', sans-serif;
-}
 
 .login {
   margin: 16px auto;
@@ -44,11 +37,9 @@
   margin-right: auto;
   margin-left: auto;
   border: 12px solid transparent;
-  border-bottom-color: #28d;
 }
 
 .login-header {
-  background: #28d;
   padding: 20px;
   font-size: 1.4em;
   font-weight: normal;
@@ -58,7 +49,6 @@
 }
 
 .login-container {
-  background: #ebebeb;
   padding: 12px;
 }
 
@@ -81,29 +71,20 @@
 
 .login input[type="email"],
 .login input[type="password"] {
-  background: #fff;
-  border-color: #bbb;
   color: #555;
 }
 
 /* Text fields' focus effect */
 .login input[type="email"]:focus,
 .login input[type="password"]:focus {
-  border-color: #888;
 }
 
 .login input[type="submit"] {
-  background: #28d;
   border-color: transparent;
   color: #fff;
   cursor: pointer;
 }
 
-.login input[type="submit"]:hover {
-  background: #17c;
-}
 
-/* Buttons' focus effect */
-.login input[type="submit"]:focus {
-  border-color: #05a;
-}
+
+

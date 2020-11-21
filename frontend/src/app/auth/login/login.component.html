@@ -1,12 +1,20 @@
-
-
-<div style="height:1%;"></div>
-<div class="login" >
-    <h2 class="login-header" style="background-color: black; margin-top: 30%;">Formularios dinamicos</h2>
-    <form #loginForm="ngForm" class="login-container" (ngSubmit)="logIn()" style=" margin-top: 7.5%; box-shadow: 0px 0px 20px rgba(58, 57, 57, 0.618); background-color: rgba(255, 255, 255, 0.652);">
-        <p><input type="text" placeholder="Username" required name="username" [(ngModel)]="userModel.username"></p>
-        <p><input type="password" placeholder="Password" required name="password" [(ngModel)]="userModel.password"></p>
-        <p><input type="submit" value="Iniciar sesión" style="background-color: black;"></p>
-    </form>
+<div>
+    <div class="row" style="background-color: #9e97db;"> 
+        <div class="col" style="background-color: #9e97db;">
+            <div style="height:1%;"></div>
+            <div class="login" >
+                <h2 class="login-header" style="background-color: black; margin-top: 30%;">Formularios dinamicos</h2>
+                <form #loginForm="ngForm" class="login-container" (ngSubmit)="logIn()" style=" margin-top: 7.5%; box-shadow: 0px 0px 20px rgba(58, 57, 57, 0.618); background-color: rgba(255, 255, 255, 0.652);">
+                    <p><input type="text" placeholder="Username" required name="username" [(ngModel)]="userModel.username"></p>
+                    <p><input type="password" placeholder="Password" required name="password" [(ngModel)]="userModel.password"></p>
+                    <p><input type="submit" value="Iniciar sesión" style="background-color: black;"></p>
+                </form>
+            </div>
+        </div>
+        <div class="col" style="background-color: #9e97db;">
+            <img src="https://www.nlutionsinfotech.com/wp-content/uploads/2019/11/form-filling.gif">
+        </div>
+    </div>
 </div>
+
 

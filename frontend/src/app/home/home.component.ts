@@ -38,17 +38,17 @@ export class HomeComponent implements OnInit {
       localStorage.setItem("isLogged", "false");
       window.location.reload();  
     }
-    
     document.body.style.backgroundImage = 'url(https://i.imgur.com/0o4LbRb.jpg)';
     document.body.style.backgroundRepeat = 'no-repeat';
     document.body.style.backgroundAttachment = 'fixed';
     document.body.style.backgroundSize = "100% 100%"
-
+  
     this.authService.tryAccess();
   }
 
   // Logs a user through the login route.
   loadHome() : void {
+    
     const opts = {headers: new HttpHeaders({
       "Authorization": `Bearer ${localStorage.getItem("authToken")}`
     })}
