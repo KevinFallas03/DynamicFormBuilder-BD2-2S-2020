@@ -29,6 +29,7 @@ export class FormService {
     );
   }
   getFormsById(idList){
+    console.log(idList)
     const headers = {"Content-Type":"application/json"};
     return this._http.get<any>(
       `${this._apiUrl}/pending/${idList}`, {headers}
