@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-    //url: 'https://dynamicformbuilder.herokuapp.com'
-    url: 'http://localhost:3000'
+    url: 'https://dynamicformbuilder.herokuapp.com'
+    //url: 'http://localhost:3000'
 };
 
 /*
