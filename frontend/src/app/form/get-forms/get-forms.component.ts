@@ -100,7 +100,12 @@ export class GetFormsComponent implements OnInit {
 
         let prueba = '{"userId":"'+idUser+'"}';
         var res = info.substring(1);
-        var info2 = '['+prueba+','+res;
+        if(data.length>0){
+          var info2 = '['+prueba+','+res;
+        }else{
+          var info2 = '['+prueba+']';
+        }
+        
 
 
         this._formService.getFormsById(info2).subscribe(
