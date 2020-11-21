@@ -17,10 +17,10 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    document.body.style.backgroundImage = 'url(https://www.nlutionsinfotech.com/wp-content/uploads/2019/11/form-filling.gif)';
-    document.body.style.backgroundRepeat = 'no-repeat';
-    document.body.style.backgroundAttachment = 'fixed';
-    document.body.style.backgroundSize = "100% 100%"
+    // document.body.style.backgroundColor = '#9e97db';
+    // document.body.style.backgroundRepeat = 'no-repeat';
+    // document.body.style.backgroundAttachment = 'fixed';
+    // document.body.style.backgroundSize = "100% 100%"
     if (localStorage.getItem("authToken")) {
       this.router.navigate(['/']); // Redirects to home with a get request
     } 
