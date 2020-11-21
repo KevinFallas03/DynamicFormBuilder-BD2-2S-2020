@@ -124,9 +124,11 @@ export class ApprovalCreateComponent implements OnInit {
 
  validateInput(event) {
     let value = parseInt(this.approvalForm.value.minimumApprovalAmount);
+    //console.log(value)
 
     if (value > this.approvalForm.value.approvers.length) {
       event.value = this.approvalForm.value.approvers.length;
+      this.approvalForm.patchValue({minimumApprovalAmount:this.approvalForm.value.approvers.length});
     }
     
     if (event && event.target) {
